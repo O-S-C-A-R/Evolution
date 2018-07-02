@@ -34,10 +34,16 @@ public class Evolution extends ApplicationAdapter {
         myBatch = new SpriteBatch();
 
         //TODO: Load our image
+        myImage = new Sprite( new Texture(Gdx.files.internal("images/RedPlayer.png")));
+        myImage.setX(200);
+        myImage.setY(200);
+        velocity = new Vector2(randomSource.nextFloat() * 300, randomSource.nextFloat() * 300);
     }
 
     @Override
     public void render() {
+
+
 
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -48,6 +54,14 @@ public class Evolution extends ApplicationAdapter {
         myBatch.setProjectionMatrix(camera.combined);
 
         //TODO: Draw our image!
+        myBatch.begin();
+        myImage.draw(myBatch);
+        myBatch.end();
+        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+
+        myImage.setX(xPos);
+        myImage.setY(yPos);
     }
 
     @Override
