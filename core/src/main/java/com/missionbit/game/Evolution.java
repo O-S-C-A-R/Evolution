@@ -34,7 +34,7 @@ public class Evolution extends ApplicationAdapter {
         myBatch = new SpriteBatch();
 
         //TODO: Load our image
-        myImage = new Sprite( new Texture(Gdx.files.internal("images/RedPlayer.png")));
+        myImage = new Sprite( new Texture(Gdx.files.internal("images/GreenPlayer.png")));
         myImage.setX(200);
         myImage.setY(200);
         velocity = new Vector2(randomSource.nextFloat() * 300, randomSource.nextFloat() * 300);
