@@ -3,6 +3,7 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,16 +12,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 
 public class Evolution extends ApplicationAdapter {
+    private static final int GRAVITY = -5;
     private OrthographicCamera camera;
     private Random randomSource;
-    private Sprite myImage;
+    private Sprite GreenPlayer;
     private SpriteBatch myBatch;
     private Vector2 velocity;
+   private float Speed;
 
     @Override
     public void create() {
@@ -34,10 +36,12 @@ public class Evolution extends ApplicationAdapter {
         myBatch = new SpriteBatch();
 
         //TODO: Load our image
-        myImage = new Sprite( new Texture(Gdx.files.internal("images/GreenPlayer.png")));
-        myImage.setX(200);
-        myImage.setY(200);
-        velocity = new Vector2(randomSource.nextFloat() * 300, randomSource.nextFloat() * 300);
+        GreenPlayer = new Sprite( new Texture(Gdx.files.internal("images/GreenPlayer.png")));
+        GreenPlayer.setX(200);
+        GreenPlayer.setY(200);
+        velocity = new Vector2(0, 0);
+        Speed = 700.0f;
+
     }
 
     @Override
@@ -54,14 +58,28 @@ public class Evolution extends ApplicationAdapter {
         myBatch.setProjectionMatrix(camera.combined);
 
         //TODO: Draw our image!
-        myBatch.begin();
-        myImage.draw(myBatch);
-        myBatch.end();
-        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
 
-        myImage.setX(xPos);
-        myImage.setY(yPos);
+        float xPos = GreenPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+        float yPos = GreenPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT))
+            velocity.x -= Gdx.graphics.getDeltaTime() * Speed;
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT))
+            velocity.x += Gdx.graphics.getDeltaTime() * Speed;
+       if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
+            velocity.y += Gdx.graphics.getDeltaTime() * Speed;
+
+        if(velocity.y>0){
+            velocity.add(0, GRAVITY);
+        }
+        myBatch.begin();
+        myBatch.draw(GreenPlayer,(int)velocity.x,(int)velocity.y);
+        myBatch.end();
+
+
+       // GreenPlayer.setX(xPos);
+        //GreenPlayer.setY(yPos);
+
     }
 
     @Override
