@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
@@ -19,11 +20,16 @@ public class Evolution extends ApplicationAdapter {
     private static final int GRAVITY = -5;
     private OrthographicCamera camera;
     private Random randomSource;
-    private Sprite RedPlayer;
+    private Sprite BlackPlayer;
+    private Sprite Tutorial;
 
     private SpriteBatch myBatch;
     private Vector2 velocity;
-   private float Speed;
+    private float Speed;
+    private boolean showDebug = true;
+    private Platforms floor;
+
+    private ShapeRenderer debugRenderer;
 
     @Override
     public void create() {
@@ -36,10 +42,14 @@ public class Evolution extends ApplicationAdapter {
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
+        debugRenderer = new ShapeRenderer();
+
         //TODO: Load our image
-        RedPlayer = new Sprite( new Texture(Gdx.files.internal("images/RedPlayer.png")));
-        RedPlayer.setX(200);
-        RedPlayer.setY(200);
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
+        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
+        floor = new Platforms(0,0,800,20);
+        BlackPlayer.setX(200);
+        BlackPlayer.setY(200);
         velocity = new Vector2(0, 0);
         Speed = 700.0f;
 
@@ -60,28 +70,43 @@ public class Evolution extends ApplicationAdapter {
 
         //TODO: Draw our image!
 
-        float xPos = RedPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = RedPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+        float xPos = BlackPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+        float yPos = BlackPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT))
             velocity.x -= Gdx.graphics.getDeltaTime() * Speed;
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT))
             velocity.x += Gdx.graphics.getDeltaTime() * Speed;
-       if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
             velocity.y += Gdx.graphics.getDeltaTime() * Speed;
 
-        if(velocity.y>0){
+       // if(velocity.y>0){
             velocity.add(0, GRAVITY);
+        //}
+
+        if (floor.hit(BlackPlayer.getBoundingRectangle())){
+            velocity.y=floor.getTop();
         }
+
+
         myBatch.begin();
-        myBatch.draw(RedPlayer,(int)velocity.x,(int)velocity.y);
+        Tutorial.draw(myBatch);
+        myBatch.end();
+
+        myBatch.begin();
+        myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         myBatch.end();
 
 
-       // GreenPlayer.setX(xPos);
-        //GreenPlayer.setY(yPos);
-
+        if(showDebug){
+            debugRenderer.setProjectionMatrix(camera.combined);
+            debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+            debugRenderer.setColor(0, 1, 0, 1);
+            floor.drawDebug(debugRenderer);
+            debugRenderer.end();
+        }
     }
+
 
     @Override
     public void dispose() {
