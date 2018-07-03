@@ -16,6 +16,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
+import sun.font.TrueTypeFont;
+
 public class Evolution extends ApplicationAdapter {
     private static final int GRAVITY = -5;
     private OrthographicCamera camera;
@@ -24,10 +26,11 @@ public class Evolution extends ApplicationAdapter {
     private Sprite Tutorial;
 
     private SpriteBatch myBatch;
-    private Vector2 velocity;
+    //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
     private Platforms floor;
+    private boolean touchplatform = true;
 
     private ShapeRenderer debugRenderer;
 
@@ -37,7 +40,7 @@ public class Evolution extends ApplicationAdapter {
 
         // Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, 1000, 600);
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -48,9 +51,9 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
         floor = new Platforms(0,0,800,20);
-        BlackPlayer.setX(200);
-        BlackPlayer.setY(200);
-        velocity = new Vector2(0, 0);
+        BlackPlayer.setX(0);
+        BlackPlayer.setY(0);
+       // velocity = new Vector2(0, 0);
         Speed = 700.0f;
 
     }
@@ -68,25 +71,30 @@ public class Evolution extends ApplicationAdapter {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
 
-        //TODO: Draw our image!
+        //todo: Draw our image!
 
-        float xPos = BlackPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = BlackPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * Speed);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
+            BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * Speed);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
+            BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed);
+        }
+            BlackPlayer.setY(BlackPlayer.getY()+GRAVITY);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT))
-            velocity.x -= Gdx.graphics.getDeltaTime() * Speed;
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT))
-            velocity.x += Gdx.graphics.getDeltaTime() * Speed;
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
-            velocity.y += Gdx.graphics.getDeltaTime() * Speed;
-
-       // if(velocity.y>0){
-            velocity.add(0, GRAVITY);
-        //}
 
         if (floor.hit(BlackPlayer.getBoundingRectangle())){
-            velocity.y=floor.getTop();
+           // velocity.y=floor.getTop();
+            BlackPlayer.setY(floor.getTop());
+            //System.out.println("hit "+floor.getTop() + " " + BlackPlayer.getY());
+
+            touchplatform = true;
+
         }
+
+
 
 
         myBatch.begin();
@@ -94,17 +102,20 @@ public class Evolution extends ApplicationAdapter {
         myBatch.end();
 
         myBatch.begin();
-        myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
+       // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
+        BlackPlayer.draw(myBatch);
         myBatch.end();
 
 
         if(showDebug){
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 1, 0, 1);
+            debugRenderer.setColor(0, 0, 0, 0);
             floor.drawDebug(debugRenderer);
+            debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
+
     }
 
 
