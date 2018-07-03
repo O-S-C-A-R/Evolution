@@ -19,11 +19,11 @@ public class Evolution extends ApplicationAdapter {
     private static final int GRAVITY = -5;
     private OrthographicCamera camera;
     private Random randomSource;
-    private Sprite RedPlayer;
-
+    private Sprite BlackPlayer;
+    private Sprite Tutorial;
     private SpriteBatch myBatch;
     private Vector2 velocity;
-   private float Speed;
+    private float Speed;
 
     @Override
     public void create() {
@@ -37,9 +37,10 @@ public class Evolution extends ApplicationAdapter {
         myBatch = new SpriteBatch();
 
         //TODO: Load our image
-        RedPlayer = new Sprite( new Texture(Gdx.files.internal("images/RedPlayer.png")));
-        RedPlayer.setX(200);
-        RedPlayer.setY(200);
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
+        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
+        BlackPlayer.setX(200);
+        BlackPlayer.setY(200);
         velocity = new Vector2(0, 0);
         Speed = 700.0f;
 
@@ -60,25 +61,29 @@ public class Evolution extends ApplicationAdapter {
 
         //TODO: Draw our image!
 
-        float xPos = RedPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = RedPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+        float xPos = BlackPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+        float yPos = BlackPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT))
             velocity.x -= Gdx.graphics.getDeltaTime() * Speed;
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT))
             velocity.x += Gdx.graphics.getDeltaTime() * Speed;
-       if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP))
             velocity.y += Gdx.graphics.getDeltaTime() * Speed;
 
         if(velocity.y>0){
             velocity.add(0, GRAVITY);
         }
         myBatch.begin();
-        myBatch.draw(RedPlayer,(int)velocity.x,(int)velocity.y);
+        Tutorial.draw(myBatch);
+        myBatch.end();
+
+        myBatch.begin();
+        myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         myBatch.end();
 
 
-       // GreenPlayer.setX(xPos);
+        // GreenPlayer.setX(xPos);
         //GreenPlayer.setY(yPos);
 
     }
