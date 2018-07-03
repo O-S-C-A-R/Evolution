@@ -88,6 +88,9 @@ public class Evolution extends ApplicationAdapter {
             velocity.y=floor.getTop();
         }
 
+        camera.position.set(BlackPlayer.getX(), BlackPlayer.getY(), 0);
+        camera.update();
+
 
         myBatch.begin();
         Tutorial.draw(myBatch);
