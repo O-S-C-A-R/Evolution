@@ -2,21 +2,15 @@ package com.missionbit.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
-
-import sun.font.TrueTypeFont;
 
 public class Evolution extends ApplicationAdapter {
     private static final int GRAVITY = -5;
@@ -24,7 +18,7 @@ public class Evolution extends ApplicationAdapter {
     private Random randomSource;
     private Sprite BlackPlayer;
     private Sprite Tutorial;
-
+    private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
@@ -55,7 +49,7 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer.setY(0);
        // velocity = new Vector2(0, 0);
         Speed = 700.0f;
-
+        Spider = new Enemies(6, 6);
     }
 
     @Override
@@ -107,6 +101,7 @@ public class Evolution extends ApplicationAdapter {
         myBatch.begin();
        // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         BlackPlayer.draw(myBatch);
+       Spider.draw(myBatch);
         myBatch.end();
 
 
