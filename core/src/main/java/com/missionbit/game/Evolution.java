@@ -19,6 +19,8 @@ public class Evolution extends ApplicationAdapter {
     private Sprite BlackPlayer;
     private Sprite Tutorial;
     private Enemies Spider;
+    private float jumpvelocity = 0;
+
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
@@ -73,10 +75,14 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
             BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * Speed);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
-            BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed);
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform == true) {
+           // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
+            jumpvelocity = 270;
+            touchplatform = false;
         }
-            BlackPlayer.setY(BlackPlayer.getY()+GRAVITY);
+        jumpvelocity += GRAVITY;
+            //BlackPlayer.setY(BlackPlayer.getY()+GRAVITY+ jumpvelocity * Gdx.graphics.getDeltaTime());
+        BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
 
 
         if (floor.hit(BlackPlayer.getBoundingRectangle())){
@@ -85,6 +91,7 @@ public class Evolution extends ApplicationAdapter {
             //System.out.println("hit "+floor.getTop() + " " + BlackPlayer.getY());
 
             touchplatform = true;
+            jumpvelocity = 0;
 
         }
 
