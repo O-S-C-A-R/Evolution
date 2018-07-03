@@ -81,9 +81,10 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform == true) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 200;
+            jumpvelocity = 270;
             touchplatform = false;
         }
+        jumpvelocity += GRAVITY;
             //BlackPlayer.setY(BlackPlayer.getY()+GRAVITY+ jumpvelocity * Gdx.graphics.getDeltaTime());
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
 
