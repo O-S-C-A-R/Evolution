@@ -19,7 +19,8 @@ public class Evolution extends ApplicationAdapter {
     private static final int GRAVITY = -5;
     private OrthographicCamera camera;
     private Random randomSource;
-    private Sprite GreenPlayer;
+    private Sprite RedPlayer;
+
     private SpriteBatch myBatch;
     private Vector2 velocity;
    private float Speed;
@@ -36,9 +37,9 @@ public class Evolution extends ApplicationAdapter {
         myBatch = new SpriteBatch();
 
         //TODO: Load our image
-        GreenPlayer = new Sprite( new Texture(Gdx.files.internal("images/GreenPlayer.png")));
-        GreenPlayer.setX(200);
-        GreenPlayer.setY(200);
+        RedPlayer = new Sprite( new Texture(Gdx.files.internal("images/RedPlayer.png")));
+        RedPlayer.setX(200);
+        RedPlayer.setY(200);
         velocity = new Vector2(0, 0);
         Speed = 700.0f;
 
@@ -59,8 +60,8 @@ public class Evolution extends ApplicationAdapter {
 
         //TODO: Draw our image!
 
-        float xPos = GreenPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = GreenPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+        float xPos = RedPlayer.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+        float yPos = RedPlayer.getY() + velocity.y * Gdx.graphics.getDeltaTime();
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT))
             velocity.x -= Gdx.graphics.getDeltaTime() * Speed;
@@ -73,7 +74,7 @@ public class Evolution extends ApplicationAdapter {
             velocity.add(0, GRAVITY);
         }
         myBatch.begin();
-        myBatch.draw(GreenPlayer,(int)velocity.x,(int)velocity.y);
+        myBatch.draw(RedPlayer,(int)velocity.x,(int)velocity.y);
         myBatch.end();
 
 
