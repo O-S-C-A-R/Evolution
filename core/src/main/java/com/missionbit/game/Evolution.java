@@ -47,7 +47,7 @@ public class Evolution extends ApplicationAdapter {
         //TODO: Load our image
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-        floor = new Platforms(0,0,7000,275);
+        floor = new Platforms(0,0,1500,60);
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
        // velocity = new Vector2(0, 0);
@@ -78,7 +78,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform == true) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 230;
+            jumpvelocity = 180;
             touchplatform = false;
         }
         jumpvelocity += GRAVITY;
