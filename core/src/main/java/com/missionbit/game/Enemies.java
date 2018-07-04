@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Enemies {
     private Sprite images;
     private int direction = -1;
+    //private int otherdirection = 5;
     private float speed = 1;
     public Enemies(float x, float y) {
         images = new Sprite( new Texture(Gdx.files.internal("images/Spider.png")));
@@ -22,6 +23,7 @@ public class Enemies {
     }
    public void draw(SpriteBatch batch){
        images.setX(images.getX() + speed * direction);
+     //  images.setX(images.getX() + speed * otherdirection);
        images.draw(batch);
 
    }
