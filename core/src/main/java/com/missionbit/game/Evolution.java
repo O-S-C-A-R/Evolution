@@ -47,7 +47,7 @@ public class Evolution extends ApplicationAdapter {
         //TODO: Load our image
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-        floor = new Platforms(0,0,1000,55);
+        floor = new Platforms(0,0,7000,275);
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
        // velocity = new Vector2(0, 0);
