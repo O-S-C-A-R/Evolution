@@ -13,7 +13,17 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.util.Random;
 
 public class Evolution extends ApplicationAdapter {
+
+    /* game constants */
     private static final int GRAVITY = -5;
+    private static final int CAMERA_OFFSET_X = 350;
+    private static final int CAMERA_OFFSET_Y = 150;
+    private static final int VIEWPORT_WIDTH = 960;
+    private static final int VIEWPORT_HEIGHT = 540;
+    private static final int FLOOR_WIDTH = 1500;
+    private static final int FLOOR_HEIGHT = 60;
+    private static final float PLAYER_SPEED = 700.0f;
+
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite BlackPlayer;
@@ -37,7 +47,7 @@ public class Evolution extends ApplicationAdapter {
 
         // Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1000, 600);
+        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -47,11 +57,10 @@ public class Evolution extends ApplicationAdapter {
         //TODO: Load our image
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-        floor = new Platforms(0,0,1500,60);
+        floor = new Platforms(0,0, FLOOR_WIDTH, FLOOR_HEIGHT);
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
        // velocity = new Vector2(0, 0);
-        Speed = 700.0f;
         Spider = new Enemies(6, 6);
     }
 
@@ -71,10 +80,10 @@ public class Evolution extends ApplicationAdapter {
         //todo: Draw our image!
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
-            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * Speed);
+            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
-            BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * Speed);
+            BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform == true) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
@@ -96,7 +105,7 @@ public class Evolution extends ApplicationAdapter {
 
         }
 
-        camera.position.set(BlackPlayer.getX(), BlackPlayer.getY(), 0);
+        camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
 
 
