@@ -25,7 +25,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug =true;
     private Platforms floor;
     private Platforms platform1;
     private boolean touchplatform = true;
@@ -50,10 +50,11 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
         floor = new Platforms(0,0,1500,60);
-        platform1 = new Platforms(750,300,78,28);
+        platform1 = new Platforms(390,60,78,28);
 
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
+
        // velocity = new Vector2(0, 0);
         Speed = 700.0f;
         Spider = new Enemies(6, 6);
@@ -61,7 +62,6 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-
 
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
@@ -134,20 +134,21 @@ public class Evolution extends ApplicationAdapter {
         if(showDebug){
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 0, 0, 0);
+            debugRenderer.setColor(0, 1, 0, 1);
             floor.drawDebug(debugRenderer);
+           platform1.drawDebug(debugRenderer);
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
         if(showDebug){
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 0, 0, 0);
+            debugRenderer.setColor(1, 0, 0, 1);
             platform1.drawDebug(debugRenderer);
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
-        }
-
+       }
+        System.out.println(BlackPlayer.getX()+" "+ BlackPlayer.getY());
     }
 
 
