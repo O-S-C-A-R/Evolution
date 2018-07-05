@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,9 +25,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private static final int FLOOR_WIDTH = 1500;
-    private static final int FLOOR_HEIGHT = 60;
-    private static final float PLAYER_SPEED = 700.0f;
+    private static final float PLAYER_SPEED = 100.0f;
 
     private OrthographicCamera camera;
     private Random randomSource;
@@ -37,28 +37,25 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =false;
-    private Platform floor;
-    private Platform platform1;
-    private Platform platform2;
-    private Platform platform3;
+    private boolean showDebug =true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
+<<<<<<< HEAD
 
     private Buttons LeftButton;
 
 
 
+=======
+    private boolean platformcheck = false;
+>>>>>>> fb26c9f47d0211634957e229f6b31587639a8ecd
     private static final int[][] PLAT_LOCS = new int[][] {
+            {0, 0, 1500, 60}, // floor
             {390,60,78,28},
             {545,60,88,75},
             {754, 160, 235, 5},
-
-
     };
     private static ArrayList<Platform> platforms;
-
-
 
     private ShapeRenderer debugRenderer;
 
@@ -82,15 +79,7 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
 
-
-        floor = new Platform(0,0,1500,60);
-        //platform1 = new Platform(390,60,78,28);
-
-        floor = new Platform(0,0, FLOOR_WIDTH, FLOOR_HEIGHT);
-
-       // platform1 = new Platform(390,60,78,28);
-       // platform2 = new Platform(545,60,88,75);
-        //platform3 = new Platform(747,200,200,5);
+        // Initialize platforms
         platforms = new ArrayList<Platform>();
 
         for (int[] loc : PLAT_LOCS) {
@@ -98,7 +87,7 @@ public class Evolution extends ApplicationAdapter {
         }
 
         BlackPlayer.setX(0);
-        BlackPlayer.setY(0);
+        BlackPlayer.setY(60);
 
        // velocity = new Vector2(0, 0);
         Spider = new Enemies(6, 6);
@@ -107,11 +96,14 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void render() {
 
+          platformcheck = false;
+
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             System.out.println(touchPos);
         }
+
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -128,45 +120,44 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
             BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform == true) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
             jumpvelocity = 180;
             touchplatform = false;
         }
-        jumpvelocity += GRAVITY;
-            //BlackPlayer.setY(BlackPlayer.getY()+GRAVITY+ jumpvelocity * Gdx.graphics.getDeltaTime());
+
+        if(!touchplatform) {
+            jumpvelocity += GRAVITY;
+        }
+
+        //BlackPlayer.setY(BlackPlayer.getY()+GRAVITY+ jumpvelocity * Gdx.graphics.getDeltaTime());
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
 
-        for (Platform p : platforms) {
-            if (p.hit(BlackPlayer.getBoundingRectangle())){
-                System.out.println(BlackPlayer.getX()+" "+ (int)BlackPlayer.getY());
-                System.out.println((int)lastposition.y);
-                if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
-                    BlackPlayer.setY(p.getTop());
-                    touchplatform = true;
-                    jumpvelocity = 0;
+        //if (!touchplatform) {
+            for (Platform p : platforms) {
+                if (p.hit(BlackPlayer.getBoundingRectangle())){
+                    System.out.println(BlackPlayer.getX()+" "+ (int)BlackPlayer.getY());
+                    System.out.println((int)lastposition.y);
+
+                    platformcheck = true;
+
+                    if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
+                        BlackPlayer.setY(p.getTop() - 1);
+                        touchplatform = true;
+                        jumpvelocity = 0;
+
+                    }
+                   // if(BlackPlayer.getX()+BlackPlayer.getWidth() == ){
+
+                    //}
                 }
             }
-        }
-
-        if (floor.hit(BlackPlayer.getBoundingRectangle())){
-           // velocity.y=floor.getTop();
-            BlackPlayer.setY(floor.getTop());
-            //System.out.println("hit "+floor.getTop() + " " + BlackPlayer.getY());
-
-            touchplatform = true;
-            jumpvelocity = 0;
-
-        }
 
 
 
 
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
-
-
-
 
         myBatch.begin();
         Tutorial.draw(myBatch);
@@ -185,15 +176,15 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
             debugRenderer.setColor(0, 1, 0, 1);
-            floor.drawDebug(debugRenderer);
             for (Platform p: platforms){p.drawDebug(debugRenderer);
             }
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
-
-
-
+        //       System.out.println(platformcheck);
+        if(!platformcheck && touchplatform){
+            touchplatform = false;
+        }
 
     }
 
