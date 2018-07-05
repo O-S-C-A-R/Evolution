@@ -4,9 +4,9 @@ package com.missionbit.game;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Platforms {
+public class Platform {
     protected Rectangle platform;
-    public Platforms(float x, float y, float w, float h){
+    public Platform(float x, float y, float w, float h){
         platform = new Rectangle(x,y,w,h);
 
     }
