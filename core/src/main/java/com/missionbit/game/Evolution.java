@@ -27,7 +27,7 @@ public class Evolution extends ApplicationAdapter {
     private float Speed;
     private boolean showDebug = false;
     private Platforms floor;
-    private Platforms floor2;
+    private Platforms platform1;
     private boolean touchplatform = true;
 
     private ShapeRenderer debugRenderer;
@@ -50,7 +50,7 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
         floor = new Platforms(0,0,1500,60);
-        floor2 = new Platforms(750,300,78,28);
+        platform1 = new Platforms(750,300,78,28);
 
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
@@ -103,10 +103,10 @@ public class Evolution extends ApplicationAdapter {
             jumpvelocity = 0;
 
         }
-        if (floor2.hit(BlackPlayer.getBoundingRectangle())){
+        if (platform1.hit(BlackPlayer.getBoundingRectangle())){
             // velocity.y=floor.getTop();
 
-            BlackPlayer.setY(floor2.getTop());
+            BlackPlayer.setY(platform1.getTop());
             //System.out.println("hit "+floor.getTop() + " " + BlackPlayer.getY());
 
             touchplatform = true;
@@ -143,7 +143,7 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
             debugRenderer.setColor(0, 0, 0, 0);
-            floor2.drawDebug(debugRenderer);
+            platform1.drawDebug(debugRenderer);
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
