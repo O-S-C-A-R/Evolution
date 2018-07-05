@@ -45,6 +45,9 @@ public class Evolution extends ApplicationAdapter {
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
 
+    private Buttons LeftButton;
+
+
 
     private static final int[][] PLAT_LOCS = new int[][] {
             {390,60,78,28},
@@ -62,6 +65,7 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
+        LeftButton = new Buttons(100,100, "images/LeftButton.png");
         randomSource = new Random();
 
         // Set up camera for 2d view of 800x480 pixels
@@ -166,6 +170,7 @@ public class Evolution extends ApplicationAdapter {
 
         myBatch.begin();
         Tutorial.draw(myBatch);
+        LeftButton.draw(myBatch);
         myBatch.end();
 
         myBatch.begin();
