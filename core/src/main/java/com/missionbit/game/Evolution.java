@@ -40,12 +40,21 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug =false;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
+<<<<<<< HEAD
 
     private Buttons LeftButton;
 
+=======
+>>>>>>> b120d7fb1b215ffb03f498a632a824cfb9aa30aa
 
  private boolean platformcheck = false;
 
+<<<<<<< HEAD
+=======
+    private Buttons LeftButton;
+    private boolean platformcheck = false;
+
+>>>>>>> b120d7fb1b215ffb03f498a632a824cfb9aa30aa
     private static final int[][] PLAT_LOCS = new int[][] {
             {0, 0, 1500, 60}, // floor
             {390,60,78,28},
