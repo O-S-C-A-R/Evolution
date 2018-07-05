@@ -37,7 +37,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =true;
+    private boolean showDebug =false;
     private Platform floor;
     private Platform platform1;
     private Platform platform2;
