@@ -135,7 +135,9 @@ public class Evolution extends ApplicationAdapter {
 
         for (Platform p : platforms) {
             if (p.hit(BlackPlayer.getBoundingRectangle())){
-                if(lastposition.y > BlackPlayer.getY()){
+                System.out.println(BlackPlayer.getX()+" "+ (int)BlackPlayer.getY());
+                System.out.println((int)lastposition.y);
+                if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
                     BlackPlayer.setY(p.getTop());
                     touchplatform = true;
                     jumpvelocity = 0;
@@ -185,8 +187,8 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.end();
         }
 
-        System.out.println(BlackPlayer.getX()+" "+ BlackPlayer.getY());
-        System.out.println(lastposition.y);
+
+
 
     }
 
