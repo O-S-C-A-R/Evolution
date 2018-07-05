@@ -59,14 +59,12 @@ public class Evolution extends ApplicationAdapter {
         //TODO: Load our image
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-<<<<<<< HEAD
+
         floor = new Platforms(0,0,1500,60);
         platform1 = new Platforms(390,60,78,28);
-=======
+
         floor = new Platforms(0,0, FLOOR_WIDTH, FLOOR_HEIGHT);
 
-        floor2 = new Platforms(750,300,78,28);
->>>>>>> 8a9f88ed8d7e3a318f0c5dea7c875f47d1157956
 
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
