@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
@@ -42,12 +43,14 @@ public class Evolution extends ApplicationAdapter {
     private Platform platform2;
     private Platform platform3;
     private boolean touchplatform = true;
+    private Vector2 lastposition = new Vector2();
 
 
     private static final int[][] PLAT_LOCS = new int[][] {
             {390,60,78,28},
             {545,60,88,75},
             {754, 160, 235, 5},
+
 
     };
     private static ArrayList<Platform> platforms;
@@ -132,18 +135,11 @@ public class Evolution extends ApplicationAdapter {
 
         for (Platform p : platforms) {
             if (p.hit(BlackPlayer.getBoundingRectangle())){
-                touchplatform = true;
-                jumpvelocity = 0;
-            }
-
-            if(showDebug){
-                debugRenderer.setProjectionMatrix(camera.combined);
-                debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-                debugRenderer.setColor(0, 1, 0, 1);
-                floor.drawDebug(debugRenderer);
-                p.drawDebug(debugRenderer);
-                debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
-                debugRenderer.end();
+                if(lastposition.y > BlackPlayer.getY()){
+                    BlackPlayer.setY(p.getTop());
+                    touchplatform = true;
+                    jumpvelocity = 0;
+                }
             }
         }
 
@@ -156,6 +152,7 @@ public class Evolution extends ApplicationAdapter {
             jumpvelocity = 0;
 
         }
+
 
 
 
@@ -174,10 +171,23 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer.draw(myBatch);
        Spider.draw(myBatch);
         myBatch.end();
+        lastposition.x = BlackPlayer.getX();
+        lastposition.y = BlackPlayer.getY();
 
-
+        if(showDebug){
+            debugRenderer.setProjectionMatrix(camera.combined);
+            debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+            debugRenderer.setColor(0, 1, 0, 1);
+            floor.drawDebug(debugRenderer);
+            for (Platform p: platforms){p.drawDebug(debugRenderer);
+            }
+            debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
+            debugRenderer.end();
+        }
 
         System.out.println(BlackPlayer.getX()+" "+ BlackPlayer.getY());
+        System.out.println(lastposition.y);
+
     }
 
 
