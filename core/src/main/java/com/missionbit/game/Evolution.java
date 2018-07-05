@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 
@@ -36,6 +37,7 @@ public class Evolution extends ApplicationAdapter {
     private float Speed;
     private boolean showDebug = false;
     private Platforms floor;
+    private Platforms floor2;
     private boolean touchplatform = true;
 
     private ShapeRenderer debugRenderer;
@@ -58,6 +60,9 @@ public class Evolution extends ApplicationAdapter {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
         floor = new Platforms(0,0, FLOOR_WIDTH, FLOOR_HEIGHT);
+
+        floor2 = new Platforms(750,300,78,28);
+
         BlackPlayer.setX(0);
         BlackPlayer.setY(0);
        // velocity = new Vector2(0, 0);
@@ -68,7 +73,11 @@ public class Evolution extends ApplicationAdapter {
     public void render() {
 
 
-
+        if(Gdx.input.isTouched()) {
+            Vector3 touchPos = new Vector3();
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            System.out.println(touchPos);
+        }
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -104,6 +113,16 @@ public class Evolution extends ApplicationAdapter {
             jumpvelocity = 0;
 
         }
+        if (floor2.hit(BlackPlayer.getBoundingRectangle())){
+            // velocity.y=floor.getTop();
+
+            BlackPlayer.setY(floor2.getTop());
+            //System.out.println("hit "+floor.getTop() + " " + BlackPlayer.getY());
+
+            touchplatform = true;
+            jumpvelocity = 0;
+
+        }
 
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
@@ -127,6 +146,14 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
             debugRenderer.setColor(0, 0, 0, 0);
             floor.drawDebug(debugRenderer);
+            debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
+            debugRenderer.end();
+        }
+        if(showDebug){
+            debugRenderer.setProjectionMatrix(camera.combined);
+            debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+            debugRenderer.setColor(0, 0, 0, 0);
+            floor2.drawDebug(debugRenderer);
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
