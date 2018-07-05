@@ -25,7 +25,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private static final float PLAYER_SPEED = 100.0f;
+    private static final float PLAYER_SPEED = 550.0f;
 
     private OrthographicCamera camera;
     private Random randomSource;
@@ -143,9 +143,10 @@ public class Evolution extends ApplicationAdapter {
                         jumpvelocity = 0;
 
                     }
-                   // if(BlackPlayer.getX()+BlackPlayer.getWidth() == ){
+                    else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX()< p.getLeft()){
+                        BlackPlayer.setX(p.getLeft()-BlackPlayer.getWidth()) ;
 
-                    //}
+                    }
                 }
             }
 
