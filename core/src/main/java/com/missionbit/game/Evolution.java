@@ -194,10 +194,7 @@ public class Evolution extends ApplicationAdapter {
 
     }
 
-    public void FixedUpdate()
-    {
-        //LeftButton = new Buttons(100,100, "images/LeftButton.png");
-    }
+
 
 
     @Override
