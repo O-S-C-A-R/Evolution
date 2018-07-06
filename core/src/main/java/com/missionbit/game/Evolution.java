@@ -25,7 +25,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private static final float PLAYER_SPEED = 550.0f;
+    private static final float PLAYER_SPEED = 499.999f;
 
     private OrthographicCamera camera;
     private Random randomSource;
@@ -37,7 +37,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -58,7 +58,7 @@ public class Evolution extends ApplicationAdapter {
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][] {
-            {757, 60, 100, 100,100,100}, // spikes
+            {765, 60, 870, 135,1010,60}, // spikes
     };
     private static ArrayList<Platform> platforms;
 
