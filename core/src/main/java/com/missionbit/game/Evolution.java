@@ -181,7 +181,7 @@ public class Evolution extends ApplicationAdapter {
 
         myBatch.begin();
         BlackPlayer.draw(myBatch);
-       Spider.draw(myBatch);
+        Spider.draw(myBatch);
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();

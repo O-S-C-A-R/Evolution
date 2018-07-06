@@ -17,7 +17,7 @@ public class Enemies {
     private float speed = 1;
 
     public Enemies(float x, float y) {
-        images = new Sprite(new Texture(Gdx.files.internal("images/Spider.png")));
+        images = new Sprite(new Texture(Gdx.files.internal("images/TutorialSpider.png")));
         images.setX(x);
         images.setY(y);
 
