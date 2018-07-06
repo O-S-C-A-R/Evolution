@@ -40,12 +40,7 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug =false;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
-<<<<<<< HEAD
 
-
-=======
-xs
->>>>>>> 920f626b305089e9fe5c41417c26c3b68675031f
     private Buttons LeftButton;
     private Buttons RightButton;
 
@@ -55,11 +50,7 @@ xs
 
 
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 920f626b305089e9fe5c41417c26c3b68675031f
     private static final int[][] PLAT_LOCS = new int[][] {
             {0, 0, 1500, 60}, // floor
             {390,60,78,28},
@@ -127,13 +118,13 @@ xs
 
         //todo: Draw our image!
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
             jumpvelocity = 180;
             touchplatform = false;
