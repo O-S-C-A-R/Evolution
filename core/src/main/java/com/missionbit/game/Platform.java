@@ -25,6 +25,9 @@ public class Platform {
     public float getLeft(){
         return platform.getX();
     }
+    public float getRight(){
+        return platform.getX();
+    }
 
 
 
