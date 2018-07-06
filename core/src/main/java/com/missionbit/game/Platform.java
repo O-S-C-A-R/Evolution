@@ -26,7 +26,7 @@ public class Platform {
         return platform.getX();
     }
     public float getRight(){
-        return platform.getX();
+        return platform.getX()+platform.width;
     }
 
 

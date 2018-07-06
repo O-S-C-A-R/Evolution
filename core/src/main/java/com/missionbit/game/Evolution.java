@@ -156,6 +156,17 @@ public class Evolution extends ApplicationAdapter {
 
                     }
 
+                    if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
+                        BlackPlayer.setY(p.getTop() - 1);
+                        touchplatform = true;
+                        jumpvelocity = 0;
+
+                    }
+                    else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX()< p.getRight()){
+                        BlackPlayer.setX(p.getRight()) ;
+
+                    }
+
                 }
             }
 
