@@ -155,6 +155,7 @@ public class Evolution extends ApplicationAdapter {
                         BlackPlayer.setX(p.getLeft()-BlackPlayer.getWidth()) ;
 
                     }
+
                 }
             }
 
