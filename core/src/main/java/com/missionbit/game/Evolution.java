@@ -40,17 +40,26 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug =false;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
+<<<<<<< HEAD
 
 
+=======
+xs
+>>>>>>> 920f626b305089e9fe5c41417c26c3b68675031f
     private Buttons LeftButton;
+    private Buttons RightButton;
+
 
 
  private boolean platformcheck = false;
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 920f626b305089e9fe5c41417c26c3b68675031f
     private static final int[][] PLAT_LOCS = new int[][] {
             {0, 0, 1500, 60}, // floor
             {390,60,78,28},
@@ -64,7 +73,9 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-        LeftButton = new Buttons(100,100, "images/LeftButton.png");
+        LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
+        RightButton = new Buttons(40, -40, "images/RightButton.png");
+
         randomSource = new Random();
 
         // Set up camera for 2d view of 800x480 pixels
@@ -88,7 +99,7 @@ public class Evolution extends ApplicationAdapter {
             platforms.add(new Platform(loc[0], loc[1], loc[2], loc[3]));
         }
 
-        BlackPlayer.setX(0);
+        BlackPlayer.setX(70);
         BlackPlayer.setY(60);
 
        // velocity = new Vector2(0, 0);
@@ -162,6 +173,9 @@ public class Evolution extends ApplicationAdapter {
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
 
+//        Buttons.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
+//        Button.update();
+
         myBatch.begin();
         Tutorial.draw(myBatch);
         LeftButton.draw(myBatch);
@@ -190,6 +204,8 @@ public class Evolution extends ApplicationAdapter {
         }
 
     }
+
+
 
 
     @Override
