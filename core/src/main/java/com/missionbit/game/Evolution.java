@@ -174,11 +174,12 @@ public class Evolution extends ApplicationAdapter {
 
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
-
-
+        // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
+        myBatch.begin();
+        Tutorial.draw(myBatch);
+        myBatch.end();
 
         myBatch.begin();
-       // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         BlackPlayer.draw(myBatch);
        Spider.draw(myBatch);
         myBatch.end();
@@ -210,11 +211,8 @@ public class Evolution extends ApplicationAdapter {
 //          myBatch.setProjectionMatrix(camera.combined);
 
 
-//          myBatch.begin();
-//          Tutorial.draw(myBatch);
-//          LeftButton.draw(myBatch);
+        //          LeftButton.draw(myBatch);
 //          RightButton.draw(myBatch);
-//          myBatch.end();
 
     }
 
