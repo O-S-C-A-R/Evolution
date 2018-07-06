@@ -11,7 +11,6 @@ public class Platform {
 
     }
     public void drawDebug(ShapeRenderer renderer){
-        System.out.println("test");
         renderer.rect(platform.getX(), platform.getY(), platform.getWidth(), platform.getHeight());
     }
     public boolean hit(Rectangle other){

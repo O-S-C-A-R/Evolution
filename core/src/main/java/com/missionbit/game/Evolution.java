@@ -37,7 +37,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =false;
+    private boolean showDebug =true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
 
@@ -54,7 +54,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int[][] PLAT_LOCS = new int[][] {
             {0, 0, 1500, 60}, // floor
             {390,60,78,28},
-            {545,60,88,75},
+            {545,60,84,75},
             {754, 160, 235, 5},
     };
     private static ArrayList<Platform> platforms;
@@ -91,7 +91,7 @@ public class Evolution extends ApplicationAdapter {
         }
 
         BlackPlayer.setX(70);
-        BlackPlayer.setY(60);
+        BlackPlayer.setY(59);
 
        // velocity = new Vector2(0, 0);
         Spider = new Enemies(6, 6);
@@ -127,7 +127,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 180;
+            jumpvelocity = 195;
             touchplatform = false;
         }
 
@@ -141,12 +141,16 @@ public class Evolution extends ApplicationAdapter {
         //if (!touchplatform) {
             for (Platform p : platforms) {
                 if (p.hit(BlackPlayer.getBoundingRectangle())){
-                    System.out.println(BlackPlayer.getX()+" "+ (int)BlackPlayer.getY());
-                    System.out.println((int)lastposition.y);
 
                     platformcheck = true;
 
-                    if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
+                   // if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())&& p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y){
+
+
+                     if((p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y)){
+                    System.out.println(BlackPlayer.getY());
+                        System.out.println(lastposition.y);
+                        System.out.println("platform"+p.getTop());
                         BlackPlayer.setY(p.getTop() - 1);
                         touchplatform = true;
                         jumpvelocity = 0;
@@ -157,12 +161,6 @@ public class Evolution extends ApplicationAdapter {
 
                     }
 
-                    if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
-                        BlackPlayer.setY(p.getTop() - 1);
-                        touchplatform = true;
-                        jumpvelocity = 0;
-
-                    }
                     else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX()< p.getRight()){
                         BlackPlayer.setX(p.getRight()) ;
 
