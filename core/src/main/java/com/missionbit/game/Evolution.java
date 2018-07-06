@@ -40,7 +40,7 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug =true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
-
+    private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
     private Buttons LeftButton;
     private Buttons RightButton;
 
@@ -52,10 +52,13 @@ public class Evolution extends ApplicationAdapter {
 
 
     private static final int[][] PLAT_LOCS = new int[][] {
-            {0, 0, 1500, 60}, // floor
+            {0, 0, 1800, 60}, // floor
             {390,60,78,28},
             {545,60,84,75},
             {754, 160, 235, 5},
+    };
+    private static final float[][] spike_locs = new float[][] {
+            {757, 60, 100, 100,100,100}, // spikes
     };
     private static ArrayList<Platform> platforms;
 
@@ -90,6 +93,9 @@ public class Evolution extends ApplicationAdapter {
             platforms.add(new Platform(loc[0], loc[1], loc[2], loc[3]));
         }
 
+        for (float[] loc : spike_locs) {
+           spikes.add(new Spikes(loc));
+        }
         BlackPlayer.setX(70);
         BlackPlayer.setY(59);
 
@@ -192,6 +198,9 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.setColor(0, 1, 0, 1);
             for (Platform p: platforms){p.drawDebug(debugRenderer);
             }
+            for(Spikes s: spikes) {
+                s.drawDebug(debugRenderer);
+            }
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
@@ -199,6 +208,8 @@ public class Evolution extends ApplicationAdapter {
         if(!platformcheck && touchplatform){
             touchplatform = false;
         }
+        System.out.println(BlackPlayer.getY());
+        System.out.println(BlackPlayer.getX());
 //        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 //        camera.update();
 
