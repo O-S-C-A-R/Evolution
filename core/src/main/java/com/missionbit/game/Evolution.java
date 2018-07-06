@@ -65,7 +65,7 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void create() {
         LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
-        RightButton = new Buttons(40, -40, "images/RightButton.png");
+        RightButton = new Buttons(120, -40, "images/RightButton.png");
 
         randomSource = new Random();
 
@@ -115,6 +115,7 @@ public class Evolution extends ApplicationAdapter {
         //Set up our camera
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
+
 
         //todo: Draw our image!
 
@@ -176,13 +177,7 @@ public class Evolution extends ApplicationAdapter {
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
 
-//        Buttons.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
-//        Button.update();
 
-        myBatch.begin();
-        Tutorial.draw(myBatch);
-        LeftButton.draw(myBatch);
-        myBatch.end();
 
         myBatch.begin();
        // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
@@ -205,6 +200,23 @@ public class Evolution extends ApplicationAdapter {
         if(!platformcheck && touchplatform){
             touchplatform = false;
         }
+//        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+//        camera.update();
+
+//        camera.position.set(LeftButton.getX() + CAMERA_OFFSET_X, LeftButton.getY() + CAMERA_OFFSET_Y, 0);
+//        camera.update();
+
+//          camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
+//          camera.update();
+//
+//          myBatch.setProjectionMatrix(camera.combined);
+
+
+//          myBatch.begin();
+//          Tutorial.draw(myBatch);
+//          LeftButton.draw(myBatch);
+//          RightButton.draw(myBatch);
+//          myBatch.end();
 
     }
 
