@@ -25,7 +25,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private static final float PLAYER_SPEED = 550.0f;
+    private static final float PLAYER_SPEED = 499.999f;
 
     private OrthographicCamera camera;
     private Random randomSource;
@@ -37,10 +37,14 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =false;
+    private boolean showDebug = true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
+<<<<<<< HEAD
 
+=======
+    private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
+>>>>>>> 808ecfad4831ebdda4de81605083850b112f663d
     private Buttons LeftButton;
     private Buttons RightButton;
 
@@ -52,10 +56,13 @@ public class Evolution extends ApplicationAdapter {
 
 
     private static final int[][] PLAT_LOCS = new int[][] {
-            {0, 0, 1500, 60}, // floor
+            {0, 0, 1800, 60}, // floor
             {390,60,78,28},
-            {545,60,88,75},
+            {545,60,84,75},
             {754, 160, 235, 5},
+    };
+    private static final float[][] spike_locs = new float[][] {
+            {765, 60, 870, 135,1010,60}, // spikes
     };
     private static ArrayList<Platform> platforms;
 
@@ -65,7 +72,7 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void create() {
         LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
-        RightButton = new Buttons(40, -40, "images/RightButton.png");
+        RightButton = new Buttons(120, -40, "images/RightButton.png");
 
         randomSource = new Random();
 
@@ -90,8 +97,11 @@ public class Evolution extends ApplicationAdapter {
             platforms.add(new Platform(loc[0], loc[1], loc[2], loc[3]));
         }
 
+        for (float[] loc : spike_locs) {
+           spikes.add(new Spikes(loc));
+        }
         BlackPlayer.setX(70);
-        BlackPlayer.setY(60);
+        BlackPlayer.setY(59);
 
        // velocity = new Vector2(0, 0);
         Spider = new Enemies(6, 6);
@@ -116,6 +126,7 @@ public class Evolution extends ApplicationAdapter {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
 
+
         //todo: Draw our image!
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -126,7 +137,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 180;
+            jumpvelocity = 195;
             touchplatform = false;
         }
 
@@ -140,12 +151,16 @@ public class Evolution extends ApplicationAdapter {
         //if (!touchplatform) {
             for (Platform p : platforms) {
                 if (p.hit(BlackPlayer.getBoundingRectangle())){
-                    System.out.println(BlackPlayer.getX()+" "+ (int)BlackPlayer.getY());
-                    System.out.println((int)lastposition.y);
 
                     platformcheck = true;
 
-                    if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())){
+                   // if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())&& p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y){
+
+
+                     if((p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y)){
+                    System.out.println(BlackPlayer.getY());
+                        System.out.println(lastposition.y);
+                        System.out.println("platform"+p.getTop());
                         BlackPlayer.setY(p.getTop() - 1);
                         touchplatform = true;
                         jumpvelocity = 0;
@@ -155,6 +170,12 @@ public class Evolution extends ApplicationAdapter {
                         BlackPlayer.setX(p.getLeft()-BlackPlayer.getWidth()) ;
 
                     }
+
+                    else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX()< p.getRight()){
+                        BlackPlayer.setX(p.getRight()) ;
+
+                    }
+
                 }
             }
 
@@ -163,19 +184,14 @@ public class Evolution extends ApplicationAdapter {
 
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
-
-//        Buttons.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
-//        Button.update();
-
+        // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         myBatch.begin();
         Tutorial.draw(myBatch);
-        LeftButton.draw(myBatch);
         myBatch.end();
 
         myBatch.begin();
-       // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         BlackPlayer.draw(myBatch);
-       Spider.draw(myBatch);
+        Spider.draw(myBatch);
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();
@@ -186,6 +202,9 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.setColor(0, 1, 0, 1);
             for (Platform p: platforms){p.drawDebug(debugRenderer);
             }
+            for(Spikes s: spikes) {
+                s.drawDebug(debugRenderer);
+            }
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
@@ -193,6 +212,22 @@ public class Evolution extends ApplicationAdapter {
         if(!platformcheck && touchplatform){
             touchplatform = false;
         }
+        System.out.println(BlackPlayer.getY());
+        System.out.println(BlackPlayer.getX());
+//        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+//        camera.update();
+
+//        camera.position.set(LeftButton.getX() + CAMERA_OFFSET_X, LeftButton.getY() + CAMERA_OFFSET_Y, 0);
+//        camera.update();
+
+//          camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
+//          camera.update();
+//
+//          myBatch.setProjectionMatrix(camera.combined);
+
+
+        //          LeftButton.draw(myBatch);
+//          RightButton.draw(myBatch);
 
     }
 
