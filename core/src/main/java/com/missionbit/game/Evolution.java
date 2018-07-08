@@ -42,10 +42,7 @@ public class Evolution extends ApplicationAdapter {
     private Vector2 lastposition = new Vector2();
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-<<<<<<< HEAD
 
-=======
->>>>>>> 04da4745f7cf54f93b52db6a9f00f8b7c6b809f7
     private Buttons LeftButton;
     private Buttons RightButton;
 
@@ -57,13 +54,13 @@ public class Evolution extends ApplicationAdapter {
 
 
     private static final int[][] PLAT_LOCS = new int[][] {
-            {0, 0, 1800, 60}, // floor
+            {0, 0, 1800, 60}, // PLATFORMS
             {390,60,78,28},
             {545,60,84,75},
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][] {
-            {765, 60, 870, 135,1010,60}, // spikes
+            {765, 60, 870, 135,1010,60}, // SPIKES
     };
     private static ArrayList<Platform> platforms;
 
@@ -86,7 +83,7 @@ public class Evolution extends ApplicationAdapter {
 
         debugRenderer = new ShapeRenderer();
 
-        //TODO: Load our image
+        //LOAD IMAGES
         platforms = new ArrayList<Platform>();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
@@ -182,10 +179,9 @@ public class Evolution extends ApplicationAdapter {
 
 
 
-
+    // CAMERA AND PLAYER DRAWING
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
-        // myBatch.draw(BlackPlayer,(int)velocity.x,(int)velocity.y);
         myBatch.begin();
         Tutorial.draw(myBatch);
         myBatch.end();
