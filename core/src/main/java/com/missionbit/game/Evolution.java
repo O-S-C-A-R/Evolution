@@ -42,7 +42,10 @@ public class Evolution extends ApplicationAdapter {
     private Vector2 lastposition = new Vector2();
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 04da4745f7cf54f93b52db6a9f00f8b7c6b809f7
     private Buttons LeftButton;
     private Buttons RightButton;
 
