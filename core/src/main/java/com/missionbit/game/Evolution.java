@@ -40,11 +40,9 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug = true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
-<<<<<<< HEAD
 
-=======
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
->>>>>>> 808ecfad4831ebdda4de81605083850b112f663d
+
     private Buttons LeftButton;
     private Buttons RightButton;
 
