@@ -75,8 +75,15 @@ public class Evolution extends ApplicationAdapter {
         RightButton = new Buttons(60, -100, "images/RightButton.png");
         UpButton = new Buttons(690, -90, "images/UpButton.png");
 
+<<<<<<< HEAD
         bodyFont = new BitmapFont();
 
+=======
+        LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
+        RightButton = new Buttons(120, -40, "images/RightButton.png");
+        UpButton = new Buttons(620, -20, "images/UpButton.png");
+        bodyFont = new BitmapFont();
+>>>>>>> a310b522cbad0ab7bdb1e610c0fb3b158a011d89
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
@@ -229,12 +236,16 @@ public class Evolution extends ApplicationAdapter {
         myBatch.begin();
         BlackPlayer.draw(myBatch);
         Spider.draw(myBatch);
+<<<<<<< HEAD
 
 //        LeftButton.draw(myBatch);
 //        RightButton.draw(myBatch);
 //        UpButton.draw(myBatch);
         bodyFont.draw(myBatch,"Lives left", 900,500 );
 
+=======
+//        bodyFont.draw(myBatch,"Lives left", 900,500 );
+>>>>>>> a310b522cbad0ab7bdb1e610c0fb3b158a011d89
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();
