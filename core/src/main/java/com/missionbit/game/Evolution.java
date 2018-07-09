@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,15 +38,13 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug =true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
-<<<<<<< HEAD
 
     private Buttons LeftButton;
 
 
 
-=======
     private boolean platformcheck = false;
->>>>>>> fb26c9f47d0211634957e229f6b31587639a8ecd
+
     private static final int[][] PLAT_LOCS = new int[][] {
             {0, 0, 1500, 60}, // floor
             {390,60,78,28},
