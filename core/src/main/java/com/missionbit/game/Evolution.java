@@ -139,10 +139,6 @@ public class Evolution extends ApplicationAdapter {
                     touchplatform = false;
                 }
             }
-<<<<<<< HEAD
-=======
-//            System.out.println(touchPos);
->>>>>>> f52b22f5943b7f1ed86310a8bc5d6bc7e71f82fe
 
         }
 
