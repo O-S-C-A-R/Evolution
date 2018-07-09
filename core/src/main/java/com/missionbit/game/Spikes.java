@@ -12,22 +12,26 @@ public class Spikes {
         spike = new Polygon(points);
 
     }
-    public void drawDebug(ShapeRenderer renderer){
-        renderer.polygon(spike.getVertices());
-    }
-//    public boolean hit(Rectangle other){
-//        boolean flag = spike.overlaps(other);
-//        return flag;
-//
-//    }
-//    public float getTop(){
-//        return platform.getY()+platform.height;
-//    }
-//    public float getLeft(){
-//        return platform.getX();
-//    }
-//    public float getRight(){
-//        return platform.getX()+platform.width;
-//    }
+    public void drawDebug(ShapeRenderer renderer){ renderer.polygon(spike.getVertices()); }
+    public boolean CollideWithPlayer(Rectangle Player){
+        boolean CollideWithPlayer = false;
+        if(spike.contains(Player.getX(),Player.getY())){
+            CollideWithPlayer = true;
 
+        }
+        if(spike.contains(Player.getX()+Player.getWidth(),Player.getY()+Player.getHeight())){
+            CollideWithPlayer = true;
+
+        }
+        if(spike.contains(Player.getX()+Player.getWidth(),Player.getY())){
+            CollideWithPlayer = true;
+
+        }
+        if(spike.contains(Player.getX(),Player.getY()+Player.getHeight())){
+            CollideWithPlayer = true;
+
+        }
+        return CollideWithPlayer;
+
+    }
 }
