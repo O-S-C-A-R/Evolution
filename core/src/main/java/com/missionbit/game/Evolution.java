@@ -12,8 +12,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,8 +38,11 @@ public class Evolution extends ApplicationAdapter {
     private boolean showDebug = true;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
+    private int Lives = 3;
+
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
+
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -49,10 +50,7 @@ public class Evolution extends ApplicationAdapter {
     Vector3 touchPos;
 
 
-
- private boolean platformcheck = false;
-
-
+    private boolean platformcheck = false;
 
 
     private static final int[][] PLAT_LOCS = new int[][] {
@@ -62,7 +60,7 @@ public class Evolution extends ApplicationAdapter {
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][] {
-            {765, 60, 870, 135,1010,60}, // SPIKES
+            {745, 59, 880, 115,1020,59}, // SPIKES
     };
     private static ArrayList<Platform> platforms;
 
@@ -116,6 +114,7 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+<<<<<<< HEAD
             System.out.println(touchPos);
             camera.unproject(touchPos);
             if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
@@ -140,6 +139,9 @@ public class Evolution extends ApplicationAdapter {
                     touchplatform = false;
                 }
             }
+=======
+//            System.out.println(touchPos);
+>>>>>>> eab319c9c89388a8153286fec1710db785e01c20
         }
 
         // Clear the screen
@@ -161,7 +163,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 195;
+            jumpvelocity = 295;
             touchplatform = false;
         }
 
@@ -215,8 +217,24 @@ public class Evolution extends ApplicationAdapter {
 
                 }
             }
+        for (Spikes s : spikes) {
+            if (s.CollideWithPlayer(BlackPlayer.getBoundingRectangle())) {
+                BlackPlayer.setX(0);
+                BlackPlayer.setY(62);
+                Lives =- 1;
+                System.out.println("One life is gone");
 
 
+            }
+        }
+        if(Lives == 0){
+            BlackPlayer.setX(0);
+            BlackPlayer.setY(62);
+            System.out.println("You Died");
+            Lives = 3;
+
+
+        }
 
     // CAMERA AND PLAYER DRAWING
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
@@ -251,8 +269,8 @@ public class Evolution extends ApplicationAdapter {
         if(!platformcheck && touchplatform){
             touchplatform = false;
         }
-        System.out.println(BlackPlayer.getY());
-        System.out.println(BlackPlayer.getX());
+//        System.out.println(BlackPlayer.getY());
+//        System.out.println(BlackPlayer.getX());
 //        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 //        camera.update();
 
