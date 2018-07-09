@@ -19,27 +19,19 @@ import java.util.Random;
 public class Evolution extends ApplicationAdapter {
 
     /* game constants */
-    private static final int GRAVITY = -5;
     private static final int CAMERA_OFFSET_X = 350;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private static final float PLAYER_SPEED = 499.999f;
-
+    private Player blackplayer;
     private OrthographicCamera camera;
     private Random randomSource;
-    private Sprite BlackPlayer;
     private Sprite Tutorial;
     private Enemies Spider;
-    private float jumpvelocity = 0;
-
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
     private boolean showDebug = false;
-    private boolean touchplatform = true;
-    private Vector2 lastposition = new Vector2();
-    private int Lives = 3;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -70,6 +62,7 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
+         blackplayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
         RightButton = new Buttons(60, -100, "images/RightButton.png");
@@ -91,7 +84,6 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
 
         // Initialize platforms
@@ -104,8 +96,7 @@ public class Evolution extends ApplicationAdapter {
         for (float[] loc : spike_locs) {
            spikes.add(new Spikes(loc));
         }
-        BlackPlayer.setX(70);
-        BlackPlayer.setY(59);
+
 
        // velocity = new Vector2(0, 0);
         Spider = new Enemies(6, 6);
@@ -126,22 +117,22 @@ public class Evolution extends ApplicationAdapter {
             {
                 if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
                 {
-                    BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+                    blackplayer.Moveleft();
                 }
+
             }
             if(touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth())
             {
                 if(touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight())
                 {
-                    BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+                    blackplayer.Moveright();
                 }
             }
             if(touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth())
             {
-                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && touchplatform)
+                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform)
                 {
-                    jumpvelocity = 195;
-                    touchplatform = false;
+                    blackplayer.Jump();
                 }
             }
 
@@ -159,73 +150,42 @@ public class Evolution extends ApplicationAdapter {
         //todo: Draw our image!
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+            blackplayer.Moveleft();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-            BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+            blackplayer.Moveright();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
-           // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 190;
-            touchplatform = false;
-        }
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
 
-
-        if(!touchplatform) {
-            jumpvelocity += GRAVITY;
+            blackplayer.Jump();
         }
 
-        BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
+
+
+        blackplayer.Update();
         for (Platform p : platforms) {
-                if (p.hit(BlackPlayer.getBoundingRectangle())){
-
+                if (p.hit(blackplayer)){
                     platformcheck = true;
-
-
-
-                     if((p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y)){
-                        BlackPlayer.setY(p.getTop() - 1);
-                        touchplatform = true;
-                        jumpvelocity = 0;
-
-                    }
-                    else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX()< p.getLeft()){
-                        BlackPlayer.setX(p.getLeft()-BlackPlayer.getWidth()) ;
-
-                    }
-
-                    else if ( (int)BlackPlayer.getX()+(int)BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX()< p.getRight()){
-                        BlackPlayer.setX(p.getRight()) ;
-
-                    }
+                    blackplayer.collide(p);
 
                 }
             }
         for (Spikes s : spikes) {
-            if (s.CollideWithPlayer(BlackPlayer.getBoundingRectangle())) {
-                BlackPlayer.setX(0);
-                BlackPlayer.setY(62);
-                Lives =- 1;
-                System.out.println("One life is gone");
+            if (s.CollideWithPlayer(blackplayer)) {
+              blackplayer.Die();
 
 
             }
         }
-        if(Lives == 0){
-            BlackPlayer.setX(0);
-            BlackPlayer.setY(62);
-            System.out.println("You Died");
-            Lives = 3;
+        if(blackplayer.Lives == 0){
+           blackplayer.reset();
 
 
         }
-        if(BlackPlayer.getX()&&BlackPlayer.getY()){
-            BlackPlayer.setX(0);
-            BlackPlayer.setY(62);
-        }
+
 
     // CAMERA AND PLAYER DRAWING
-        camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
+        camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
@@ -233,7 +193,7 @@ public class Evolution extends ApplicationAdapter {
         myBatch.end();
 
         myBatch.begin();
-        BlackPlayer.draw(myBatch);
+        blackplayer.draw(myBatch);
         Spider.draw(myBatch);
 
         bodyFont.draw(myBatch,"Lives left", 900,500 );
@@ -243,8 +203,7 @@ public class Evolution extends ApplicationAdapter {
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
         myBatch.end();
-        lastposition.x = BlackPlayer.getX();
-        lastposition.y = BlackPlayer.getY();
+
 
         if(showDebug){
             debugRenderer.setProjectionMatrix(camera.combined);
@@ -255,12 +214,14 @@ public class Evolution extends ApplicationAdapter {
             for(Spikes s: spikes) {
                 s.drawDebug(debugRenderer);
             }
-            debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
+            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY() , blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
             debugRenderer.end();
         }
-        if(!platformcheck && touchplatform){
-            touchplatform = false;
+        if(!platformcheck && blackplayer.touchplatform){
+            blackplayer.touchplatform = false;
         }
+
+        blackplayer.UpdateLast();
 
         camera.position.set(CAMERA_OFFSET_X , CAMERA_OFFSET_Y , 0);
         camera.update();
