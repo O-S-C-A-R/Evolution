@@ -114,12 +114,7 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5fbfd7d279778319e0efe631b66743960fb38a15
+
             System.out.println(touchPos);
             camera.unproject(touchPos);
             if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
@@ -145,12 +140,7 @@ public class Evolution extends ApplicationAdapter {
                 }
             }
 //            System.out.println(touchPos);
-<<<<<<< HEAD
 
-=======
->>>>>>> eab319c9c89388a8153286fec1710db785e01c20
->>>>>>> c5be1b096fb593f0a124b5700bc3d016a9baeda2
->>>>>>> 5fbfd7d279778319e0efe631b66743960fb38a15
         }
 
         // Clear the screen
