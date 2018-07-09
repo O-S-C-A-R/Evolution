@@ -72,9 +72,9 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void create() {
 
-        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
-        RightButton = new Buttons(60, -100, "images/RightButton.png");
-        UpButton = new Buttons(690, -90, "images/UpButton.png");
+        LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
+        RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
+        UpButton = new Buttons(690, -90, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
         bodyFont = new BitmapFont();
@@ -93,8 +93,8 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
