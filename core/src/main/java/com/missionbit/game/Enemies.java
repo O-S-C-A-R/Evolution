@@ -43,7 +43,7 @@ public class Enemies {
             }
         }
 
-        Spider = new Animation<TextureRegion>(0.025f, Frames);
+        Spider = new Animation<TextureRegion>(0.1f, Frames);
         pos = new Vector2();
         pos.x = x;
         pos.y = y;
