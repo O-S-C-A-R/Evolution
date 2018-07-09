@@ -219,6 +219,10 @@ public class Evolution extends ApplicationAdapter {
 
 
         }
+        if(BlackPlayer.getX()&&BlackPlayer.getY()){
+            BlackPlayer.setX(0);
+            BlackPlayer.setY(62);
+        }
 
     // CAMERA AND PLAYER DRAWING
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
