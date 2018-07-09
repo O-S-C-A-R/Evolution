@@ -114,6 +114,12 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5fbfd7d279778319e0efe631b66743960fb38a15
             System.out.println(touchPos);
             camera.unproject(touchPos);
             if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
@@ -139,7 +145,12 @@ public class Evolution extends ApplicationAdapter {
                 }
             }
 //            System.out.println(touchPos);
+<<<<<<< HEAD
 
+=======
+>>>>>>> eab319c9c89388a8153286fec1710db785e01c20
+>>>>>>> c5be1b096fb593f0a124b5700bc3d016a9baeda2
+>>>>>>> 5fbfd7d279778319e0efe631b66743960fb38a15
         }
 
         // Clear the screen
@@ -165,39 +176,20 @@ public class Evolution extends ApplicationAdapter {
             touchplatform = false;
         }
 
-//        if(Gdx.input.isTouched(touchPos.x = LeftButton.getX()))
-//        {
-//            if(Gdx.input.isTouched())
-//            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
-//        }
-//
-//        if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
-//            if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
-//                //clicked on sprite
-//                // do something that vanish the object clicked
-//            }
-//        }
 
         if(!touchplatform) {
             jumpvelocity += GRAVITY;
         }
 
-        //BlackPlayer.setY(BlackPlayer.getY()+GRAVITY+ jumpvelocity * Gdx.graphics.getDeltaTime());
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
-
-        //if (!touchplatform) {
-            for (Platform p : platforms) {
+        for (Platform p : platforms) {
                 if (p.hit(BlackPlayer.getBoundingRectangle())){
 
                     platformcheck = true;
 
-                   // if((int)lastposition.y > (int)Math.ceil(BlackPlayer.getY())&& p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y){
 
 
                      if((p.getTop() > BlackPlayer.getY()&&p.getTop()<lastposition.y)){
-                    System.out.println(BlackPlayer.getY());
-                        System.out.println(lastposition.y);
-                        System.out.println("platform"+p.getTop());
                         BlackPlayer.setY(p.getTop() - 1);
                         touchplatform = true;
                         jumpvelocity = 0;
@@ -263,26 +255,10 @@ public class Evolution extends ApplicationAdapter {
             debugRenderer.rect(BlackPlayer.getX(), BlackPlayer.getY(), BlackPlayer.getWidth(), BlackPlayer.getHeight());
             debugRenderer.end();
         }
-        //       System.out.println(platformcheck);
         if(!platformcheck && touchplatform){
             touchplatform = false;
         }
-//        System.out.println(BlackPlayer.getY());
-//        System.out.println(BlackPlayer.getX());
-//        camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-//        camera.update();
 
-//        camera.position.set(LeftButton.getX() + CAMERA_OFFSET_X, LeftButton.getY() + CAMERA_OFFSET_Y, 0);
-//        camera.update();
-
-//          camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
-//          camera.update();
-//
-//          myBatch.setProjectionMatrix(camera.combined);
-
-
-        //          LeftButton.draw(myBatch);
-//          RightButton.draw(myBatch);
 
     }
 
