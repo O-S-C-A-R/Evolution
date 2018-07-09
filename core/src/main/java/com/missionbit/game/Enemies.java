@@ -28,7 +28,7 @@ public class Enemies {
     private float speed = 1;
 
     public Enemies(float x, float y) {
-        Sheet = new Texture(Gdx.files.internal("images/TutorialSpider.png"));
+        Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
         TextureRegion[][] tmp = TextureRegion.split(Sheet,
         Sheet.getWidth() / Cols,
         Sheet.getHeight() / Rows);
@@ -43,7 +43,7 @@ public class Enemies {
             }
         }
 
-        Spider = new Animation<TextureRegion>(0.025f, Frames);
+        Spider = new Animation<TextureRegion>(0.1f, Frames);
         pos = new Vector2();
         pos.x = x;
         pos.y = y;

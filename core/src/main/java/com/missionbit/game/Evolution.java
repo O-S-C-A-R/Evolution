@@ -27,6 +27,7 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
+    private Buttons Fade;
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
@@ -64,9 +65,10 @@ public class Evolution extends ApplicationAdapter {
     public void create() {
          blackplayer = new Player();
 
-        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
-        RightButton = new Buttons(60, -100, "images/RightButton.png");
-        UpButton = new Buttons(690, -90, "images/UpButton.png");
+        LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
+        RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
+        UpButton = new Buttons(690, -90, "images/ui/UpButton.png");
+        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
         bodyFont = new BitmapFont();
 
@@ -84,7 +86,12 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
+<<<<<<< HEAD
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
+=======
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
+>>>>>>> b974836007a2a8938e1e3f02b3655e9ee193804e
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -231,6 +238,7 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        //Fade.draw(myBatch);
         myBatch.end();
     }
 
