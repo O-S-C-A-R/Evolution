@@ -43,6 +43,7 @@ public class Evolution extends ApplicationAdapter {
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
     private Buttons LeftButton;
     private Buttons RightButton;
+    Vector3 touchPos;
 
 
 
@@ -125,7 +126,7 @@ public class Evolution extends ApplicationAdapter {
 
         //todo: Draw our image!
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)/* || Gdx.input.isKeyJustPressed(LeftButton)*/) {
             BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
@@ -136,6 +137,19 @@ public class Evolution extends ApplicationAdapter {
             jumpvelocity = 195;
             touchplatform = false;
         }
+
+//        if(Gdx.input.isTouched(touchPos.x = LeftButton.getX()))
+//        {
+//            if(Gdx.input.isTouched())
+//            BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+//        }
+//
+//        if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
+//            if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
+//                //clicked on sprite
+//                // do something that vanish the object clicked
+//            }
+//        }
 
         if(!touchplatform) {
             jumpvelocity += GRAVITY;
