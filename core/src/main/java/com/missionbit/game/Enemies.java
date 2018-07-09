@@ -11,21 +11,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 
 public class Enemies {
-    private Sprite images;
+    private Sprite Spider;
+    private Sprite Drone;
+    private Sprite Armaroll;
+
     private int direction = -1;
     //private int otherdirection = 5;
     private float speed = 1;
 
     public Enemies(float x, float y) {
-        images = new Sprite(new Texture(Gdx.files.internal("images/Spider.png")));
-        images.setX(x);
-        images.setY(y);
+        Spider = new Sprite(new Texture(Gdx.files.internal("images/TutorialSpider.png")));
+        Spider.setX(x);
+        Spider.setY(y);
 
     }
 
     public void draw(SpriteBatch batch) {
-        images.setX(images.getX() + speed * direction);
+        Spider.setX(Spider.getX() + speed * direction);
         //  images.setX(images.getX() + speed * otherdirection);
-        images.draw(batch);
+        Spider.draw(batch);
     }
 }

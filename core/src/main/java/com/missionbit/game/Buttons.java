@@ -28,4 +28,24 @@ public class Buttons
     {
         Image.draw(b);
     }
+
+    public float getX()
+    {
+        return Image.getX();
+    }
+
+    public float getY()
+    {
+        return Image.getY();
+    }
+
+    public void setX(float x)
+    {
+        Image.setX(x);
+    }
+
+    public void setY(float y)
+    {
+        Image.setY(y);
+    }
 }
