@@ -62,7 +62,7 @@ public class Evolution extends ApplicationAdapter {
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][] {
-            {745, 59, 880, 115,1020,59}, // SPIKES
+            {745, 59, 880, 115,1020,59},// SPIKES
     };
     private static ArrayList<Platform> platforms;
 
@@ -77,8 +77,8 @@ public class Evolution extends ApplicationAdapter {
         UpButton = new Buttons(690, -90, "images/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-
         bodyFont = new BitmapFont();
+
 
 
         randomSource = new Random();
@@ -168,7 +168,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && touchplatform) {
            // BlackPlayer.setY(BlackPlayer.getY() + Gdx.graphics.getDeltaTime() * Speed* 100);
-            jumpvelocity = 295;
+            jumpvelocity = 190;
             touchplatform = false;
         }
 
@@ -236,6 +236,7 @@ public class Evolution extends ApplicationAdapter {
 
         bodyFont.draw(myBatch,"Lives left", 900,500 );
 
+//        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
