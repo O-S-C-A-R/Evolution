@@ -35,7 +35,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private int Lives = 3;
@@ -69,9 +69,9 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-        LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
-        RightButton = new Buttons(120, -40, "images/RightButton.png");
-        UpButton = new Buttons(620, -20, "images/UpButton.png");
+        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
+        RightButton = new Buttons(60, -100, "images/RightButton.png");
+        UpButton = new Buttons(690, -90, "images/UpButton.png");
 
         randomSource = new Random();
 
@@ -219,6 +219,7 @@ public class Evolution extends ApplicationAdapter {
     // CAMERA AND PLAYER DRAWING
         camera.position.set(BlackPlayer.getX() + CAMERA_OFFSET_X, BlackPlayer.getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
+        myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
         Tutorial.draw(myBatch);
         myBatch.end();
@@ -226,9 +227,6 @@ public class Evolution extends ApplicationAdapter {
         myBatch.begin();
         BlackPlayer.draw(myBatch);
         Spider.draw(myBatch);
-        LeftButton.draw(myBatch);
-        RightButton.draw(myBatch);
-        UpButton.draw(myBatch);
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();
@@ -249,7 +247,15 @@ public class Evolution extends ApplicationAdapter {
             touchplatform = false;
         }
 
+        camera.position.set(CAMERA_OFFSET_X , CAMERA_OFFSET_Y , 0);
+        camera.update();
+        myBatch.setProjectionMatrix(camera.combined);
 
+        myBatch.begin();
+        LeftButton.draw(myBatch);
+        RightButton.draw(myBatch);
+        UpButton.draw(myBatch);
+        myBatch.end();
     }
 
 
