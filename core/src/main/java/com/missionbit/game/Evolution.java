@@ -75,8 +75,8 @@ public class Evolution extends ApplicationAdapter {
         RightButton = new Buttons(60, -100, "images/RightButton.png");
         UpButton = new Buttons(690, -90, "images/UpButton.png");
 
-
         bodyFont = new BitmapFont();
+
 
 
         randomSource = new Random();
@@ -234,6 +234,7 @@ public class Evolution extends ApplicationAdapter {
 
         bodyFont.draw(myBatch,"Lives left", 900,500 );
 
+//        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
