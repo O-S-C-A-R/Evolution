@@ -45,6 +45,7 @@ public class Evolution extends ApplicationAdapter {
 
     private Buttons LeftButton;
     private Buttons RightButton;
+    private Buttons UpButton;
     Vector3 touchPos;
 
 
@@ -72,6 +73,7 @@ public class Evolution extends ApplicationAdapter {
     public void create() {
         LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
         RightButton = new Buttons(120, -40, "images/RightButton.png");
+        UpButton = new Buttons(620, -20, "images/UpButton.png");
 
         randomSource = new Random();
 
@@ -115,6 +117,29 @@ public class Evolution extends ApplicationAdapter {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             System.out.println(touchPos);
+            camera.unproject(touchPos);
+            if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
+            {
+                if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
+                {
+                    BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+                }
+            }
+            if(touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth())
+            {
+                if(touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight())
+                {
+                    BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+                }
+            }
+            if(touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth())
+            {
+                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && touchplatform)
+                {
+                    jumpvelocity = 195;
+                    touchplatform = false;
+                }
+            }
         }
 
         // Clear the screen
@@ -128,7 +153,7 @@ public class Evolution extends ApplicationAdapter {
 
         //todo: Draw our image!
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)/* || Gdx.input.isKeyJustPressed(LeftButton)*/) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
@@ -203,6 +228,9 @@ public class Evolution extends ApplicationAdapter {
         myBatch.begin();
         BlackPlayer.draw(myBatch);
         Spider.draw(myBatch);
+        LeftButton.draw(myBatch);
+        RightButton.draw(myBatch);
+        UpButton.draw(myBatch);
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();

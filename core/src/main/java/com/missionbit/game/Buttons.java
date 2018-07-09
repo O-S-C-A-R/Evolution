@@ -48,4 +48,14 @@ public class Buttons
     {
         Image.setY(y);
     }
+
+    public float getWidth()
+    {
+        return Image.getWidth();
+    }
+
+    public float getHeight()
+    {
+        return Image.getHeight();
+    }
 }
