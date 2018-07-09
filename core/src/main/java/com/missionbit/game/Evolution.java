@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -39,7 +40,7 @@ public class Evolution extends ApplicationAdapter {
     private boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private int Lives = 3;
-
+    private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
 
@@ -72,14 +73,13 @@ public class Evolution extends ApplicationAdapter {
         LeftButton = new Buttons(-10, -40, "images/LeftButton.png");
         RightButton = new Buttons(120, -40, "images/RightButton.png");
         UpButton = new Buttons(620, -20, "images/UpButton.png");
-
+        bodyFont = new BitmapFont();
         randomSource = new Random();
-
-        // Set up camera for 2d view of 800x480 pixels
+        // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
-        // Create a sprite batch for rendering our image
+        //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
         debugRenderer = new ShapeRenderer();
@@ -114,9 +114,7 @@ public class Evolution extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
             System.out.println(touchPos);
             camera.unproject(touchPos);
             if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
@@ -141,10 +139,7 @@ public class Evolution extends ApplicationAdapter {
                     touchplatform = false;
                 }
             }
-=======
-//            System.out.println(touchPos);
->>>>>>> eab319c9c89388a8153286fec1710db785e01c20
->>>>>>> c5be1b096fb593f0a124b5700bc3d016a9baeda2
+
         }
 
         // Clear the screen
@@ -233,6 +228,7 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        bodyFont.draw(myBatch,"Lives left", 900,500 );
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();
