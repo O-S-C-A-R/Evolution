@@ -231,7 +231,7 @@ public class Evolution extends ApplicationAdapter {
         myBatch.begin();
         BlackPlayer.draw(myBatch);
         Spider.draw(myBatch);
-        bodyFont.draw(myBatch,"Lives left", 900,500 );
+//        bodyFont.draw(myBatch,"Lives left", 900,500 );
         myBatch.end();
         lastposition.x = BlackPlayer.getX();
         lastposition.y = BlackPlayer.getY();
