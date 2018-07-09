@@ -1,4 +1,3 @@
-
 package com.missionbit.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
