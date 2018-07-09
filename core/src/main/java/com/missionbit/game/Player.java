@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 
 
 public class Player {
-    private Sprite BlackPlayer;
+    protected Sprite BlackPlayer;
     private static final float PLAYER_SPEED = 499.999f;
     protected float jumpvelocity = 0;
     protected boolean touchplatform = true;
@@ -27,7 +27,6 @@ public class Player {
 
 
     public Player(){
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
         BlackPlayer.setX(70);
         BlackPlayer.setY(59);
     }

@@ -1,3 +1,4 @@
+
 package com.missionbit.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
@@ -27,7 +28,6 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
-    private Buttons Fade;
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
@@ -63,12 +63,11 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-         blackplayer = new Player();
+        blackplayer = new Player();
 
-        LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
-        RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
-        UpButton = new Buttons(690, -90, "images/ui/UpButton.png");
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
+        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
+        RightButton = new Buttons(60, -100, "images/RightButton.png");
+        UpButton = new Buttons(690, -90, "images/UpButton.png");
 
         bodyFont = new BitmapFont();
 
@@ -86,12 +85,7 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
-<<<<<<< HEAD
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-=======
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
->>>>>>> b974836007a2a8938e1e3f02b3655e9ee193804e
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -101,18 +95,18 @@ public class Evolution extends ApplicationAdapter {
         }
 
         for (float[] loc : spike_locs) {
-           spikes.add(new Spikes(loc));
+            spikes.add(new Spikes(loc));
         }
 
 
-       // velocity = new Vector2(0, 0);
+        // velocity = new Vector2(0, 0);
         Spider = new Enemies(6, 6);
     }
 
     @Override
     public void render() {
 
-          platformcheck = false;
+        platformcheck = false;
 
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
@@ -171,27 +165,27 @@ public class Evolution extends ApplicationAdapter {
 
         blackplayer.Update();
         for (Platform p : platforms) {
-                if (p.hit(blackplayer)){
-                    platformcheck = true;
-                    blackplayer.collide(p);
+            if (p.hit(blackplayer)){
+                platformcheck = true;
+                blackplayer.collide(p);
 
-                }
             }
+        }
         for (Spikes s : spikes) {
             if (s.CollideWithPlayer(blackplayer)) {
-              blackplayer.Die();
+                blackplayer.Die();
 
 
             }
         }
         if(blackplayer.Lives == 0){
-           blackplayer.reset();
+            blackplayer.reset();
 
 
         }
 
 
-    // CAMERA AND PLAYER DRAWING
+        // CAMERA AND PLAYER DRAWING
         camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
@@ -238,7 +232,6 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
-        //Fade.draw(myBatch);
         myBatch.end();
     }
 
