@@ -29,6 +29,8 @@ public class Player {
 
 
     public Player(){
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+
         BlackPlayer.setX(70);
         BlackPlayer.setY(59);
     }
