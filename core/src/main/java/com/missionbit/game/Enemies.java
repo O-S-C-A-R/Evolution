@@ -67,4 +67,6 @@ public class Enemies {
       TextureRegion drawFrame = Spider.getKeyFrame(stateTime, true);
       batch.draw(drawFrame, pos.x, pos.y);
     }
+
 }
+
