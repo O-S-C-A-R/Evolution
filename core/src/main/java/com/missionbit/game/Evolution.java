@@ -31,6 +31,7 @@ public class Evolution extends ApplicationAdapter {
     private Sprite BlackPlayer;
     private Sprite Tutorial;
     private Buttons Fade;
+    private Buttons FullLives;
     private Enemies Spider;
     private float jumpvelocity = 0;
 
@@ -73,8 +74,9 @@ public class Evolution extends ApplicationAdapter {
     public void create() {
 
         LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
-        RightButton = new Buttons(60, -100, "images/RightButton.png");
-        UpButton = new Buttons(690, -90, "images/UpButton.png");
+        RightButton = new Buttons(0, -100, "images/RightButton.png");
+        UpButton = new Buttons(690, -100, "images/UpButton.png");
+        FullLives = new Buttons(-140, 350, "images/FullLives.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
         bodyFont = new BitmapFont();
@@ -268,7 +270,7 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
-        //Fade.draw(myBatch);
+        FullLives.draw(myBatch);
         myBatch.end();
     }
 
