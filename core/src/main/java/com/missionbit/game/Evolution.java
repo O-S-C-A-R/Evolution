@@ -77,8 +77,14 @@ public class Evolution extends ApplicationAdapter {
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+
+
+
+
+        bodyFont = new BitmapFont();
+
+
+
 
 
         randomSource = new Random();
@@ -117,6 +123,20 @@ public class Evolution extends ApplicationAdapter {
         System.out.println(blackplayer.getBounding().getY());
         System.out.println(blackplayer.getBounding().getX());
         platformcheck = false;
+//            if (Gdx.input.isTouched(i)) {
+//                Vector3 touchPos = new Vector3();
+//                touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+
+//                System.out.println(touchPos);
+//                camera.unproject(touchPos);
+//                if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
+//                    if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
+//                        blackplayer.Moveleft();
+//                    }
+
+
+
+
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
                 Vector3 touchPos = new Vector3();
@@ -133,13 +153,13 @@ public class Evolution extends ApplicationAdapter {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
                         blackplayer.Moveright();
                     }
-                }
-                if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
-                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.Jump();
+                    if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
+                        if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
+                            blackplayer.Jump();
+                        }
                     }
-                }
 
+                }
             }
         }
         // Clear the screen
