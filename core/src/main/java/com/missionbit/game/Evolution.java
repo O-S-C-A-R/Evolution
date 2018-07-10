@@ -31,11 +31,7 @@ public class Evolution extends ApplicationAdapter {
 
     private Buttons Fade;
     private Buttons FullLives;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
@@ -55,15 +51,15 @@ public class Evolution extends ApplicationAdapter {
     private boolean platformcheck = false;
 
 
-    private static final int[][] PLAT_LOCS = new int[][] {
+    private static final int[][] PLAT_LOCS = new int[][]{
             {0, 0, 1800, 60}, // PLATFORMS
-            {390,60,78,28},
-            {545,60,84,75},
+            {390, 60, 78, 28},
+            {545, 60, 84, 75},
             {754, 160, 235, 5},
     };
-    private static final float[][] spike_locs = new float[][] {
-            {745, 59, 880, 115,1020,59},// SPIKES
-            {1359,61,1600,235,1800,235,1800,61},
+    private static final float[][] spike_locs = new float[][]{
+            {745, 59, 880, 115, 1020, 59},// SPIKES
+            {1359, 61, 1600, 235, 1800, 235, 1800, 61},
     };
     private static ArrayList<Platform> platforms;
 
@@ -75,24 +71,14 @@ public class Evolution extends ApplicationAdapter {
         blackplayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
-<<<<<<< HEAD
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
-
-
-
-
-        bodyFont = new BitmapFont();
-=======
-        RightButton = new Buttons(20, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
->>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
-
 
 
         randomSource = new Random();
@@ -108,8 +94,8 @@ public class Evolution extends ApplicationAdapter {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Bouncepad = new Sprite( new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
+        Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
+        Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/Tutorial.png")));
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -129,39 +115,19 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void render() {
 
-        System.out.println(blackplayer.getBounding().getY());
-       System.out.println(blackplayer.getBounding().getX());
-
 
         platformcheck = false;
-        for(int i = 0; i < 10; i ++)
-        {
+        for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
-
-                System.out.println(touchPos);
                 camera.unproject(touchPos);
+                System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
                     }
 
-<<<<<<< HEAD
-=======
-        if(Gdx.input.isTouched()) {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-
-
-            camera.unproject(touchPos);
-            System.out.println(touchPos);
-            if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
-            {
-                if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
-                {
-                    blackplayer.Moveleft();
->>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
@@ -187,22 +153,21 @@ public class Evolution extends ApplicationAdapter {
 
         //todo: Draw our image!
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             blackplayer.Moveleft();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             blackplayer.Moveright();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
 
             blackplayer.Jump();
         }
 
 
-
         blackplayer.Update();
         for (Platform p : platforms) {
-            if (p.hit(blackplayer)){
+            if (p.hit(blackplayer)) {
                 platformcheck = true;
                 blackplayer.collide(p);
 
@@ -215,7 +180,7 @@ public class Evolution extends ApplicationAdapter {
 
             }
         }
-        if(blackplayer.Lives == 0){
+        if (blackplayer.Lives == 0) {
             blackplayer.reset();
 
 
@@ -244,25 +209,26 @@ public class Evolution extends ApplicationAdapter {
         myBatch.end();
 
 
-        if(showDebug){
+        if (showDebug) {
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
             debugRenderer.setColor(0, 1, 0, 1);
-            for (Platform p: platforms){p.drawDebug(debugRenderer);
+            for (Platform p : platforms) {
+                p.drawDebug(debugRenderer);
             }
-            for(Spikes s: spikes) {
+            for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
-            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY() , blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
+            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
             debugRenderer.end();
         }
-        if(!platformcheck && blackplayer.touchplatform){
+        if (!platformcheck && blackplayer.touchplatform) {
             blackplayer.touchplatform = false;
         }
 
         blackplayer.UpdateLast();
 
-        camera.position.set(CAMERA_OFFSET_X , CAMERA_OFFSET_Y , 0);
+        camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
@@ -271,22 +237,18 @@ public class Evolution extends ApplicationAdapter {
         UpButton.draw(myBatch);
 
 
-
-
-
         FullLives.draw(myBatch);
 
         myBatch.end();
-         Bouncepad.setX(1260);
+        Bouncepad.setX(1260);
         Bouncepad.setY(59);
+    }
 
+        @Override
+        public void dispose () {
+            myBatch.dispose();
+
+        }
     }
 
 
-
-
-    @Override
-    public void dispose() {
-        myBatch.dispose();
-    }
-}
