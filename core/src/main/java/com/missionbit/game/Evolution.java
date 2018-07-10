@@ -26,10 +26,7 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
-<<<<<<< HEAD
-=======
 
->>>>>>> 81d8110076b62843b0ccf0bfebbbac3d0820f5ce
     private Buttons Fade;
     private Buttons FullLives;
     private Enemies Spider;
@@ -75,12 +72,7 @@ public class Evolution extends ApplicationAdapter {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
 
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
-<<<<<<< HEAD
-        RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
-        UpButton = new Buttons(690, -90, "images/ui/UpButton.png");
-=======
->>>>>>> 81d8110076b62843b0ccf0bfebbbac3d0820f5ce
+
 
         bodyFont = new BitmapFont();
 
@@ -249,13 +241,9 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
-<<<<<<< HEAD
 
         FullLives.draw(myBatch);
 
-=======
-        FullLives.draw(myBatch);
->>>>>>> 81d8110076b62843b0ccf0bfebbbac3d0820f5ce
         myBatch.end();
 
     }
