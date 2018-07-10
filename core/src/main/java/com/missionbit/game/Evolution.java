@@ -77,7 +77,6 @@ public class Evolution extends ApplicationAdapter {
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
-<<<<<<< HEAD
 
 
 
@@ -85,10 +84,7 @@ public class Evolution extends ApplicationAdapter {
         bodyFont = new BitmapFont();
 
 
-=======
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
->>>>>>> 1e210f5d357a91a16d82f2c0ce626837e90abd42
+
 
 
         randomSource = new Random();
@@ -127,8 +123,6 @@ public class Evolution extends ApplicationAdapter {
 
 
         platformcheck = false;
-<<<<<<< HEAD
-        for(int i = 0; i < 10; i ++) {
 //            if (Gdx.input.isTouched(i)) {
 //                Vector3 touchPos = new Vector3();
 //                touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
@@ -140,35 +134,24 @@ public class Evolution extends ApplicationAdapter {
 //                        blackplayer.Moveleft();
 //                    }
 
-            if (Gdx.input.isTouched()) {
-                Vector3 touchPos = new Vector3();
-                touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 
 
-=======
+
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
->>>>>>> 1e210f5d357a91a16d82f2c0ce626837e90abd42
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
                     }
-<<<<<<< HEAD
-                    if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
-                        if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
-                            blackplayer.Moveright();
-                        }
-=======
 
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
                         blackplayer.Moveright();
->>>>>>> 1e210f5d357a91a16d82f2c0ce626837e90abd42
                     }
                     if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
                         if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
