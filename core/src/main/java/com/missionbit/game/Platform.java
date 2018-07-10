@@ -16,8 +16,10 @@ public class Platform {
     public boolean hit(Rectangle other){
         boolean flag = platform.overlaps(other);
         return flag;
-
-    }
+        }
+        public boolean hit(Player other) {
+           return hit(other.getBounding());
+        }
     public float getTop(){
         return platform.getY()+platform.height;
     }
@@ -27,6 +29,7 @@ public class Platform {
     public float getRight(){
         return platform.getX()+platform.width;
     }
+
 
 
 

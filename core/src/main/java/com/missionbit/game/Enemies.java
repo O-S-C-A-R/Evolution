@@ -28,7 +28,7 @@ public class Enemies {
     private float speed = 1;
 
     public Enemies(float x, float y) {
-        Sheet = new Texture(Gdx.files.internal("images/TutorialSpider.png"));
+        Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
         TextureRegion[][] tmp = TextureRegion.split(Sheet,
         Sheet.getWidth() / Cols,
         Sheet.getHeight() / Rows);

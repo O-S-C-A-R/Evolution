@@ -7,31 +7,39 @@ public class Spikes {
     public Polygon spike;
     private boolean showDebug = true;
 
-    public Spikes(float[] points ) {
+    public Spikes(float[] points) {
         boolean showDebug = true;
         spike = new Polygon(points);
 
     }
-    public void drawDebug(ShapeRenderer renderer){ renderer.polygon(spike.getVertices()); }
-    public boolean CollideWithPlayer(Rectangle Player){
+
+    public void drawDebug(ShapeRenderer renderer) {
+        renderer.polygon(spike.getVertices());
+    }
+
+    public boolean CollideWithPlayer(Player player) {
+        Rectangle r = player.getBounding();
+
         boolean CollideWithPlayer = false;
-        if(spike.contains(Player.getX(),Player.getY())){
+        if (spike.contains(r.getX(), r.getY())) {
             CollideWithPlayer = true;
 
         }
-        if(spike.contains(Player.getX()+Player.getWidth(),Player.getY()+Player.getHeight())){
+        if (spike.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())) {
             CollideWithPlayer = true;
 
-        }
-        if(spike.contains(Player.getX()+Player.getWidth(),Player.getY())){
-            CollideWithPlayer = true;
+            if (spike.contains(r.getX() + r.getWidth(), r.getY())) {
+                CollideWithPlayer = true;
 
-        }
-        if(spike.contains(Player.getX(),Player.getY()+Player.getHeight())){
-            CollideWithPlayer = true;
+            }
+            if (spike.contains(r.getX(), r.getY() + r.getHeight())) {
+                CollideWithPlayer = true;
+
+            }
+
 
         }
         return CollideWithPlayer;
-
     }
 }
+
