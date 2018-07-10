@@ -27,15 +27,11 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
-<<<<<<< HEAD
 
     private Buttons Fade;
     private Buttons FullLives;
 
-=======
-    private Buttons Fade;
-    private Buttons FullLives;
->>>>>>> 24aca1981fdc240cb21de6fc65db9f1549d4809b
+
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
@@ -73,23 +69,16 @@ public class Evolution extends ApplicationAdapter {
     public void create() {
         blackplayer = new Player();
 
-<<<<<<< HEAD
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
-        RightButton = new Buttons(0, -100, "images/ui/RightButton.png");
+        RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
 
-=======
-        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
-        RightButton = new Buttons(0, -100, "images/RightButton.png");
-        UpButton = new Buttons(690, -100, "images/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/FullLives.png");
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
->>>>>>> 24aca1981fdc240cb21de6fc65db9f1549d4809b
+
 
         bodyFont = new BitmapFont();
 
@@ -129,38 +118,33 @@ public class Evolution extends ApplicationAdapter {
     public void render() {
 
         platformcheck = false;
+        for(int i = 0; i < 10; i ++)
+        {
+            if (Gdx.input.isTouched(i)) {
+                Vector3 touchPos = new Vector3();
+                touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
 
-        if(Gdx.input.isTouched()) {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                System.out.println(touchPos);
+                camera.unproject(touchPos);
+                if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
+                    if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
+                        blackplayer.Moveleft();
+                    }
 
-            System.out.println(touchPos);
-            camera.unproject(touchPos);
-            if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
-            {
-                if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
-                {
-                    blackplayer.Moveleft();
+                }
+                if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
+                    if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
+                        blackplayer.Moveright();
+                    }
+                }
+                if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
+                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
+                        blackplayer.Jump();
+                    }
                 }
 
             }
-            if(touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth())
-            {
-                if(touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight())
-                {
-                    blackplayer.Moveright();
-                }
-            }
-            if(touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth())
-            {
-                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform)
-                {
-                    blackplayer.Jump();
-                }
-            }
-
         }
-
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
