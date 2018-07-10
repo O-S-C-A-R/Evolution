@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
@@ -30,8 +29,11 @@ public class Evolution extends ApplicationAdapter {
 
     private Buttons Fade;
     private Buttons FullLives;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
@@ -59,6 +61,7 @@ public class Evolution extends ApplicationAdapter {
     };
     private static final float[][] spike_locs = new float[][] {
             {745, 59, 880, 115,1020,59},// SPIKES
+            {1359,61,1600,235,1800,235,1800,61},
     };
     private static ArrayList<Platform> platforms;
 
@@ -70,6 +73,7 @@ public class Evolution extends ApplicationAdapter {
         blackplayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
+<<<<<<< HEAD
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
@@ -81,6 +85,11 @@ public class Evolution extends ApplicationAdapter {
 
 
         bodyFont = new BitmapFont();
+=======
+        RightButton = new Buttons(20, -100, "images/ui/RightButton.png");
+        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
+        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+>>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
 
 
 
@@ -111,11 +120,15 @@ public class Evolution extends ApplicationAdapter {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(6, 6);
+        Spider = new Enemies(960, 160, 2, 200);
     }
 
     @Override
     public void render() {
+
+        System.out.println(blackplayer.getBounding().getY());
+       System.out.println(blackplayer.getBounding().getX());
+
 
         platformcheck = false;
         for(int i = 0; i < 10; i ++)
@@ -131,6 +144,21 @@ public class Evolution extends ApplicationAdapter {
                         blackplayer.Moveleft();
                     }
 
+<<<<<<< HEAD
+=======
+        if(Gdx.input.isTouched()) {
+            Vector3 touchPos = new Vector3();
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+
+
+            camera.unproject(touchPos);
+            System.out.println(touchPos);
+            if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
+            {
+                if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
+                {
+                    blackplayer.Moveleft();
+>>>>>>> 6a1ae30057751f3aa1b7391a4dd590c9b83366ed
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
@@ -203,7 +231,7 @@ public class Evolution extends ApplicationAdapter {
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
 
-        bodyFont.draw(myBatch,"Lives left", 900,500 );
+        //bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
@@ -237,8 +265,15 @@ public class Evolution extends ApplicationAdapter {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+
+
+
+
+
         FullLives.draw(myBatch);
+
         myBatch.end();
+
     }
 
 
