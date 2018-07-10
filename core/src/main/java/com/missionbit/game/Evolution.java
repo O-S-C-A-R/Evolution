@@ -109,13 +109,13 @@ public class Evolution extends ApplicationAdapter {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 160, 2, 200);
+        Spider = new Enemies(960, 160, 766, 962);
     }
 
     @Override
     public void render() {
-
-
+        System.out.println(blackplayer.getBounding().getY());
+        System.out.println(blackplayer.getBounding().getX());
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
