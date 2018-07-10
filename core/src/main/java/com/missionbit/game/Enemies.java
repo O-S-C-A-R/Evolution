@@ -24,15 +24,18 @@ public class Enemies {
     private int Cols = 3;
     private float stateTime;
     private int direction = -1;
+    private float leftbound;
+    private float rigthbound;
     //private int otherdirection = 5;
     private float speed = 1;
 
-    public Enemies(float x, float y) {
+    public Enemies(float x, float y, float left, float rigth) {
         Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
         TextureRegion[][] tmp = TextureRegion.split(Sheet,
         Sheet.getWidth() / Cols,
         Sheet.getHeight() / Rows);
-
+        leftbound = left;
+        rigthbound = rigth;
         TextureRegion[] Frames = new TextureRegion[frame];
         int index = 0;
         for (int i = 0; i <Rows; i++){
@@ -52,6 +55,12 @@ public class Enemies {
 
     public void draw(SpriteBatch batch) {
         pos.x = pos.x + speed * direction;
+        if (leftbound > pos.x ){
+        direction = 1;
+        }
+        if (rigthbound < pos.x){
+        direction = -1;
+        }
         //  images.setX(images.getX() + speed * otherdirection);
        // Spider.draw(batch);
       stateTime += Gdx.graphics.getDeltaTime();
