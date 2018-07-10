@@ -36,7 +36,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -122,7 +122,6 @@ public class Evolution extends ApplicationAdapter {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
-                System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
