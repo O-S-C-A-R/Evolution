@@ -32,7 +32,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -55,6 +55,7 @@ public class Evolution extends ApplicationAdapter {
     };
     private static final float[][] spike_locs = new float[][] {
             {745, 59, 880, 115,1020,59},// SPIKES
+            {1359,61,1600,235,1800,235,1800,61},
     };
     private static ArrayList<Platform> platforms;
 
@@ -69,6 +70,7 @@ public class Evolution extends ApplicationAdapter {
         RightButton = new Buttons(0, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
         RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -90, "images/ui/UpButton.png");
@@ -110,14 +112,19 @@ public class Evolution extends ApplicationAdapter {
     @Override
     public void render() {
 
+//        System.out.println(blackplayer.getBounding().getY());
+//        System.out.println(blackplayer.getBounding().getX());
+
+
         platformcheck = false;
 
         if(Gdx.input.isTouched()) {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 
-            System.out.println(touchPos);
+
             camera.unproject(touchPos);
+            System.out.println(touchPos);
             if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
             {
                 if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
@@ -201,7 +208,7 @@ public class Evolution extends ApplicationAdapter {
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
 
-        bodyFont.draw(myBatch,"Lives left", 900,500 );
+        //bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
@@ -241,6 +248,7 @@ public class Evolution extends ApplicationAdapter {
 
         FullLives.draw(myBatch);
         myBatch.end();
+
     }
 
 
