@@ -27,20 +27,14 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
-<<<<<<< HEAD
 
     private Buttons Fade;
     private Buttons FullLives;
-
-=======
-    private Buttons Fade;
-    private Buttons FullLives;
->>>>>>> 24aca1981fdc240cb21de6fc65db9f1549d4809b
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -73,23 +67,11 @@ public class Evolution extends ApplicationAdapter {
     public void create() {
         blackplayer = new Player();
 
-<<<<<<< HEAD
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(0, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
-
-
-
-=======
-        LeftButton = new Buttons(-70, -100, "images/LeftButton.png");
-        RightButton = new Buttons(0, -100, "images/RightButton.png");
-        UpButton = new Buttons(690, -100, "images/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/FullLives.png");
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
-
->>>>>>> 24aca1981fdc240cb21de6fc65db9f1549d4809b
 
         bodyFont = new BitmapFont();
 
