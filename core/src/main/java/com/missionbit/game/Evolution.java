@@ -26,6 +26,8 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
+    private Sprite Bouncepad;
+
 
     private Buttons Fade;
     private Buttons FullLives;
@@ -86,8 +88,9 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
 
+        Bouncepad = new Sprite( new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
+        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -196,6 +199,7 @@ public class Evolution extends ApplicationAdapter {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+        Bouncepad.draw(myBatch);
         Tutorial.draw(myBatch);
         myBatch.end();
 
@@ -245,6 +249,8 @@ public class Evolution extends ApplicationAdapter {
         FullLives.draw(myBatch);
 
         myBatch.end();
+         Bouncepad.setX(1260);
+        Bouncepad.setY(59);
 
     }
 
