@@ -22,7 +22,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Player blackplayer;
+    private Player BlackPlayer;
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
@@ -68,7 +68,7 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-        blackplayer = new Player();
+        BlackPlayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
@@ -77,8 +77,17 @@ public class Evolution extends ApplicationAdapter {
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+<<<<<<< HEAD
+=======
+
+
+
+
+        bodyFont = new BitmapFont();
+
+
+
+>>>>>>> parent of 6ef3746... EAT LOL
 
 
         randomSource = new Random();
@@ -92,8 +101,7 @@ public class Evolution extends ApplicationAdapter {
         debugRenderer = new ShapeRenderer();
 
         //LOAD IMAGES
-        platforms = new ArrayList<Platform>();
-
+        BlackPlayer = new Player(new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
         Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/Tutorial.png")));
         // Initialize platforms
@@ -114,33 +122,59 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-        System.out.println(blackplayer.getBounding().getY());
-        System.out.println(blackplayer.getBounding().getX());
+        System.out.println(BlackPlayer.getBounding().getY());
+        System.out.println(BlackPlayer.getBounding().getX());
         platformcheck = false;
+//            if (Gdx.input.isTouched(i)) {
+//                Vector3 touchPos = new Vector3();
+//                touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+
+//                System.out.println(touchPos);
+//                camera.unproject(touchPos);
+//                if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
+//                    if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
+//                        blackplayer.Moveleft();
+//                    }
+
+
+
+
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
+
+                System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
-                        blackplayer.Moveleft();
+                        BlackPlayer.Moveleft();
                     }
 
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
-                        blackplayer.Moveright();
+                        BlackPlayer.Moveright();
                     }
+<<<<<<< HEAD
                 }
                 if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
-                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.Jump();
+                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && BlackPlayer.touchplatform) {
+                        BlackPlayer.Jump();
                     }
-                }
+=======
+                    if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
+                        if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
+                            blackplayer.Jump();
+                        }
+                    }
 
+>>>>>>> parent of 6ef3746... EAT LOL
+                }
             }
         }
+
+
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -153,101 +187,119 @@ public class Evolution extends ApplicationAdapter {
         //todo: Draw our image!
 
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-            blackplayer.Moveleft();
+            BlackPlayer.Moveleft();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-            blackplayer.Moveright();
+            BlackPlayer.Moveright();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && BlackPlayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && BlackPlayer.touchplatform) {
 
-            blackplayer.Jump();
+            BlackPlayer.Jump();
         }
 
 
-        blackplayer.Update();
+        BlackPlayer.Update();
         for (Platform p : platforms) {
-            if (p.hit(blackplayer)) {
+            if (p.hit(BlackPlayer)) {
                 platformcheck = true;
-                blackplayer.collide(p);
-
+                BlackPlayer.collide(p);
+                BlackPlayer.Update();
             }
         }
         for (Spikes s : spikes) {
-            if (s.CollideWithPlayer(blackplayer)) {
-                blackplayer.Die();
+            if (s.CollideWithPlayer(BlackPlayer)) {
+                BlackPlayer.Die();
+                if (s.CollideWithPlayer(BlackPlayer)) {
+                    BlackPlayer.Die();
+
+
+                }
+            }
+        }
+        if (BlackPlayer.Lives == 0) {
+            BlackPlayer.reset();
+            if (BlackPlayer.Lives == 0) {
+                BlackPlayer.reset();
 
 
             }
-        }
-        if (blackplayer.Lives == 0) {
-            blackplayer.reset();
 
 
-        }
+            // CAMERA AND PLAYER DRAWING
+            camera.position.set(BlackPlayer.getBounding().getX() + CAMERA_OFFSET_X, BlackPlayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
+            camera.update();
+            myBatch.setProjectionMatrix(camera.combined);
+            myBatch.begin();
+            Bouncepad.draw(myBatch);
+            Tutorial.draw(myBatch);
+            myBatch.end();
 
+            myBatch.begin();
+            BlackPlayer.draw(myBatch);
+            Spider.draw(myBatch);
 
-        // CAMERA AND PLAYER DRAWING
-        camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
-        camera.update();
-        myBatch.setProjectionMatrix(camera.combined);
-        myBatch.begin();
-        Bouncepad.draw(myBatch);
-        Tutorial.draw(myBatch);
-        myBatch.end();
-
-        myBatch.begin();
-        blackplayer.draw(myBatch);
-        Spider.draw(myBatch);
-
-        //bodyFont.draw(myBatch,"Lives left", 900,500 );
+            //bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
-        myBatch.end();
+            myBatch.end();
 
 
-        if (showDebug) {
-            debugRenderer.setProjectionMatrix(camera.combined);
-            debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 1, 0, 1);
-            for (Platform p : platforms) {
-                p.drawDebug(debugRenderer);
+            if (showDebug) {
+                debugRenderer.setProjectionMatrix(camera.combined);
+                debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+                debugRenderer.setColor(0, 1, 0, 1);
+                for (Platform p : platforms) {
+                    p.drawDebug(debugRenderer);
+                }
+                for (Spikes s : spikes) {
+                    s.drawDebug(debugRenderer);
+                }
+                debugRenderer.rect(BlackPlayer.getBounding().getX(), BlackPlayer.getBounding().getY(), BlackPlayer.getBounding().getWidth(), BlackPlayer.getBounding().getHeight());
+                debugRenderer.end();
             }
-            for (Spikes s : spikes) {
-                s.drawDebug(debugRenderer);
+            if (!platformcheck && BlackPlayer.touchplatform) {
+                BlackPlayer.touchplatform = false;
             }
-            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
-            debugRenderer.end();
+
+
+            BlackPlayer.UpdateLast();
+
+            camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
+            camera.update();
+            myBatch.setProjectionMatrix(camera.combined);
+            myBatch.begin();
+            LeftButton.draw(myBatch);
+            RightButton.draw(myBatch);
+            UpButton.draw(myBatch);
+
+
+            FullLives.draw(myBatch);
+
+            myBatch.end();
+            Bouncepad.setX(1260);
+            Bouncepad.setY(59);
         }
-        if (!platformcheck && blackplayer.touchplatform) {
-            blackplayer.touchplatform = false;
-        }
-
-        blackplayer.UpdateLast();
-
-        camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
-        camera.update();
-        myBatch.setProjectionMatrix(camera.combined);
-        myBatch.begin();
-        LeftButton.draw(myBatch);
-        RightButton.draw(myBatch);
-        UpButton.draw(myBatch);
-
-
-        FullLives.draw(myBatch);
-
-        myBatch.end();
-        Bouncepad.setX(1260);
-        Bouncepad.setY(59);
     }
+
+<<<<<<< HEAD
 
     @Override
-    public void dispose () {
+    public void dispose() {
         myBatch.dispose();
+=======
+        @Override
+        public void dispose () {
+            myBatch.dispose();
+>>>>>>> parent of 6ef3746... EAT LOL
 
+        }
     }
+<<<<<<< HEAD
 }
+=======
 
 
+>>>>>>> parent of 6ef3746... EAT LOL

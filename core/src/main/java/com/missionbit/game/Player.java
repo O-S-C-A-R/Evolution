@@ -54,7 +54,7 @@ public class Player {
             jumpvelocity += GRAVITY;
 
         }
-        if(BlackPlayer.getY() < -500){
+        if(BlackPlayer.getY() < -400){
             BlackPlayer.setX(20);
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
