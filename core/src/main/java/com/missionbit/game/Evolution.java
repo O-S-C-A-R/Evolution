@@ -23,7 +23,7 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Player blackplayer;
+    private Player BlackPlayer;
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
@@ -63,7 +63,7 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-         blackplayer = new Player();
+         BlackPlayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(60, -100, "images/ui/RightButton.png");
@@ -86,12 +86,8 @@ public class Evolution extends ApplicationAdapter {
 
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
-<<<<<<< HEAD
         Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-=======
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/map/Tutorial.png")));
->>>>>>> b974836007a2a8938e1e3f02b3655e9ee193804e
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -124,7 +120,7 @@ public class Evolution extends ApplicationAdapter {
             {
                 if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
                 {
-                    blackplayer.Moveleft();
+                    BlackPlayer.Moveleft();
                 }
 
             }
@@ -132,14 +128,14 @@ public class Evolution extends ApplicationAdapter {
             {
                 if(touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight())
                 {
-                    blackplayer.Moveright();
+                    BlackPlayer.Moveright();
                 }
             }
             if(touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth())
             {
-                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform)
+                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && BlackPlayer.touchplatform)
                 {
-                    blackplayer.Jump();
+                    BlackPlayer.Jump();
                 }
             }
 
@@ -157,42 +153,42 @@ public class Evolution extends ApplicationAdapter {
         //todo: Draw our image!
 
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-            blackplayer.Moveleft();
+            BlackPlayer.Moveleft();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-            blackplayer.Moveright();
+            BlackPlayer.Moveright();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && BlackPlayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && BlackPlayer.touchplatform) {
 
-            blackplayer.Jump();
+            BlackPlayer.Jump();
         }
 
 
 
-        blackplayer.Update();
+        BlackPlayer.Update();
         for (Platform p : platforms) {
-                if (p.hit(blackplayer)){
+                if (p.hit(BlackPlayer)){
                     platformcheck = true;
-                    blackplayer.collide(p);
+                    BlackPlayer.collide(p);
 
                 }
             }
         for (Spikes s : spikes) {
-            if (s.CollideWithPlayer(blackplayer)) {
-              blackplayer.Die();
+            if (s.CollideWithPlayer(BlackPlayer)) {
+                BlackPlayer.Die();
 
 
             }
         }
-        if(blackplayer.Lives == 0){
-           blackplayer.reset();
+        if(BlackPlayer.Lives == 0){
+            BlackPlayer.reset();
 
 
         }
 
 
     // CAMERA AND PLAYER DRAWING
-        camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
+        camera.position.set(BlackPlayer.getBounding().getX() + CAMERA_OFFSET_X, BlackPlayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
@@ -200,7 +196,7 @@ public class Evolution extends ApplicationAdapter {
         myBatch.end();
 
         myBatch.begin();
-        blackplayer.draw(myBatch);
+        BlackPlayer.draw(myBatch);
         Spider.draw(myBatch);
 
         bodyFont.draw(myBatch,"Lives left", 900,500 );
@@ -221,14 +217,14 @@ public class Evolution extends ApplicationAdapter {
             for(Spikes s: spikes) {
                 s.drawDebug(debugRenderer);
             }
-            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY() , blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
+            debugRenderer.rect(BlackPlayer.getBounding().getX(), BlackPlayer.getBounding().getY() , BlackPlayer.getBounding().getWidth(), BlackPlayer.getBounding().getHeight());
             debugRenderer.end();
         }
-        if(!platformcheck && blackplayer.touchplatform){
-            blackplayer.touchplatform = false;
+        if(!platformcheck && BlackPlayer.touchplatform){
+            BlackPlayer.touchplatform = false;
         }
 
-        blackplayer.UpdateLast();
+        BlackPlayer.UpdateLast();
 
         camera.position.set(CAMERA_OFFSET_X , CAMERA_OFFSET_Y , 0);
         camera.update();
