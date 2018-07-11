@@ -120,8 +120,11 @@ public class Evolution extends ApplicationAdapter {
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 9cf99a3... small updatwesdhbhrejagfuicahisldkgeyuaghfdhsaugfuiwiEHDFIHI3UOsufioehioahdifhdkhsakje
 =======
 >>>>>>> parent of 9cf99a3... small updatwesdhbhrejagfuicahisldkgeyuaghfdhsaugfuiwiEHDFIHI3UOsufioehioahdifhdkhsakje
                 System.out.println(touchPos);
