@@ -36,7 +36,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -119,8 +119,11 @@ public class Evolution extends ApplicationAdapter {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 9cf99a3... small updatwesdhbhrejagfuicahisldkgeyuaghfdhsaugfuiwiEHDFIHI3UOsufioehioahdifhdkhsakje
                 System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {

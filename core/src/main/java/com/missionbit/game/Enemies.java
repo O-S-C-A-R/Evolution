@@ -29,13 +29,13 @@ public class Enemies {
     //private int otherdirection = 5;
     private float speed = 1;
 
-    public Enemies(float x, float y, float left, float right) {
+    public Enemies(float x, float y, float left, float rigth) {
         Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
         TextureRegion[][] tmp = TextureRegion.split(Sheet,
         Sheet.getWidth() / Cols,
         Sheet.getHeight() / Rows);
         leftbound = left;
-        rigthbound = right;
+        rigthbound = rigth;
         TextureRegion[] Frames = new TextureRegion[frame];
         int index = 0;
         for (int i = 0; i <Rows; i++){
