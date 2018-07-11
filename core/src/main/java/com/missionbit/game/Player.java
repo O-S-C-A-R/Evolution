@@ -9,8 +9,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
+
+
 public class Player {
-    private Sprite BlackPlayer;
+    protected Sprite BlackPlayer;
     private static final float PLAYER_SPEED = 499.999f;
     protected float jumpvelocity = 0;
     protected boolean touchplatform = true;
@@ -25,11 +27,11 @@ public class Player {
 
 
 
-
     public Player(){
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/BlackPlayer.png")));
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         BlackPlayer.setX(70);
         BlackPlayer.setY(59);
+
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
@@ -52,9 +54,10 @@ public class Player {
             jumpvelocity += GRAVITY;
 
         }
-        if(BlackPlayer.getY() < -50){
-            BlackPlayer.setX(0);
-            BlackPlayer.setY(62);
+        if(BlackPlayer.getY() < -500){
+            BlackPlayer.setX(20);
+            BlackPlayer.setY(500);
+            System.out.println("One life is gone");
         }
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
 
