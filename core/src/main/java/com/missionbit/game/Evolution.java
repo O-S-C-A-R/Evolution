@@ -68,11 +68,7 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
-<<<<<<< HEAD
-         BlackPlayer = new Player();
-=======
-        blackplayer = new Player();
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
+        BlackPlayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
@@ -81,8 +77,6 @@ public class Evolution extends ApplicationAdapter {
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
 
 
         randomSource = new Random();
@@ -96,13 +90,7 @@ public class Evolution extends ApplicationAdapter {
         debugRenderer = new ShapeRenderer();
 
         //LOAD IMAGES
-        platforms = new ArrayList<Platform>();
-<<<<<<< HEAD
-        Tutorial = new Sprite( new Texture(Gdx.files.internal("images/Tutorial.png")));
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-=======
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
-
+        BlackPlayer = new Player(new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
         Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/Tutorial.png")));
         // Initialize platforms
@@ -123,64 +111,37 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-        System.out.println(blackplayer.getBounding().getY());
-        System.out.println(blackplayer.getBounding().getX());
+        System.out.println(BlackPlayer.getBounding().getY());
+        System.out.println(BlackPlayer.getBounding().getX());
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
                 Vector3 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
+
+
+                System.out.println(touchPos);
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
-                        blackplayer.Moveleft();
+                        BlackPlayer.Moveleft();
                     }
 
-<<<<<<< HEAD
-          platformcheck = false;
-
-        if(Gdx.input.isTouched()) {
-            Vector3 touchPos = new Vector3();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-
-            System.out.println(touchPos);
-            camera.unproject(touchPos);
-            if(touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth())
-            {
-                if(touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight())
-                {
-                    BlackPlayer.Moveleft();
-                }
-
-            }
-            if(touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth())
-            {
-                if(touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight())
-                {
-                    BlackPlayer.Moveright();
-                }
-            }
-            if(touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth())
-            {
-                if(touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && BlackPlayer.touchplatform)
-                {
-                    BlackPlayer.Jump();
-=======
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
-                        blackplayer.Moveright();
+                        BlackPlayer.Moveright();
                     }
                 }
                 if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
-                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.Jump();
+                    if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && BlackPlayer.touchplatform) {
+                        BlackPlayer.Jump();
                     }
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
                 }
-
             }
         }
+
+
         // Clear the screen
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -192,144 +153,108 @@ public class Evolution extends ApplicationAdapter {
 
         //todo: Draw our image!
 
-<<<<<<< HEAD
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             BlackPlayer.Moveleft();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             BlackPlayer.Moveright();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && BlackPlayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && BlackPlayer.touchplatform) {
-=======
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-            blackplayer.Moveleft();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-            blackplayer.Moveright();
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && BlackPlayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && BlackPlayer.touchplatform) {
 
             BlackPlayer.Jump();
         }
 
 
-<<<<<<< HEAD
-
         BlackPlayer.Update();
         for (Platform p : platforms) {
-                if (p.hit(BlackPlayer)){
-                    platformcheck = true;
-                    BlackPlayer.collide(p);
-=======
-        blackplayer.Update();
-        for (Platform p : platforms) {
-            if (p.hit(blackplayer)) {
+            if (p.hit(BlackPlayer)) {
                 platformcheck = true;
-                blackplayer.collide(p);
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
-
+                BlackPlayer.collide(p);
+                BlackPlayer.Update();
             }
         }
         for (Spikes s : spikes) {
-<<<<<<< HEAD
             if (s.CollideWithPlayer(BlackPlayer)) {
                 BlackPlayer.Die();
-=======
-            if (s.CollideWithPlayer(blackplayer)) {
-                blackplayer.Die();
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
+                if (s.CollideWithPlayer(BlackPlayer)) {
+                    BlackPlayer.Die();
 
 
+                }
             }
         }
-<<<<<<< HEAD
-        if(BlackPlayer.Lives == 0){
+        if (BlackPlayer.Lives == 0) {
             BlackPlayer.reset();
-=======
-        if (blackplayer.Lives == 0) {
-            blackplayer.reset();
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
+            if (BlackPlayer.Lives == 0) {
+                BlackPlayer.reset();
 
 
-        }
+            }
 
 
-<<<<<<< HEAD
-    // CAMERA AND PLAYER DRAWING
-        camera.position.set(BlackPlayer.getBounding().getX() + CAMERA_OFFSET_X, BlackPlayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
-=======
-        // CAMERA AND PLAYER DRAWING
-        camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
-        camera.update();
-        myBatch.setProjectionMatrix(camera.combined);
-        myBatch.begin();
-        Bouncepad.draw(myBatch);
-        Tutorial.draw(myBatch);
-        myBatch.end();
+            // CAMERA AND PLAYER DRAWING
+            camera.position.set(BlackPlayer.getBounding().getX() + CAMERA_OFFSET_X, BlackPlayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
+            camera.update();
+            myBatch.setProjectionMatrix(camera.combined);
+            myBatch.begin();
+            Bouncepad.draw(myBatch);
+            Tutorial.draw(myBatch);
+            myBatch.end();
 
-        myBatch.begin();
-        BlackPlayer.draw(myBatch);
-        Spider.draw(myBatch);
+            myBatch.begin();
+            BlackPlayer.draw(myBatch);
+            Spider.draw(myBatch);
 
-        //bodyFont.draw(myBatch,"Lives left", 900,500 );
+            //bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
 //        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
-        myBatch.end();
+            myBatch.end();
 
 
-        if (showDebug) {
-            debugRenderer.setProjectionMatrix(camera.combined);
-            debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 1, 0, 1);
-            for (Platform p : platforms) {
-                p.drawDebug(debugRenderer);
+            if (showDebug) {
+                debugRenderer.setProjectionMatrix(camera.combined);
+                debugRenderer.begin(ShapeRenderer.ShapeType.Line);
+                debugRenderer.setColor(0, 1, 0, 1);
+                for (Platform p : platforms) {
+                    p.drawDebug(debugRenderer);
+                }
+                for (Spikes s : spikes) {
+                    s.drawDebug(debugRenderer);
+                }
+                debugRenderer.rect(BlackPlayer.getBounding().getX(), BlackPlayer.getBounding().getY(), BlackPlayer.getBounding().getWidth(), BlackPlayer.getBounding().getHeight());
+                debugRenderer.end();
             }
-            for (Spikes s : spikes) {
-                s.drawDebug(debugRenderer);
+            if (!platformcheck && BlackPlayer.touchplatform) {
+                BlackPlayer.touchplatform = false;
             }
-<<<<<<< HEAD
-            debugRenderer.rect(BlackPlayer.getBounding().getX(), BlackPlayer.getBounding().getY() , BlackPlayer.getBounding().getWidth(), BlackPlayer.getBounding().getHeight());
-            debugRenderer.end();
+
+
+            BlackPlayer.UpdateLast();
+
+            camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
+            camera.update();
+            myBatch.setProjectionMatrix(camera.combined);
+            myBatch.begin();
+            LeftButton.draw(myBatch);
+            RightButton.draw(myBatch);
+            UpButton.draw(myBatch);
+
+
+            FullLives.draw(myBatch);
+
+            myBatch.end();
+            Bouncepad.setX(1260);
+            Bouncepad.setY(59);
         }
-        if(!platformcheck && BlackPlayer.touchplatform){
-            BlackPlayer.touchplatform = false;
-=======
-            debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
-            debugRenderer.end();
-        }
-        if (!platformcheck && blackplayer.touchplatform) {
-            blackplayer.touchplatform = false;
->>>>>>> 9cf99a32d39bd77827f54a4b7a0e8ff784f4224c
-        }
-
-        BlackPlayer.UpdateLast();
-
-        camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
-        camera.update();
-        myBatch.setProjectionMatrix(camera.combined);
-        myBatch.begin();
-        LeftButton.draw(myBatch);
-        RightButton.draw(myBatch);
-        UpButton.draw(myBatch);
-
-
-        FullLives.draw(myBatch);
-
-        myBatch.end();
-        Bouncepad.setX(1260);
-        Bouncepad.setY(59);
     }
 
+
     @Override
-    public void dispose () {
+    public void dispose() {
         myBatch.dispose();
 
     }
 }
-
-
