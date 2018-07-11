@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
@@ -29,6 +31,7 @@ public class Enemies {
     //private int otherdirection = 5;
     private float speed = 1;
 
+
     public Enemies(float x, float y, float left, float rigth) {
         Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
         TextureRegion[][] tmp = TextureRegion.split(Sheet,
@@ -46,7 +49,7 @@ public class Enemies {
             }
         }
 
-        Spider = new Animation<TextureRegion>(0.1f, Frames);
+        Spider = new Animation<TextureRegion>(0.25f, Frames);
         pos = new Vector2();
         pos.x = x;
         pos.y = y;
@@ -67,6 +70,20 @@ public class Enemies {
       TextureRegion drawFrame = Spider.getKeyFrame(stateTime, true);
       batch.draw(drawFrame, pos.x, pos.y);
     }
+public boolean spidercollide (Player idk){
+    boolean flag = getBounding().overlaps(idk.getBounding());
+    return flag ;
+    }
+    public void drawDebug(ShapeRenderer renderer){
+        Rectangle rect = getBounding();
+        renderer.rect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+    }
+public Rectangle getBounding() {
+    TextureRegion texture = Spider.getKeyFrame(stateTime, true);
+    return new Rectangle(pos.x,pos.y,texture.getRegionWidth(),texture.getRegionHeight());
+    }
+
+
 
 }
 

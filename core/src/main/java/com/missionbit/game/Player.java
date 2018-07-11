@@ -18,7 +18,7 @@ public class Player {
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
-    protected int Lives = 3;
+    protected static int Lives = 3;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
     }
@@ -58,6 +58,7 @@ public class Player {
             BlackPlayer.setX(20);
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
+            Lives --;
         }
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
 
@@ -90,7 +91,7 @@ public class Player {
     public void Die(){
         BlackPlayer.setX(0);
         BlackPlayer.setY(62);
-        Lives =- 1;
+        Lives -- ;
         System.out.println("One life is gone");
     }
     public void reset(){

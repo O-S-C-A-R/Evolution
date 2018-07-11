@@ -31,6 +31,9 @@ public class Evolution extends ApplicationAdapter {
 
     private Buttons Fade;
     private Buttons FullLives;
+    private Buttons TwoLives;
+    private Buttons OneLife;
+
 
     private Enemies Spider;
     private SpriteBatch myBatch;
@@ -73,12 +76,13 @@ public class Evolution extends ApplicationAdapter {
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
 
 
         randomSource = new Random();
@@ -114,8 +118,6 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-        System.out.println(blackplayer.getBounding().getY());
-        System.out.println(blackplayer.getBounding().getX());
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
@@ -143,7 +145,7 @@ public class Evolution extends ApplicationAdapter {
             }
         }
         // Clear the screen
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 0.25f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Set up our camera
@@ -185,7 +187,10 @@ public class Evolution extends ApplicationAdapter {
 
 
         }
+        if (Spider.spidercollide(blackplayer)) {
+            blackplayer.Die();
 
+        }
 
         // CAMERA AND PLAYER DRAWING
         camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
@@ -212,13 +217,14 @@ public class Evolution extends ApplicationAdapter {
         if (showDebug) {
             debugRenderer.setProjectionMatrix(camera.combined);
             debugRenderer.begin(ShapeRenderer.ShapeType.Line);
-            debugRenderer.setColor(0, 1, 0, 1);
+            debugRenderer.setColor(1, 0, 0, 1);
             for (Platform p : platforms) {
                 p.drawDebug(debugRenderer);
             }
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
+            Spider.drawDebug(debugRenderer);
             debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
             debugRenderer.end();
         }
@@ -236,17 +242,34 @@ public class Evolution extends ApplicationAdapter {
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
 
+        if (blackplayer.Lives == 3) {
+            FullLives.draw(myBatch);
+            System.out.println(blackplayer.Lives);
+        }
 
-        FullLives.draw(myBatch);
+        if (blackplayer.Lives == 2) {
+            TwoLives.draw(myBatch);
+            System.out.println(blackplayer.Lives);
+
+        }
+        if (blackplayer.Lives == 1) {
+            OneLife.draw(myBatch);
+            System.out.println(blackplayer.Lives);
+
+        }
+
 
         myBatch.end();
         Bouncepad.setX(1260);
         Bouncepad.setY(59);
-    }
 
-    @Override
-    public void dispose () {
-        myBatch.dispose();
 
     }
-}
+        @Override
+        public void dispose () {
+            myBatch.dispose();
+
+        }
+    }
+
+
