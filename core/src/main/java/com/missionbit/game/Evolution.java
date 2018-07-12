@@ -61,7 +61,7 @@ public class Evolution extends ApplicationAdapter {
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][]{
-            {745, 59, 880, 115, 1020, 59},// SPIKES
+            {755, 59, 880, 125, 1010, 59},// SPIKES
             {1359, 61,1450,100,1600, 235, 1800, 235, 1800, 61},
     };
     private static ArrayList<Platform> platforms;

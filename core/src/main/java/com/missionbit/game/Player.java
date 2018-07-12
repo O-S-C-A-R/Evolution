@@ -54,6 +54,10 @@ public class Player {
         if(Xvelocity != 0) {
             Xvelocity += DRAG;
         }
+        if(Lives == 0) {
+            Xvelocity = 0;
+
+        }
         if(!touchplatform) {
             jumpvelocity += GRAVITY;
 
