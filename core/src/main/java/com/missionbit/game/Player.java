@@ -95,8 +95,8 @@ public class Player {
         System.out.println("One life is gone");
     }
     public void SpiderDie(){
-        BlackPlayer.getX();
-        BlackPlayer.getY();
+        BlackPlayer.setX(0);
+        BlackPlayer.setY(62);
         Lives -- ;
         System.out.println("One life is gone");
     }
