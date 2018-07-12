@@ -188,9 +188,8 @@ public class Evolution extends ApplicationAdapter {
 
         }
         if (Spider.spidercollide(blackplayer)) {
-           // blackplayer.getBounding().getX();
-           // blackplayer.Die();
-
+          blackplayer.SpiderDie();
+          
         }
 
         // CAMERA AND PLAYER DRAWING
