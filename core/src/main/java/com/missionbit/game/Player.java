@@ -13,12 +13,14 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Player {
     protected Sprite BlackPlayer;
-    private static final float PLAYER_SPEED = 499.999f;
+    private static final float PLAYER_SPEED = 445f;
     protected float jumpvelocity = 0;
+    protected float Xvelocity = 0;
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
-    protected int Lives = 3;
+    private  static int DRAG = 5;
+    protected static int Lives = 3;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
     }
@@ -29,7 +31,7 @@ public class Player {
 
     public Player(){
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        BlackPlayer.setX(70);
+        BlackPlayer.setX(90);
         BlackPlayer.setY(59);
 
     }
@@ -49,17 +51,28 @@ public class Player {
 
     }
     public void Update(){
+        if(Xvelocity != 0) {
+            Xvelocity += DRAG;
+        }
+        if(Lives == 0) {
+            Xvelocity = 0;
 
+        }
         if(!touchplatform) {
             jumpvelocity += GRAVITY;
 
         }
+
         if(BlackPlayer.getY() < -400){
             BlackPlayer.setX(20);
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
+            Lives --;
         }
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
+        BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
+      //  BlackPlayer.setY(BlackPlayer.getY()+ Xvelocity * Gdx.graphics.getDeltaTime());
+
 
     }
 
@@ -86,11 +99,18 @@ public class Player {
             BlackPlayer.setX(p.getRight());
 
         }
+
+
     }
     public void Die(){
         BlackPlayer.setX(0);
         BlackPlayer.setY(62);
-        Lives =- 1;
+        Lives -- ;
+        System.out.println("One life is gone");
+    }
+    public void SpiderDie(Enemies Spider){
+        CollideWithSpider(Spider);
+        Lives -- ;
         System.out.println("One life is gone");
     }
     public void reset(){
@@ -98,6 +118,21 @@ public class Player {
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
+    }
+    public void CollideWithSpider(Enemies sp) {
+        if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
+           jumpvelocity = 200;
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
+            Xvelocity = - 220;
+            DRAG = 5;
+
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getRight() && BlackPlayer.getX() < sp.getRight()) {
+            Xvelocity =  220;
+            DRAG = -5;
+
+        }
     }
 
 }
