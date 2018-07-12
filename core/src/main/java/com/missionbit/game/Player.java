@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Player {
     protected Sprite BlackPlayer;
-    private static final float PLAYER_SPEED = 499.999f;
+    private static final float PLAYER_SPEED = 445f;
     protected float jumpvelocity = 0;
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
