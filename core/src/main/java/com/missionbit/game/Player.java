@@ -19,7 +19,7 @@ public class Player {
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
-    private  static  final int DRAG = 5;
+    private  static int DRAG = 5;
     protected static int Lives = 3;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
@@ -31,7 +31,7 @@ public class Player {
 
     public Player(){
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        BlackPlayer.setX(70);
+        BlackPlayer.setX(90);
         BlackPlayer.setY(59);
 
     }
@@ -99,6 +99,8 @@ public class Player {
             BlackPlayer.setX(p.getRight());
 
         }
+
+
     }
     public void Die(){
         BlackPlayer.setX(0);
@@ -106,11 +108,8 @@ public class Player {
         Lives -- ;
         System.out.println("One life is gone");
     }
-    public void SpiderDie(){
-        Xvelocity = - 220;
-
-        //BlackPlayer.setX(BlackPlayer.getX()-100);
-        //BlackPlayer.setY(62);
+    public void SpiderDie(Enemies Spider){
+        CollideWithSpider(Spider);
         Lives -- ;
         System.out.println("One life is gone");
     }
@@ -119,6 +118,21 @@ public class Player {
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
+    }
+    public void CollideWithSpider(Enemies sp) {
+        if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
+           jumpvelocity = 200;
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
+            Xvelocity = - 220;
+            DRAG = 5;
+
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getRight() && BlackPlayer.getX() < sp.getRight()) {
+            Xvelocity =  220;
+            DRAG = -5;
+
+        }
     }
 
 }
