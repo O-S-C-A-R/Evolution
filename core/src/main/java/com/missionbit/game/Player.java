@@ -15,9 +15,11 @@ public class Player {
     protected Sprite BlackPlayer;
     private static final float PLAYER_SPEED = 445f;
     protected float jumpvelocity = 0;
+    protected float Xvelocity = 0;
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
+    private  static  final int DRAG = 5;
     protected static int Lives = 3;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
@@ -49,11 +51,14 @@ public class Player {
 
     }
     public void Update(){
-
+        if(Xvelocity != 0) {
+            Xvelocity += DRAG;
+        }
         if(!touchplatform) {
             jumpvelocity += GRAVITY;
 
         }
+
         if(BlackPlayer.getY() < -400){
             BlackPlayer.setX(20);
             BlackPlayer.setY(500);
@@ -61,6 +66,9 @@ public class Player {
             Lives --;
         }
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
+        BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
+      //  BlackPlayer.setY(BlackPlayer.getY()+ Xvelocity * Gdx.graphics.getDeltaTime());
+
 
     }
 
@@ -95,8 +103,10 @@ public class Player {
         System.out.println("One life is gone");
     }
     public void SpiderDie(){
-        BlackPlayer.setX(0);
-        BlackPlayer.setY(62);
+        Xvelocity = - 220;
+
+        //BlackPlayer.setX(BlackPlayer.getX()-100);
+        //BlackPlayer.setY(62);
         Lives -- ;
         System.out.println("One life is gone");
     }

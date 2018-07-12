@@ -28,15 +28,17 @@ public class Spikes {
         if (spike.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())) {
             CollideWithPlayer = true;
 
-            if (spike.contains(r.getX() + r.getWidth(), r.getY())) {
-                CollideWithPlayer = true;
 
-            }
-            if (spike.contains(r.getX(), r.getY() + r.getHeight())) {
-                CollideWithPlayer = true;
 
-            }
 
+        }
+        if (spike.contains(r.getX() + r.getWidth(), r.getY())) {
+            CollideWithPlayer = true;
+
+        }
+
+        if (spike.contains(r.getX(), r.getY() + r.getHeight())) {
+            CollideWithPlayer = true;
 
         }
         return CollideWithPlayer;

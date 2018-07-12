@@ -191,6 +191,10 @@ public class Evolution extends ApplicationAdapter {
           blackplayer.SpiderDie();
 
         }
+//        if() {
+//          blackplayer.Xvelocity += GRAVITY;
+//
+//        }
 
         // CAMERA AND PLAYER DRAWING
         camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
