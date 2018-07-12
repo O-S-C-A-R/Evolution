@@ -21,6 +21,7 @@ public class Player {
     private static final int GRAVITY = -5;
     private  static int DRAG = 5;
     protected static int Lives = 3;
+    long lasthit;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
     }
@@ -30,6 +31,7 @@ public class Player {
 
 
     public Player(){
+        lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         BlackPlayer.setX(90);
         BlackPlayer.setY(59);
@@ -109,9 +111,14 @@ public class Player {
         System.out.println("One life is gone");
     }
     public void SpiderDie(Enemies Spider){
+        if(System.currentTimeMillis() - lasthit > 2000){
+            Lives -- ;
+            System.out.println("One life is gone");
+            lasthit = System.currentTimeMillis();
+        }
         CollideWithSpider(Spider);
-        Lives -- ;
-        System.out.println("One life is gone");
+
+
     }
     public void reset(){
         BlackPlayer.setX(0);
@@ -124,7 +131,7 @@ public class Player {
            jumpvelocity = 200;
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
-            Xvelocity = - 220;
+            Xvelocity = - 300;
             DRAG = 5;
 
 

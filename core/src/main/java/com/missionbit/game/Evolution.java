@@ -251,7 +251,7 @@ public class Evolution extends ApplicationAdapter {
 
         if (blackplayer.Lives == 3) {
             FullLives.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+            //System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -260,7 +260,7 @@ public class Evolution extends ApplicationAdapter {
 
         if (blackplayer.Lives == 2) {
             TwoLives.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+          //  System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -269,7 +269,7 @@ public class Evolution extends ApplicationAdapter {
         }
         if (blackplayer.Lives == 1) {
             OneLife.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+          //  System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 0;
             tooclose.b = 0;
