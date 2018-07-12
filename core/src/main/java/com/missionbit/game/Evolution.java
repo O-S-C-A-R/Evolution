@@ -39,7 +39,7 @@ public class Evolution extends ApplicationAdapter {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
