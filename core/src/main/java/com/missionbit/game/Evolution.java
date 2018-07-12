@@ -3,7 +3,11 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+
+import com.badlogic.gdx.audio.Music;
+
 import com.badlogic.gdx.graphics.Color;
+
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,7 +31,12 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
+
+    private Sprite Bouncepad;
+    private Music music;
+
     private Bouncepad Pad;
+
 
 
     private Buttons Fade;
@@ -73,7 +82,15 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+
+
         tooclose = new Color(1,1,1,1);
+
         blackplayer = new Player();
         Pad = new Bouncepad(1260,59);
 
