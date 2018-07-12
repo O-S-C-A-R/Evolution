@@ -3,6 +3,7 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,7 +28,7 @@ public class Evolution extends ApplicationAdapter {
     private Random randomSource;
     private Sprite Tutorial;
     private Sprite Bouncepad;
-
+    private Music music;
 
     private Buttons Fade;
     private Buttons FullLives;
@@ -68,6 +69,11 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+
         blackplayer = new Player();
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
