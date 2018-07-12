@@ -111,7 +111,7 @@ public class Player {
         System.out.println("One life is gone");
     }
     public void SpiderDie(Enemies Spider){
-        if(System.currentTimeMillis() - lasthit > 2000){
+        if(System.currentTimeMillis() - lasthit > 500){
             Lives -- ;
             System.out.println("One life is gone");
             lasthit = System.currentTimeMillis();
