@@ -137,10 +137,11 @@ public class Evolution extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
-     //   if(Pad.getBoundingRectangle().overlaps(other.getBounding())){
+    public void render() { ;
+        if(Bouncepad.getBoundingRectangle().overlaps(other.)){
+            blackplayer.jumpvelocity = 300;
 
-       // }
+        }
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {

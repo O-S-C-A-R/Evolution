@@ -121,17 +121,17 @@ public class Player {
 
     }
     public void reset(){
-        BlackPlayer.setX(0);
+        BlackPlayer.setX(40);
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
     }
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
-           jumpvelocity = 200;
+           jumpvelocity = 220;
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
-            Xvelocity = - 300;
+            Xvelocity = - 220;
             DRAG = 5;
 
 
