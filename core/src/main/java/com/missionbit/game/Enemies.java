@@ -84,6 +84,14 @@ public Rectangle getBounding() {
     }
 
 
-
+    public float getTop(){
+        return getBounding().getY()+getBounding().height;
+    }
+    public float getLeft(){
+        return getBounding().getX();
+    }
+    public float getRight(){
+        return getBounding().getX()+getBounding().width;
+    }
 }
 

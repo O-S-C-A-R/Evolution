@@ -3,6 +3,11 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+
+import com.badlogic.gdx.audio.Music;
+
+import com.badlogic.gdx.graphics.Color;
+
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,20 +31,26 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
+
     private Sprite Bouncepad;
+    private Music music;
+
+    private Bouncepad Pad;
+
 
 
     private Buttons Fade;
     private Buttons FullLives;
     private Buttons TwoLives;
     private Buttons OneLife;
+    private Color tooclose;
 
 
     private Enemies Spider;
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
     private BitmapFont bodyFont;
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -61,7 +72,7 @@ public class Evolution extends ApplicationAdapter {
             {754, 160, 235, 5},
     };
     private static final float[][] spike_locs = new float[][]{
-            {755, 59, 880, 125, 1010, 59},// SPIKES
+            {755, 59, 880, 125, 1000, 59},// SPIKES
             {1359, 61,1450,100,1600, 235, 1800, 235, 1800, 61},
     };
     private static ArrayList<Platform> platforms;
@@ -71,7 +82,17 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void create() {
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
+
+
+        tooclose = new Color(1,1,1,1);
+
         blackplayer = new Player();
+        Pad = new Bouncepad(1260,59);
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
@@ -98,7 +119,6 @@ public class Evolution extends ApplicationAdapter {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
         Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/Tutorial.png")));
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -117,7 +137,11 @@ public class Evolution extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
+    public void render() { ;
+        if(Bouncepad.getBoundingRectangle().overlaps(other.)){
+            blackplayer.jumpvelocity = 300;
+
+        }
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
@@ -145,7 +169,7 @@ public class Evolution extends ApplicationAdapter {
             }
         }
         // Clear the screen
-        Gdx.gl.glClearColor(1, 1, 1, 0.25f);
+        Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Set up our camera
@@ -188,20 +212,17 @@ public class Evolution extends ApplicationAdapter {
 
         }
         if (Spider.spidercollide(blackplayer)) {
-          blackplayer.SpiderDie();
+          blackplayer.SpiderDie(Spider);
 
         }
-//        if() {
-//          blackplayer.Xvelocity += GRAVITY;
-//
-//        }
+
 
         // CAMERA AND PLAYER DRAWING
         camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
-        Bouncepad.draw(myBatch);
+        Pad.draw(myBatch);
         Tutorial.draw(myBatch);
         myBatch.end();
 
@@ -248,24 +269,36 @@ public class Evolution extends ApplicationAdapter {
 
         if (blackplayer.Lives == 3) {
             FullLives.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+            //System.out.println(blackplayer.Lives);
+            tooclose.r = 1;
+            tooclose.g = 1;
+            tooclose.b = 1;
+            tooclose.a = 1;
         }
 
         if (blackplayer.Lives == 2) {
             TwoLives.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+          //  System.out.println(blackplayer.Lives);
+            tooclose.r = 1;
+            tooclose.g = 1;
+            tooclose.b = 1;
+            tooclose.a = 1;
 
         }
         if (blackplayer.Lives == 1) {
             OneLife.draw(myBatch);
-            System.out.println(blackplayer.Lives);
+          //  System.out.println(blackplayer.Lives);
+            tooclose.r = 1;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 1;
 
         }
 
 
+
         myBatch.end();
-        Bouncepad.setX(1260);
-        Bouncepad.setY(59);
+
 
 
     }

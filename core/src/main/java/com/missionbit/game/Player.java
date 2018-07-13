@@ -19,8 +19,9 @@ public class Player {
     protected boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
-    private  static  final int DRAG = 5;
+    private  static int DRAG = 5;
     protected static int Lives = 3;
+    long lasthit;
     public void draw(SpriteBatch batch){
         BlackPlayer.draw(batch);
     }
@@ -30,8 +31,9 @@ public class Player {
 
 
     public Player(){
+        lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        BlackPlayer.setX(70);
+        BlackPlayer.setX(90);
         BlackPlayer.setY(59);
 
     }
@@ -99,6 +101,8 @@ public class Player {
             BlackPlayer.setX(p.getRight());
 
         }
+
+
     }
     public void Die(){
         BlackPlayer.setX(0);
@@ -106,19 +110,36 @@ public class Player {
         Lives -- ;
         System.out.println("One life is gone");
     }
-    public void SpiderDie(){
-        Xvelocity = - 220;
+    public void SpiderDie(Enemies Spider){
+        if(System.currentTimeMillis() - lasthit > 500){
+            Lives -- ;
+            System.out.println("One life is gone");
+            lasthit = System.currentTimeMillis();
+        }
+        CollideWithSpider(Spider);
 
-        //BlackPlayer.setX(BlackPlayer.getX()-100);
-        //BlackPlayer.setY(62);
-        Lives -- ;
-        System.out.println("One life is gone");
+
     }
     public void reset(){
-        BlackPlayer.setX(0);
+        BlackPlayer.setX(40);
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
+    }
+    public void CollideWithSpider(Enemies sp) {
+        if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
+           jumpvelocity = 220;
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
+            Xvelocity = - 220;
+            DRAG = 5;
+
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getRight() && BlackPlayer.getX() < sp.getRight()) {
+            Xvelocity =  220;
+            DRAG = -5;
+
+        }
     }
 
 }
