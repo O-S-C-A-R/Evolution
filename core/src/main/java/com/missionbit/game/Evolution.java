@@ -85,7 +85,11 @@ public class Evolution extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
+<<<<<<< HEAD
         music.setVolume(0.05f);
+=======
+        music.setVolume(.05f);
+>>>>>>> 5c97bfef3a4928abb070b5ca6efef13f71e34291
         music.play();
 
 
@@ -138,9 +142,10 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-       // if(Bouncepad.getBoundingRectangle().overlaps()){
-          //  blackplayer.jumpvelocity = 300;
-        //}
+       if(Pad.bounce(blackplayer)){
+           blackplayer.jumpvelocity = 350;
+
+        }
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
