@@ -142,6 +142,7 @@ public class Evolution extends ApplicationAdapter {
            blackplayer.jumpvelocity = 350;
 
         }
+
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
@@ -201,10 +202,19 @@ public class Evolution extends ApplicationAdapter {
         }
         for (Spikes s : spikes) {
             if (s.CollideWithPlayer(blackplayer)) {
-                blackplayer.Die();
+                blackplayer.SpikeDie();
+
 
 
             }
+//            for (Spikes s : spikes) {
+//                if (s.CollideWithPlayer(blackplayer)) {
+//                    blackplayer.SpikeDie();
+//                    blackplayer.Xvelocity = -150;
+//
+//
+//
+//                }
         }
         if (blackplayer.Lives == 0) {
             blackplayer.reset();
@@ -215,6 +225,9 @@ public class Evolution extends ApplicationAdapter {
           blackplayer.SpiderDie(Spider);
 
         }
+//        if(spikes.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())){
+//
+//        }
 
 
         // CAMERA AND PLAYER DRAWING

@@ -104,11 +104,17 @@ public class Player {
 
 
     }
-    public void Die(){
-        BlackPlayer.setX(0);
-        BlackPlayer.setY(62);
-        Lives -- ;
-        System.out.println("One life is gone");
+    public void SpikeDie() {
+        if (System.currentTimeMillis() - lasthit > 500) {
+            Lives--;
+            Xvelocity=-190;
+
+            System.out.println("One life is gone");
+            System.out.println(lastposition.x +" "+ BlackPlayer.getX());
+
+            lasthit = System.currentTimeMillis();
+
+        }
     }
     public void SpiderDie(Enemies Spider){
         if(System.currentTimeMillis() - lasthit > 500){
@@ -125,6 +131,7 @@ public class Player {
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
+        Xvelocity = 0;
     }
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
