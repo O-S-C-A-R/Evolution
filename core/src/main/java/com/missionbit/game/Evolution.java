@@ -3,9 +3,11 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
+
 import com.badlogic.gdx.graphics.Color;
+
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,7 +34,7 @@ public class Evolution extends ApplicationAdapter {
 
     private Sprite Bouncepad;
     private Music music;
-    private Sound jumpSound;
+
     private Bouncepad Pad;
 
 
@@ -83,13 +85,9 @@ public class Evolution extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
-
-        music.setVolume(0.3f);
         music.setVolume(0.05f);
         music.play();
-        jumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
-        jumpSound.setLooping(1, false);
-        jumpSound.setVolume(1,0.1f);
+
 
         tooclose = new Color(1,1,1,1);
 
@@ -144,7 +142,6 @@ public class Evolution extends ApplicationAdapter {
            blackplayer.jumpvelocity = 350;
 
         }
-
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
@@ -166,9 +163,7 @@ public class Evolution extends ApplicationAdapter {
                 if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
                     if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
                         blackplayer.Jump();
-                        jumpSound.play();
                     }
-
                 }
 
             }
@@ -193,7 +188,6 @@ public class Evolution extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
 
             blackplayer.Jump();
-            jumpSound.play();
         }
 
 
@@ -210,16 +204,7 @@ public class Evolution extends ApplicationAdapter {
                 blackplayer.SpikeDie();
 
 
-
             }
-//            for (Spikes s : spikes) {
-//                if (s.CollideWithPlayer(blackplayer)) {
-//                    blackplayer.SpikeDie();
-//                    blackplayer.Xvelocity = -150;
-//
-//
-//
-//                }
         }
         if (blackplayer.Lives == 0) {
 
@@ -229,9 +214,6 @@ public class Evolution extends ApplicationAdapter {
           blackplayer.SpiderDie(Spider);
 
         }
-//        if(spikes.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())){
-//
-//        }
 
 
         // CAMERA AND PLAYER DRAWING

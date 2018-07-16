@@ -145,11 +145,8 @@ public class Player {
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
-<<<<<<< HEAD
         DeathAnimationTime = 0;
-=======
         Xvelocity = 0;
->>>>>>> a0e99668eba6f347eb2f3b83e0ed2e6030efa3b0
     }
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
