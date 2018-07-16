@@ -206,8 +206,6 @@ public class Evolution extends ApplicationAdapter {
 
 
             }
-<<<<<<< HEAD
-=======
 
 
 
@@ -219,7 +217,6 @@ public class Evolution extends ApplicationAdapter {
 //
 //
 //                }
->>>>>>> 7ecaa22bae16fcf049d1beed88bead2e0690f805
         }
         if (blackplayer.Lives == 0) {
 
