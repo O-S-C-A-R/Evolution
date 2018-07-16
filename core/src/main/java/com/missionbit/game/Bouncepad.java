@@ -19,6 +19,8 @@ public  Bouncepad(int x, int y){
     }
     public boolean hit(Rectangle other){
         boolean flag = Bouncepad.getBoundingRectangle().overlaps(other);
+        System.out.println(flag);
+
         return flag;
     }
     public boolean bounce(Player other) {

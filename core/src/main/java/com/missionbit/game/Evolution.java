@@ -83,7 +83,9 @@ public class Evolution extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
+
         music.setVolume(0.3f);
+        music.setVolume(0.05f);
         music.play();
         jumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         jumpSound.setLooping(1, false);
@@ -138,9 +140,11 @@ public class Evolution extends ApplicationAdapter {
 
     @Override
     public void render() {
-       // if(Bouncepad.getBoundingRectangle().overlaps()){
-          //  blackplayer.jumpvelocity = 300;
-        //}
+       if(Pad.bounce(blackplayer)){
+           blackplayer.jumpvelocity = 350;
+
+        }
+
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
@@ -203,10 +207,19 @@ public class Evolution extends ApplicationAdapter {
         }
         for (Spikes s : spikes) {
             if (s.CollideWithPlayer(blackplayer)) {
-                blackplayer.Die();
+                blackplayer.SpikeDie();
+
 
 
             }
+//            for (Spikes s : spikes) {
+//                if (s.CollideWithPlayer(blackplayer)) {
+//                    blackplayer.SpikeDie();
+//                    blackplayer.Xvelocity = -150;
+//
+//
+//
+//                }
         }
         if (blackplayer.Lives == 0) {
             blackplayer.reset();
@@ -217,6 +230,9 @@ public class Evolution extends ApplicationAdapter {
           blackplayer.SpiderDie(Spider);
 
         }
+//        if(spikes.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())){
+//
+//        }
 
 
         // CAMERA AND PLAYER DRAWING
@@ -291,8 +307,8 @@ public class Evolution extends ApplicationAdapter {
             OneLife.draw(myBatch);
           //  System.out.println(blackplayer.Lives);
             tooclose.r = 1;
-            tooclose.g = 0;
-            tooclose.b = 0;
+            tooclose.g = 1;
+            tooclose.b = 1;
             tooclose.a = 1;
 
         }
