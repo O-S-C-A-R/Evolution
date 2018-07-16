@@ -226,9 +226,8 @@ public class Evolution extends ApplicationAdapter {
 //                }
         }
         if (blackplayer.Lives == 0) {
+
             blackplayer.reset();
-
-
         }
         if (Spider.spidercollide(blackplayer)) {
           blackplayer.SpiderDie(Spider);
