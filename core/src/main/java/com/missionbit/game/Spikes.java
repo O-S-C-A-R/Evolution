@@ -6,10 +6,12 @@ import com.badlogic.gdx.math.Rectangle;
 public class Spikes {
     public Polygon spike;
     private boolean showDebug = true;
+    public static int collideside;
 
     public Spikes(float[] points) {
         boolean showDebug = true;
         spike = new Polygon(points);
+
 
     }
 
@@ -23,22 +25,23 @@ public class Spikes {
         boolean CollideWithPlayer = false;
         if (spike.contains(r.getX(), r.getY())) {
             CollideWithPlayer = true;
+            collideside = 1;
 
         }
         if (spike.contains(r.getX() + r.getWidth(), r.getY() + r.getHeight())) {
             CollideWithPlayer = true;
-
-
-
+            collideside = 2;
 
         }
         if (spike.contains(r.getX() + r.getWidth(), r.getY())) {
             CollideWithPlayer = true;
+            collideside = 2;
 
         }
 
         if (spike.contains(r.getX(), r.getY() + r.getHeight())) {
             CollideWithPlayer = true;
+            collideside = 1;
 
         }
         return CollideWithPlayer;

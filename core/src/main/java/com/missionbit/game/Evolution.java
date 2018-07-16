@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
@@ -205,6 +206,20 @@ public class Evolution extends ApplicationAdapter {
 
 
             }
+<<<<<<< HEAD
+=======
+
+
+
+//            for (Spikes s : spikes) {
+//                if (s.CollideWithPlayer(blackplayer)) {
+//                    blackplayer.SpikeDie();
+//                    blackplayer.Xvelocity = -150;
+//
+//
+//
+//                }
+>>>>>>> 7ecaa22bae16fcf049d1beed88bead2e0690f805
         }
         if (blackplayer.Lives == 0) {
 

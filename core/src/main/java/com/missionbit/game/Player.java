@@ -117,7 +117,16 @@ public class Player {
     public void SpikeDie() {
         if (System.currentTimeMillis() - lasthit > 500) {
             Lives--;
-            Xvelocity=-190;
+            System.out.println(DRAG +" "+ Spikes.collideside);
+            if(Spikes.collideside == 1) {
+                Xvelocity = 190;
+                DRAG = -5;
+            }
+            if(Spikes.collideside == 2) {
+                Xvelocity = -190;
+                DRAG = 5;
+
+            }
 
             System.out.println("One life is gone");
             System.out.println(lastposition.x +" "+ BlackPlayer.getX());
