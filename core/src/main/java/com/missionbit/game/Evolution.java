@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 
 import com.badlogic.gdx.audio.Music;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 
 import com.badlogic.gdx.graphics.GL20;
@@ -32,7 +33,7 @@ public class Evolution extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite Tutorial;
-
+    private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
 
@@ -88,9 +89,11 @@ public class Evolution extends ApplicationAdapter {
         music.setLooping(true);
         music.setVolume(0.6f);
         music.setVolume(0.05f);
+        music.setVolume(0.02f);
         music.play();
-
-
+        JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
+        JumpSound.setLooping(1,false);
+        JumpSound.setVolume(1, 0.05f);
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player();
@@ -101,8 +104,6 @@ public class Evolution extends ApplicationAdapter {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
@@ -165,6 +166,7 @@ public class Evolution extends ApplicationAdapter {
                 if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
                     if (touchPos.y > UpButton.getY() && touchPos.y < UpButton.getY() + UpButton.getHeight() && blackplayer.touchplatform) {
                         blackplayer.Jump();
+                        JumpSound.play();
                     }
                 }
 
@@ -190,6 +192,7 @@ public class Evolution extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.W) && blackplayer.touchplatform) {
 
             blackplayer.Jump();
+            JumpSound.play();
         }
 
 
