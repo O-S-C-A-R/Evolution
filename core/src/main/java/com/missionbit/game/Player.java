@@ -2,9 +2,11 @@ package com.missionbit.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -21,13 +23,22 @@ public class Player {
     private static final int GRAVITY = -5;
     private  static int DRAG = 5;
     protected static int Lives = 3;
+    private Animation<TextureRegion> DeathAnimation;
     long lasthit;
+    float DeathAnimationTime = 0;
+
     public void draw(SpriteBatch batch){
-        BlackPlayer.draw(batch);
+        if(Lives == 0)
+        {
+            DeathAnimationTime += Gdx.graphics.getDeltaTime();
+            TextureRegion drawFrame = DeathAnimation.getKeyFrame(DeathAnimationTime, false);
+            batch.draw(drawFrame, BlackPlayer.getX() -50, BlackPlayer.getY() -50);
+        }
+        else
+        {
+            BlackPlayer.draw(batch);
+        }
     }
-
-
-
 
 
     public Player(){
@@ -35,7 +46,7 @@ public class Player {
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         BlackPlayer.setX(90);
         BlackPlayer.setY(59);
-
+        DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
@@ -75,7 +86,6 @@ public class Player {
         BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
       //  BlackPlayer.setY(BlackPlayer.getY()+ Xvelocity * Gdx.graphics.getDeltaTime());
 
-
     }
 
     public void UpdateLast(){
@@ -107,7 +117,16 @@ public class Player {
     public void SpikeDie() {
         if (System.currentTimeMillis() - lasthit > 500) {
             Lives--;
-            Xvelocity=-190;
+            System.out.println(DRAG +" "+ Spikes.collideside);
+            if(Spikes.collideside == 1) {
+                Xvelocity = 190;
+                DRAG = -5;
+            }
+            if(Spikes.collideside == 2) {
+                Xvelocity = -190;
+                DRAG = 5;
+
+            }
 
             System.out.println("One life is gone");
             System.out.println(lastposition.x +" "+ BlackPlayer.getX());
@@ -127,10 +146,15 @@ public class Player {
 
     }
     public void reset(){
+        if(!DeathAnimation.isAnimationFinished(DeathAnimationTime))
+        {
+            return;
+        }
         BlackPlayer.setX(40);
         BlackPlayer.setY(62);
         System.out.println("You Died");
         Lives = 3;
+        DeathAnimationTime = 0;
         Xvelocity = 0;
     }
     public void CollideWithSpider(Enemies sp) {

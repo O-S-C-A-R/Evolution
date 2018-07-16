@@ -18,12 +18,8 @@ import com.badlogic.gdx.math.Vector2;
 public class Enemies {
     private Animation<TextureRegion> Spider;
     private Sprite Drone;
-    private Texture Sheet;
     private Sprite Armaroll;
     private Vector2 pos;
-    private int frame = 8;
-    private int Rows = 3;
-    private int Cols = 3;
     private float stateTime;
     private int direction = -1;
     private float leftbound;
@@ -32,26 +28,13 @@ public class Enemies {
     private float speed = 1;
 
 
-    public Enemies(float x, float y, float left, float rigth) {
-        Sheet = new Texture(Gdx.files.internal("images/Enemies/TutorialSpider.png"));
-        TextureRegion[][] tmp = TextureRegion.split(Sheet,
-        Sheet.getWidth() / Cols,
-        Sheet.getHeight() / Rows);
-        leftbound = left;
-        rigthbound = rigth;
-        TextureRegion[] Frames = new TextureRegion[frame];
-        int index = 0;
-        for (int i = 0; i <Rows; i++){
-        for ( int j = 0; j < Cols; j++){
-        if (index < frame){
-                 Frames[index++] = tmp[i][j];
-                }
-            }
-        }
+    public Enemies(float x, float y, float left, float right) {
 
-        Spider = new Animation<TextureRegion>(0.15f, Frames);
+        Spider = Utils.LoadAnimation("images/Enemies/TutorialSpider.png", 3, 3, 8, .15f);
         pos = new Vector2();
         pos.x = x;
+        leftbound = left;
+        rigthbound = right;
         pos.y = y;
         stateTime = 0;
     }
