@@ -220,12 +220,7 @@ public class TutorialState extends State {
                 blackplayer.SpikeDie();
             }
         }
-<<<<<<< HEAD
-//
-=======
 
-
->>>>>>> d85211522ac4715e96ef9c5ff2c03f0b587a3f58
         if (Spider.spidercollide(blackplayer)) {
             blackplayer.SpiderDie(Spider);
 
