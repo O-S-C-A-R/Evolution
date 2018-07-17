@@ -16,13 +16,13 @@ import com.badlogic.gdx.math.Vector2;
 public class Player {
     protected Sprite BlackPlayer;
     private static final float PLAYER_SPEED = 445f;
-    protected float jumpvelocity = 0;
+    public float jumpvelocity = 0;
     protected float Xvelocity = 0;
-    protected boolean touchplatform = true;
+    public boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -5;
     private  static int DRAG = 5;
-    protected static int Lives = 3;
+    public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
     long lasthit;
     float DeathAnimationTime = 0;
@@ -146,14 +146,7 @@ public class Player {
 
     }
     public void reset(){
-        if(!DeathAnimation.isAnimationFinished(DeathAnimationTime))
-        {
-            return;
-        }
-        else
-        {
-            Evolution.setGameMode(false);
-        }
+
         BlackPlayer.setX(40);
         BlackPlayer.setY(62);
         System.out.println("You Died");
