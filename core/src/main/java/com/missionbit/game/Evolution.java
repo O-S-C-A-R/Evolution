@@ -90,6 +90,8 @@ public class Evolution extends ApplicationAdapter {
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
+        music.setVolume(0.6f);
+        music.setVolume(0.05f);
         music.setVolume(0.02f);
         music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
