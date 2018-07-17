@@ -1,28 +1,22 @@
 package com.missionbit.game.States;
 
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-
 import com.badlogic.gdx.audio.Music;
-
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.LASER;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Spikes;
@@ -45,6 +39,7 @@ public class TutorialState extends State {
     private Sprite Tutorial;
     private Sound JumpSound;
     private Sprite Bouncepad;
+    private LASER Teast;
     private Music music;
 
     private com.missionbit.game.Bouncepad Pad;
@@ -116,7 +111,7 @@ public class TutorialState extends State {
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-
+        Teast = new LASER(8, 20);
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
@@ -251,7 +246,7 @@ public class TutorialState extends State {
         myBatch.begin();
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-
+        Teast.draw(myBatch);
         myBatch.end();
 
 
