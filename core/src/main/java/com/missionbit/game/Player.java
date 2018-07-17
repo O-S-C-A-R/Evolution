@@ -169,6 +169,11 @@ public class Player {
 
         }
 
+
+    }
+    public boolean deathanimationfin(){
+        return DeathAnimation.isAnimationFinished(DeathAnimationTime);
+
     }
 
 }

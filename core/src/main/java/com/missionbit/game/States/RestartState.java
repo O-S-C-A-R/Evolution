@@ -21,7 +21,10 @@ public class RestartState extends State
     {
         if(Gdx.input.justTouched())
         {
-            gsm.set(new TutorialState(gsm));
+            //gsm.set(new TutorialState(gsm));
+            TutorialState.GameMode = true;
+            gsm.pop();
+
         }
     }
 
@@ -38,7 +41,7 @@ public class RestartState extends State
     }
     public void dispose()
     {
-        RestartScreen.dispose();;
+        RestartScreen.dispose();
         System.out.println("Disposing of Menu State");
     }
 }
