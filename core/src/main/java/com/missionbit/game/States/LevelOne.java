@@ -1,5 +1,4 @@
 package com.missionbit.game.States;
-
 public class LevelOne {
 //
 //    private static final int[][] PLAT_LOCS = new int[][]{
