@@ -17,9 +17,9 @@ public class DesktopLauncher {
 
     private static LwjglApplicationConfiguration getDefaultConfiguration() {
         LwjglApplicationConfiguration configuration = new LwjglApplicationConfiguration();
-        configuration.title = "Evolution";
-        configuration.width = 1000;
-        configuration.height = 600;
+        configuration.title = Evolution.TITLE;
+        configuration.width = Evolution.VIEWPORT_WIDTH;
+        configuration.height = Evolution.VIEWPORT_HEIGHT;
         for (int size : new int[] { 128, 64, 32, 16 }) {
             configuration.addIcon("libgdx" + size + ".png", FileType.Internal);
         }

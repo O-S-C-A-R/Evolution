@@ -112,7 +112,7 @@ public class TutorialState extends State {
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
-        RestartScreen = new Texture("images/ui/DeathMenuTwo.png");
+
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
@@ -246,7 +246,7 @@ public class TutorialState extends State {
         }
         else
         {
-            myBatch.draw(RestartScreen, camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2);
+            gsm.set(new RestartState(gsm));
         }
         myBatch.end();
 

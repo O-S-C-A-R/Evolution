@@ -9,8 +9,9 @@ import com.missionbit.game.States.TutorialState;
 
 public class Evolution extends ApplicationAdapter
 {
-    private static final int VIEWPORT_WIDTH = 960;
-    private static final int VIEWPORT_HEIGHT = 540;
+
+    public static final int VIEWPORT_WIDTH = 960;
+    public static final int VIEWPORT_HEIGHT = 540;
     public static final String TITLE = "Evolution";
     private GameStateManager gsm;
     private SpriteBatch batch;
