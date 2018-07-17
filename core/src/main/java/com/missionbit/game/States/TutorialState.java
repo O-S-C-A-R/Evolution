@@ -66,7 +66,7 @@ public class TutorialState extends State {
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    private static boolean GameMode = true;
+    protected static boolean GameMode = true;
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -243,7 +243,8 @@ public class TutorialState extends State {
         }
         else
         {
-            gsm.set(new RestartState(gsm));
+            blackplayer.reset();
+            gsm.push(new RestartState(gsm));
         }
         myBatch.end();
 
@@ -306,7 +307,7 @@ public class TutorialState extends State {
             tooclose.a = 1;
 
         }
-        else if (blackplayer.Lives == 0)
+        else if (blackplayer.Lives == 0 && blackplayer.deathanimationfin())
         {
 
             GameMode = false;
