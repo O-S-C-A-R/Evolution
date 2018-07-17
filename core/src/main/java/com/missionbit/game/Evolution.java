@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -29,8 +30,10 @@ public class Evolution extends ApplicationAdapter {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Player blackplayer;
+
     private OrthographicCamera camera;
+
+    private Player blackplayer;
     private Random randomSource;
     private Sprite Tutorial;
     private Sound JumpSound;
@@ -39,7 +42,7 @@ public class Evolution extends ApplicationAdapter {
 
     private Bouncepad Pad;
 
-
+    private Texture RestartScreen;
 
     private Buttons Fade;
     private Buttons FullLives;
@@ -53,10 +56,10 @@ public class Evolution extends ApplicationAdapter {
     //private Vector2 velocity;
     private float Speed;
     private boolean showDebug = false;
-    private BitmapFont bodyFont;
+
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-
+    private static boolean GameMode = true;
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -101,7 +104,7 @@ public class Evolution extends ApplicationAdapter {
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
-
+        RestartScreen = new Texture("images/ui/DeathMenuTwo.png");
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
@@ -146,7 +149,7 @@ public class Evolution extends ApplicationAdapter {
         platformcheck = false;
         for (int i = 0; i < 10; i++) {
             if (Gdx.input.isTouched(i)) {
-                Vector3 touchPos = new Vector3();
+                touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
@@ -205,8 +208,6 @@ public class Evolution extends ApplicationAdapter {
         for (Spikes s : spikes) {
             if (s.CollideWithPlayer(blackplayer)) {
                 blackplayer.SpikeDie();
-
-
             }
 
 
@@ -236,18 +237,19 @@ public class Evolution extends ApplicationAdapter {
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
         Pad.draw(myBatch);
-        Tutorial.draw(myBatch);
+        if(GameMode == true)
+        {
+            Tutorial.draw(myBatch);
+        }
+        else
+        {
+            myBatch.draw(RestartScreen, camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2);
+        }
         myBatch.end();
 
         myBatch.begin();
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-
-        //bodyFont.draw(myBatch,"Lives left", 900,500 );
-
-//        bodyFont.draw(myBatch,"Lives left", 900,500 );
-
-//        bodyFont.draw(myBatch,"Lives left", 900,500 );
 
         myBatch.end();
 
@@ -282,7 +284,6 @@ public class Evolution extends ApplicationAdapter {
 
         if (blackplayer.Lives == 3) {
             FullLives.draw(myBatch);
-            //System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -291,7 +292,6 @@ public class Evolution extends ApplicationAdapter {
 
         if (blackplayer.Lives == 2) {
             TwoLives.draw(myBatch);
-          //  System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -300,11 +300,17 @@ public class Evolution extends ApplicationAdapter {
         }
         if (blackplayer.Lives == 1) {
             OneLife.draw(myBatch);
-          //  System.out.println(blackplayer.Lives);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
             tooclose.a = 1;
+
+        }
+
+        if (blackplayer.Lives == 0)
+        {
+
+            GameMode = false;
 
         }
 
@@ -315,6 +321,12 @@ public class Evolution extends ApplicationAdapter {
 
 
     }
+
+    public static void setGameMode(boolean mode)
+    {
+        GameMode = mode;
+    }
+
         @Override
         public void dispose () {
             myBatch.dispose();

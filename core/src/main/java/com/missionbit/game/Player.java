@@ -150,6 +150,10 @@ public class Player {
         {
             return;
         }
+        else
+        {
+            Evolution.setGameMode(false);
+        }
         BlackPlayer.setX(40);
         BlackPlayer.setY(62);
         System.out.println("You Died");
@@ -171,6 +175,7 @@ public class Player {
             DRAG = -5;
 
         }
+
     }
 
 }
