@@ -3,7 +3,6 @@ package com.missionbit.game.States;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.missionbit.game.States.GameStateManager;
 
 /**
  * Created by missionbit on 6/20/17.
@@ -25,3 +24,5 @@ public abstract class State {
     public abstract void render(SpriteBatch sb);
     public abstract void dispose();
 }
+
+

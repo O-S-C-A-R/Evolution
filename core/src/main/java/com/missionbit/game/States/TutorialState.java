@@ -90,13 +90,11 @@ public class TutorialState extends State {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
-        music.setVolume(0.6f);
-        music.setVolume(0.05f);
-        music.setVolume(0.02f);
+        music.setVolume(0.4f);
         music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
-        JumpSound.setVolume(1, 0.05f);
+        JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player();
