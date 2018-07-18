@@ -1,6 +1,7 @@
 package com.missionbit.game.States;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -12,13 +13,17 @@ public class TitleState extends State
     public Texture TitleScreen;
     public Buttons Start;
     public Vector3 touchPos;
-
+    private Music music;
     public TitleState(GameStateManager gsm)
     {
         super(gsm);
         TitleScreen = new Texture(Gdx.files.internal("images/ui/TitleScreen.png"));
         Start = new Buttons(400,44, "images/ui/Start.png");
         cam.setToOrtho(false, Evolution.VIEWPORT_WIDTH, Evolution.VIEWPORT_HEIGHT);
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 6.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();
     }
 
     protected void handleInput()
@@ -54,6 +59,8 @@ public class TitleState extends State
     public void dispose()
     {
         TitleScreen.dispose();
+        music.stop();
+        music.dispose();
         System.out.println("Disposing of Title State");
     }
 }
