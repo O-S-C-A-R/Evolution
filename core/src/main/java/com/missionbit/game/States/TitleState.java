@@ -7,21 +7,34 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Evolution;
+import com.missionbit.game.Platform;
 import com.missionbit.game.Rumble;
+import com.missionbit.game.Spikes;
+
+import java.util.ArrayList;
 
 public class TitleState extends State
 {
     public Texture TitleScreen;
     public Buttons Start;
     public Vector3 touchPos;
-
+    public Platform platforms;
     private Rumble rumble;
     private long Time;
 
     private Music music;
+    private static final int[][] PLAT_LOCS = new int[][]{
+            {0, 0, 600, 0}, // PLATFORMS
+            {0, 0, 0, 1000},
+    };
+
+
+
     public TitleState(GameStateManager gsm)
     {
-        super(gsm);
+
+
+           super(gsm);
         Time = System.currentTimeMillis();
         TitleScreen = new Texture(Gdx.files.internal("images/ui/TitleScreen.png"));
         Start = new Buttons(400,44, "images/ui/Start.png");
