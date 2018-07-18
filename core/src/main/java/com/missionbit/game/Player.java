@@ -140,7 +140,9 @@ public class Player {
             Lives -- ;
             System.out.println("One life is gone");
             lasthit = System.currentTimeMillis();
+
         }
+
         CollideWithSpider(Spider);
 
 

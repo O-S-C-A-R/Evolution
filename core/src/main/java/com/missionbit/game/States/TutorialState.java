@@ -19,6 +19,7 @@ import com.missionbit.game.Enemies;
 import com.missionbit.game.LASER;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
+import com.missionbit.game.Rumble;
 import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class TutorialState extends State {
     private Music music;
 
     private com.missionbit.game.Bouncepad Pad;
-
+    private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
@@ -215,6 +216,7 @@ public class TutorialState extends State {
         for (Spikes s : spikes) {
             if (s.CollideWithPlayer(blackplayer)) {
                 blackplayer.SpikeDie();
+
             }
         }
 
@@ -232,6 +234,7 @@ public class TutorialState extends State {
         if(GameMode == true)
         {
             Tutorial.draw(myBatch);
+            music.play();
         }
         else
         {

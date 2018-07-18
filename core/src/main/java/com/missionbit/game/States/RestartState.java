@@ -2,11 +2,13 @@ package com.missionbit.game.States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Evolution;
-
+import com.missionbit.game.Utils;
 
 
 public class RestartState extends State
@@ -15,6 +17,8 @@ public class RestartState extends State
     private Rectangle Restart;
     private Rectangle Exit;
     public Vector3 touchPos;
+    private Animation<TextureRegion> DeathAnimation;
+    float DeathAnimationTime = 0;
 
 
     public RestartState(GameStateManager gsm)
@@ -24,6 +28,8 @@ public class RestartState extends State
         Restart = new Rectangle(291, 250, 375, 71);
         Exit = new Rectangle(292, 171, 374, 71);
         cam.setToOrtho(false, Evolution.VIEWPORT_WIDTH, Evolution.VIEWPORT_HEIGHT);
+        DeathAnimation = Utils.LoadAnimation("images/ui/DeathMenu.png", 7, 8, 52, 0.1f);
+        DeathAnimationTime += Gdx.graphics.getDeltaTime();
     }
 
     protected void handleInput()
@@ -55,10 +61,21 @@ public class RestartState extends State
     }
     public void render(SpriteBatch sb)
     {
+
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        DeathAnimationTime += Gdx.graphics.getDeltaTime();
+        TextureRegion drawFrame = DeathAnimation.getKeyFrame(DeathAnimationTime, false);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(RestartScreen, 0, 0);
+        sb.draw(drawFrame,Gdx.graphics.getWidth() / 2 - drawFrame.getRegionWidth() / 2, Gdx.graphics.getHeight() / 2 - drawFrame.getRegionHeight() / 2);
         sb.end();
+        if(DeathAnimation.isAnimationFinished(DeathAnimationTime))
+        {
+            sb.begin();
+            sb.draw(RestartScreen, 0, 0);
+            sb.end();
+        }
+
     }
     public void dispose()
     {
