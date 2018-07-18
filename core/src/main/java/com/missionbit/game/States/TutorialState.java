@@ -16,6 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.LASER;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Spikes;
@@ -30,7 +31,7 @@ public class TutorialState extends State {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-
+    private LASER Teast;
     private OrthographicCamera camera;
 
     private Player blackplayer;
@@ -114,7 +115,7 @@ public class TutorialState extends State {
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-
+        Teast = new LASER(8, 20);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -188,6 +189,7 @@ public class TutorialState extends State {
         handleInput();
         camera.update();
         blackplayer.Update();
+
     }
     @Override
     public void render(SpriteBatch myBatch) {
@@ -240,10 +242,12 @@ public class TutorialState extends State {
             music.stop();
         }
         myBatch.end();
-
         myBatch.begin();
+
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
+        Teast.draw(myBatch);
+
         myBatch.end();
 
 
@@ -274,6 +278,7 @@ public class TutorialState extends State {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+
 
         if (blackplayer.Lives == 3) {
             FullLives.draw(myBatch);
