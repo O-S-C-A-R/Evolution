@@ -14,10 +14,15 @@ public class TitleState extends State
     public Texture TitleScreen;
     public Buttons Start;
     public Vector3 touchPos;
+<<<<<<< HEAD
 
     private Rumble rumble;
     private long Time;
 
+=======
+    private Rumble rumble;
+    private long Time;
+>>>>>>> 610a4e077033d4a2e7884c5ed06c19f8857d5f2b
     private Music music;
     public TitleState(GameStateManager gsm)
     {
@@ -59,7 +64,7 @@ public class TitleState extends State
     }
     public void render(SpriteBatch sb)
     {
-
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(TitleScreen, 0, 0);
