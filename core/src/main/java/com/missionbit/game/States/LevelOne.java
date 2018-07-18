@@ -12,6 +12,7 @@ public class LevelOne {
 //            {1359, 61,1450,100,1600, 235, 1800, 235, 1800, 61},
 //    };
 }
-        Teast = new LASER(8, 20);
-private LASER Teast;
-        Teast.draw(myBatch);
+
+//        Teast = new LASER(8, 20);
+//private LASER Teast;
+//Teast.draw(myBatch);

@@ -5,16 +5,19 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class LASER {
-    private ParticleEffect effect;
+    private ParticleEffect portal;
 
- public LASER(float x, float y){
-     effect = new ParticleEffect();
-     effect.load(Gdx.files.internal("images/particle effects/Laser"), Gdx.files.internal("images/particle effects"));
-     effect.setPosition(x, y);
-     effect.start();
- }
+
+    public LASER(float x, float y){
+     portal = new ParticleEffect();
+     portal.load(Gdx.files.internal("images/particle effects/tutorialportal"), Gdx.files.internal("images/particle effects"));
+     portal.setPosition(1750, 250);
+
+        portal.start();
+
+    }
      public void draw(SpriteBatch myBatch){
-         effect.draw(myBatch, Gdx.graphics.getDeltaTime());
+         portal.draw(myBatch, Gdx.graphics.getDeltaTime());
 
 
      }
@@ -27,4 +30,7 @@ public class LASER {
 //
 //
 //            effect.draw(myBatch, Gdx.graphics.getDeltaTime());
+
+
+
         }
