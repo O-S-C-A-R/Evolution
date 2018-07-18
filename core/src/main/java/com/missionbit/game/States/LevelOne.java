@@ -13,7 +13,13 @@ public class LevelOne {
 //    };
 }
 
+<<<<<<< HEAD
+//        Teast = new LASER(8, 20);
+//private LASER Teast;
+//Teast.draw(myBatch);
+=======
 
 //        Teast = new LASER(8, 20);
 //private LASER Teast;
 //        Teast.draw(myBatch);
+>>>>>>> 4280806517170af6120e0ac2cfed99c95624eb44
