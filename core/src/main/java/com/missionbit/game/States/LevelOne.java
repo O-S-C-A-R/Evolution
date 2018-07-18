@@ -1,5 +1,6 @@
 package com.missionbit.game.States;
 public class LevelOne {
+<<<<<<< HEAD
 //
 //    private static final int[][] PLAT_LOCS = new int[][]{
 //            {0, 0, 1800, 60}, // PLATFORMS
@@ -12,8 +13,9 @@ public class LevelOne {
 //            {1359, 61,1450,100,1600, 235, 1800, 235, 1800, 61},
 //    };
 }
-
-//        Teast = new LASER(8, 20);
+        //Teast = new LASER(8, 20);
 //private LASER Teast;
-//Teast.draw(myBatch);
-
+//        Teast.draw(myBatch);
+=======
+}
+>>>>>>> 00cf603940ce0ca5b43404511d8671a62f14a2e4

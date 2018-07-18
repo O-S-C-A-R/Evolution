@@ -239,6 +239,7 @@ public class TutorialState extends State {
         {
             blackplayer.reset();
             gsm.push(new RestartState(gsm));
+            music.stop();
         }
         myBatch.end();
         myBatch.begin();
