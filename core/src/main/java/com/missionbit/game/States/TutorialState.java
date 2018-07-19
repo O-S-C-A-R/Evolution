@@ -16,7 +16,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
-import com.missionbit.game.LASER;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -25,14 +25,14 @@ import com.missionbit.game.Spikes;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TutorialState extends State {
+public class TutorialState extends Levelmaker {
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private LASER Teast;
+    private Particles Portal;
     private OrthographicCamera camera;
 
     private Player blackplayer;
@@ -98,7 +98,7 @@ public class TutorialState extends State {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player();
+        blackplayer = new Player(90,59);
         Pad = new Bouncepad(1260,59);
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -114,7 +114,7 @@ public class TutorialState extends State {
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        Teast = new LASER(8, 20);
+        Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -192,7 +192,7 @@ public class TutorialState extends State {
     }
     @Override
     public void render(SpriteBatch myBatch) {
-
+blackplayer.tutorialupdate();
         // Clear the screen
         Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -224,6 +224,12 @@ public class TutorialState extends State {
             blackplayer.SpiderDie(Spider);
 
         }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new LevelOne(gsm));
+//            LevelOne.GameMode = true;
+        }
+
 
         // CAMERA AND PLAYER DRAWING
         camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
@@ -247,7 +253,7 @@ public class TutorialState extends State {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        Teast.draw(myBatch);
+        Portal.draw(myBatch);
 
         myBatch.end();
 
@@ -262,6 +268,8 @@ public class TutorialState extends State {
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
+            Portal.drawDebug(debugRenderer);
+
             Spider.drawDebug(debugRenderer);
             debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
             debugRenderer.end();

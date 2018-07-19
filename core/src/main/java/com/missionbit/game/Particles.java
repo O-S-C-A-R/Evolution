@@ -3,15 +3,21 @@ package com.missionbit.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
-public class LASER {
+public class Particles extends Collidable{
+    public Rectangle getrect() {
+        return bounds;
+    }
+private Rectangle bounds;
+
     private ParticleEffect portal;
 
-
-    public LASER(float x, float y){
+    public Particles(float x, float y){
      portal = new ParticleEffect();
-     portal.load(Gdx.files.internal("images/particle effects/tutorialportal"), Gdx.files.internal("images/particle effects"));
-     portal.setPosition(1750, 250);
+     bounds = new Rectangle(x-40,y-35,85,85);
+     portal.load(Gdx.files.internal("images/particle effects/NewPortal"), Gdx.files.internal("images/particle effects"));
+     portal.setPosition(x, y);
 
         portal.start();
 

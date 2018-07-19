@@ -7,7 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 
-public class Bouncepad {
+public class Bouncepad extends Collidable {
+    public Rectangle getrect() {
+        return Bouncepad.getBoundingRectangle();
+    }
+
     private Sprite Bouncepad;
 public  Bouncepad(int x, int y){
     Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
@@ -17,12 +21,12 @@ public  Bouncepad(int x, int y){
     public void draw(SpriteBatch Bouncedraw){
     Bouncepad.draw(Bouncedraw);
     }
-    public boolean hit(Rectangle other){
-        boolean flag = Bouncepad.getBoundingRectangle().overlaps(other);
-        System.out.println(flag);
-
-        return flag;
-    }
+//    public boolean hit(Rectangle other){
+//        boolean flag = Bouncepad.getBoundingRectangle().overlaps(other);
+//        System.out.println(flag);
+//
+//        return flag;
+//    }
     public boolean bounce(Player other) {
 
         boolean flag = Bouncepad.getBoundingRectangle().overlaps(other.getBounding());
