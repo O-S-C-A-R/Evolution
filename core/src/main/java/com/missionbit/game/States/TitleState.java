@@ -28,8 +28,6 @@ public class TitleState extends State
             {0, 0, 0, 1000},
     };
 
-
-
     public TitleState(GameStateManager gsm)
     {
 
@@ -41,7 +39,7 @@ public class TitleState extends State
         rumble = new Rumble();
         cam.setToOrtho(false, Evolution.VIEWPORT_WIDTH, Evolution.VIEWPORT_HEIGHT);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 6.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 7.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();
@@ -79,7 +77,7 @@ public class TitleState extends State
         sb.end();
 
 //        for (int i = 100; i < System.currentTimeMillis() - Time; i+=100){
-            rumble.rumble(2f, 3f);
+            rumble.rumble(2f, 1f);
             if (Rumble.getRumbleTimeLeft() > 0) {
                 Rumble.tick(Gdx.graphics.getDeltaTime());
                 cam.translate(Rumble.getPos());
