@@ -1,7 +1,5 @@
 package com.missionbit.game.States;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
@@ -14,10 +12,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
-//import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
-//import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -25,6 +21,9 @@ import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+//import com.missionbit.game.Bouncepad;
+//import com.missionbit.game.Particles;
 
 public class LevelOne extends Levelmaker {
 
