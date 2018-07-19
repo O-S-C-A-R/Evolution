@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class LASER {
     private ParticleEffect portal;
 
-
     public LASER(float x, float y){
      portal = new ParticleEffect();
      portal.load(Gdx.files.internal("images/particle effects/tutorialportal"), Gdx.files.internal("images/particle effects"));
