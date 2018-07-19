@@ -24,6 +24,7 @@ public class Player {
     private  static int DRAG = 5;
     public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
+    public float maxjump = 205;
     long lasthit;
     float DeathAnimationTime = 0;
 
@@ -41,11 +42,11 @@ public class Player {
     }
 
 
-    public Player(){
+    public Player(int x, int y){
         lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
-        BlackPlayer.setX(90);
-        BlackPlayer.setY(59);
+        BlackPlayer.setX(x);
+        BlackPlayer.setY(y);
         DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
@@ -57,10 +58,8 @@ public class Player {
         BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
 
     }   public void Jump(){
-        jumpvelocity= 195;
+        jumpvelocity= maxjump;
         touchplatform = false;
-
-
 
     }
     public void Update(){
@@ -75,17 +74,15 @@ public class Player {
             jumpvelocity += GRAVITY;
 
         }
-
+        BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
+        BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
+    }
+    public void tutorialupdate(){
         if(BlackPlayer.getY() < -400){
             BlackPlayer.setX(20);
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
-            Lives --;
-        }
-        BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
-        BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
-      //  BlackPlayer.setY(BlackPlayer.getY()+ Xvelocity * Gdx.graphics.getDeltaTime());
-
+            Lives --; }
     }
 
     public void UpdateLast(){
