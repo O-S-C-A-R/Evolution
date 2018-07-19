@@ -79,7 +79,7 @@ public class TitleState extends State
         sb.end();
 
 //        for (int i = 100; i < System.currentTimeMillis() - Time; i+=100){
-            rumble.rumble(2f, 3f);
+            rumble.rumble(2f, 1f);
             if (Rumble.getRumbleTimeLeft() > 0) {
                 Rumble.tick(Gdx.graphics.getDeltaTime());
                 cam.translate(Rumble.getPos());
