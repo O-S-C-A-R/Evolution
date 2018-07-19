@@ -24,6 +24,7 @@ public class Player {
     private  static int DRAG = 5;
     public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
+    public float maxjump = 205;
     long lasthit;
     float DeathAnimationTime = 0;
 
@@ -57,10 +58,8 @@ public class Player {
         BlackPlayer.setX(BlackPlayer.getX()+Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
 
     }   public void Jump(){
-        jumpvelocity= 205;
+        jumpvelocity= maxjump;
         touchplatform = false;
-
-
 
     }
     public void Update(){
