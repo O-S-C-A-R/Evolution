@@ -26,6 +26,7 @@ public class Player {
     private Animation<TextureRegion> DeathAnimation;
     public float maxjump = 205;
     long lasthit;
+   // float playertop;
     float DeathAnimationTime = 0;
 
     public void draw(SpriteBatch batch){
@@ -43,6 +44,7 @@ public class Player {
 
 
     public Player(int x, int y){
+        //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
         BlackPlayer.setX(x);
@@ -106,6 +108,10 @@ public class Player {
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX() < p.getRight()) {
             BlackPlayer.setX(p.getRight());
+
+        }
+        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getHeight() && p.getBottom() > lastposition.y)) {
+            jumpvelocity = 0;
 
         }
 
@@ -174,5 +180,10 @@ public class Player {
         return DeathAnimation.isAnimationFinished(DeathAnimationTime);
 
     }
+
+//    public  void setTop(float top){
+//        playertop = top;
+//    }
+
 
 }

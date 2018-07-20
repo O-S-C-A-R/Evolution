@@ -32,6 +32,9 @@ public class Platform extends Collidable{
     public float getRight(){
         return platform.getX()+platform.width;
     }
+    public float getBottom(){
+        return platform.getY();
+    }
 
 
 
