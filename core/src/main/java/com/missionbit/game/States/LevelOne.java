@@ -314,9 +314,9 @@ public class LevelOne extends Levelmaker {
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
-        Pad3 = new Bouncepad(4332,1505);
-        Pad4 = new Bouncepad(4726,1797);
-        Pad5 = new Bouncepad(4910,2075);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
