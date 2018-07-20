@@ -59,7 +59,7 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  true;
+    private boolean showDebug =  false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -488,6 +488,7 @@ public class LevelOne extends Levelmaker {
         Pad.draw(myBatch);
         Pad2.draw(myBatch);
         myBatch.end();
+
 
     }
 
