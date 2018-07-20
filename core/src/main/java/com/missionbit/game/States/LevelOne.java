@@ -38,7 +38,7 @@ public class LevelOne extends Levelmaker {
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite Tutorial;
+    private Sprite LVLone;
     private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
@@ -83,6 +83,7 @@ public class LevelOne extends Levelmaker {
 
     private static final int[][] PLAT_LOCS = new int[][]{
 
+<<<<<<< HEAD
 
             {677, 843, 994, 104},
             {633, 621, 139, 22},
@@ -129,6 +130,8 @@ public class LevelOne extends Levelmaker {
             {2608, 1363, 100, 13},
             {2818, 1304, 213, 132},
             {3030, 1410, 122, 145},
+=======
+>>>>>>> 00e20be236bd154d1e696d954eed87a03353cd72
             {677, 843, 994, 104},
             {633, 621, 139, 22},
             {659, 642, 113, 19},
@@ -316,9 +319,9 @@ public class LevelOne extends Levelmaker {
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
-        Pad3 = new Bouncepad(4332,1505);
-        Pad4 = new Bouncepad(4726,1797);
-        Pad5 = new Bouncepad(4910,2075);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -346,7 +349,8 @@ public class LevelOne extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -478,7 +482,12 @@ public class LevelOne extends Levelmaker {
         if(GameMode == true)
         {
             System.out.println("Playing");
-            Tutorial.draw(myBatch);
+            LVLone.draw(myBatch);
+            Pad.draw(myBatch);
+            Pad2.draw(myBatch);
+            Pad3.draw(myBatch);
+            Pad4.draw(myBatch);
+            Pad5.draw(myBatch);
             //music.play();
         }
         else
@@ -524,14 +533,11 @@ public class LevelOne extends Levelmaker {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
-        Pad.draw(myBatch);
-        Pad2.draw(myBatch);
-        Pad3.draw(myBatch);
-        Pad4.draw(myBatch);
-        Pad5.draw(myBatch);
+
 
 
         if (blackplayer.Lives == 3) {
@@ -565,6 +571,7 @@ public class LevelOne extends Levelmaker {
         }
 
         myBatch.end();
+
 
 
     }
