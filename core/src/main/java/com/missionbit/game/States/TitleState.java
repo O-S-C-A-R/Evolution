@@ -74,28 +74,19 @@ public class TitleState extends State
         sb.draw(TitleScreen, 0, 0);
         sb.end();
 
-//        for (int i = 100; i < System.currentTimeMillis() - Time; i+=100){
-            rumble.rumble(2f, 1f);
-            if (Rumble.getRumbleTimeLeft() > 0) {
-                Rumble.tick(Gdx.graphics.getDeltaTime());
-                cam.translate(Rumble.getPos());
-            }
-            Time = System.currentTimeMillis();
+        rumble.rumble(2f, 1f);
+        if (Rumble.getRumbleTimeLeft() > 0) {
+            Rumble.tick(Gdx.graphics.getDeltaTime());
+            cam.translate(Rumble.getPos());
+        }
+        Time = System.currentTimeMillis();
 
         cam.update();
-//        }
-//        if (System.currentTimeMillis() - Time > 500) {
-//            rumble.rumble(2f, 1f);
-//            if (Rumble.getRumbleTimeLeft() > 0) {
-//                Rumble.tick(Gdx.graphics.getDeltaTime());
-//                cam.translate(Rumble.getPos());
-//            }
-//            Time = System.currentTimeMillis();
-//        }
-//        cam.update();
-//        else {
-//            rumble.setCurrentPower(0f);
-//        }
+        sb.begin();
+        sb.draw(TitleScreen, 0, 0);
+        sb.end();
+
+
     }
     public void dispose()
     {
