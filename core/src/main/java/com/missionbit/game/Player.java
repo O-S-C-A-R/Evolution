@@ -110,7 +110,7 @@ public class Player {
             BlackPlayer.setX(p.getRight());
 
         }
-        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getHeight() && p.getBottom() > lastposition.y)) {
+        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getWidth() && p.getBottom() > lastposition.y)) {
             jumpvelocity = 0;
 
         }
