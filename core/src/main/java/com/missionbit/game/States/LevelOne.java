@@ -45,13 +45,20 @@ public class LevelOne extends Levelmaker {
 
     private com.missionbit.game.Bouncepad Pad;
     private com.missionbit.game.Bouncepad Pad2;
+    private com.missionbit.game.Bouncepad Pad3;
+    private com.missionbit.game.Bouncepad Pad4;
+    private com.missionbit.game.Bouncepad Pad5;
+
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+//    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
+    private Buttons FullLivesBlue;
+    private Buttons TwoLivesBlue;
+    private Buttons OneLifeBlue;
     private Color tooclose;
 
 
@@ -75,136 +82,6 @@ public class LevelOne extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-<<<<<<< HEAD
-
-            {677, 843, 994, 104},
-                    {633, 621, 139, 22},
-                    {659, 642, 113, 19},
-                    {686, 661, 98, 17},
-                    {710, 677, 110, 21},
-                    {741., 697, 123, 12},
-                    {448, 624, 184, 19},
-                    {460, 643, 39, 238},
-                    {491, 879, 186, 67},
-                    {526, 686, 14, 155.0f},
-                    {499, 747.00006f, 25.99997f, 38.0f},
-                    {511.0f, 656.00006f, 64.0f, 31.0f},
-                    {526.0f, 838.00006f, 63.0f, 41.0f},
-                    {862.0f, 653.0f, 986.9999f, 44.00006f},
-                    {1663.9999f, 945.0f, 65.0f, 98.0f},
-                    {1844.0f, 694.99994f, 64.0f, 51.0f},
-                    {1899.0f, 742.99994f, 101.0f, 42.0f},
-                    {1998.0f, 782.99994f, 57.0f, 51.0f},
-                    {2051.9998f, 831.0f, 53.000244f, 48.0f},
-                    {2101.0f, 878.0f, 61.0f, 41.0f},
-                    {2158.9998f, 919.0f, 62.000244f, 51.0f},
-                    {2208.9998f, 968.0f, 173.0f, 49.0f},
-                    {2375.9998f, 1016.0f, 61.0f, 50.0f},
-                    {2431.9998f, 1063.0f, 67.0f, 52.0f},
-                    {2489.9998f, 1112.0f, 130.0f, 50.0f},
-                    {2610.0f, 1159.0f, 117.0f, 41.0f},
-                    {2664.0f, 1199.0f, 108.0f, 55.0f},
-                    {2720.0f, 1252.0f, 382.0f, 53.0f},
-                    {1717.0001f, 1033.0f, 66.0f, 91.0f},
-                    {1778.0001f, 1084.0f, 61.0f, 83.0f},
-                    {1838.0001f, 1132.0f, 59.0f, 111.0f},
-                    {1894.0001f, 1235.0f, 57.0f, 81.0f},
-                    {1951.0001f, 1284.0f, 57.0f, 101.0f},
-                    {2000.0002f, 1334.9999f, 65.0f, 171.0f},
-                    {2061.0002f, 1431.9999f, 59.0f, 118.0f},
-                    {2117.0002f, 1483.9999f, 62.0f, 119.0f},
-                    {2176.0002f, 1534.9999f, 60.0f, 164.00012f},
-                    {1842.9999f, 862.00006f, 105.0f, 16.0f},
-                    {2011.9999f, 941.00006f, 93.99988f, 14.0f},
-                    {1860.9999f, 1040.0001f, 98.0f, 13.999878f},
-                    {2039.9999f, 1118.0f, 105.00012f, 15.0f},
-                    {2204.9998f, 1291.0f, 348.0f, 23.0f},
-                    {2608.9998f, 1363.0f, 100.0f, 13.0f},
-                    {2818.0f, 1304.9999f, 213.0f, 132.0f},
-                    {3030.0f, 1410.9999f, 122.000244f, 145.0f},
-                    {3030.0002f, 1360.9999f, 105.0f, 53.0f},
-                    {3028.0002f, 1305.9999f, 56.0f, 54.0f},
-                    {2228.9998f, 1635.0f, 63.0f, 105.0f},
-                    {2287.9998f, 1683.0f, 58.0f, 112.0f},
-                    {2343.9998f, 1735.0f, 309.0f, 277.99988f},
-                    {2646.9998f, 1777.9999f, 60.0f, 111.0f},
-                    {2704.9998f, 1825.9999f, 58.0f, 138.0f},
-                    {2758.9998f, 1875.9999f, 62.0f, 143.0f},
-                    {2818.9998f, 1932.9999f, 62.0f, 129.99988f},
-                    {2875.9998f, 1975.9999f, 59.0f, 86.99988f},
-                    {2924.9998f, 2024.0f, 62.0f, 132.0f},
-                    {2983.9998f, 2090.0f, 244.0f, 107.0f},
-                    {3216.9998f, 2132.0f, 570.00024f, 24.999756f},
-                    {3764.0f, 2082.9998f, 74.0f, 62.0f},
-                    {3823.0f, 2034.9998f, 64.0f, 49.0f},
-                    {3876.0f, 1991.9998f, 62.0f, 40.0f},
-                    {3932.0f, 1933.9998f, 86.0f, 59.0f},
-                    {3994.0f, 1883.9998f, 68.0f, 56.0f},
-                    {4049.0002f, 1835.0001f, 61.999756f, 50.0f},
-                    {4103.0f, 1794.0001f, 261.0f, 41.0f},
-                    {4359.0f, 1832.0001f, 57.99951f, 108.99988f},
-                    {4411.9995f, 1883.0f, 61.00049f, 68.0f},
-                    {4471.0f, 1935.0f, 61.0f, 95.999756f},
-                    {4529.0f, 1991.9998f, 64.0f, 96.0f},
-                    {4587.0f, 2033.9998f, 60.0f, 112.0f},
-                    {4644.0f, 2083.9998f, 59.0f, 165.0f},
-                    {4697.0f, 2181.9998f, 60.0f, 100.0f},
-                    {4752.0f, 2227.9998f, 65.0f, 130.0f},
-                    {4811.0f, 2326.9998f, 73.0f, 168.0f},
-                    {4864.9995f, 2378.0002f, 57.0f, 168.0f},
-                    {4920.9995f, 2472.0002f, 362.0005f, 85.99951f},
-                    {5276.0f, 2428.0f, 185.0f, 47.0f},
-
-//            {677, 843, 994, 104},
-//            {633, 621, 139, 22},
-//            {659, 642, 113, 19},
-//            {686, 661, 98, 17},
-//            {710, 677, 110, 21},
-//            {741., 697, 123, 12},
-//            {448, 624, 184, 19},
-//            {460, 643, 39, 238},
-//            {491, 879, 186, 67},
-//            {526, 686, 14, 155},
-//            {499, 747, 25, 38},
-//            {511, 656, 64, 31},
-//            {526, 838, 63, 41},
-//            {862, 653, 986, 44},
-//            {1663, 945, 65, 98},
-//            {1844, 694, 64, 51},
-//            {1899, 742, 101, 42},
-//            {1998, 782, 57, 51},
-//            {2051, 831, 53, 48},
-//            {2101, 878, 61, 41},
-//            {2158, 919, 62, 51},
-//            {2208, 968, 173, 49},
-//            {2375, 1016, 61, 50},
-//            {2431, 1063, 67, 52},
-//            {2489, 1112, 130, 50},
-//            {2610, 1159, 117, 41},
-//            {2664, 1199, 108, 55},
-//            {2720, 1252, 382, 53},
-//            {1717, 1033, 66, 91},
-//            {1778, 1084, 61, 83},
-//            {1838, 1132, 59, 111},
-//            {1894, 1235, 57, 81},
-//            {1951, 1284, 57, 101},
-//            {2000, 1334, 65, 171},
-//            {2061, 1431, 59, 118},
-//            {2117, 1483, 62, 119},
-//            {2176, 1534, 60, 164},
-//            {1842, 862, 105, 16},
-//            {2011, 941, 93, 14},
-//            {1860, 1040, 98, 13},
-//            {2039, 1118, 105, 15},
-//            {2204, 1291, 348, 23},
-//            {2608, 1363, 100, 13},
-//            {2818, 1304, 213, 132},
-//            {3030, 1410, 122, 145},
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> 1b55077c5f72bbb48399e1f48eb570604be5c310
             {677, 843, 994, 104},
             {633, 621, 139, 22},
             {659, 642, 113, 19},
@@ -250,7 +127,52 @@ public class LevelOne extends Levelmaker {
             {2608, 1363, 100, 13},
             {2818, 1304, 213, 132},
             {3030, 1410, 122, 145},
->>>>>>> ddc543d4aef3bf341b157a526becd2f0a3147d36
+            {677, 843, 994, 104},
+            {633, 621, 139, 22},
+            {659, 642, 113, 19},
+            {686, 661, 98, 17},
+            {710, 677, 110, 21},
+            {741, 697, 123, 12},
+            {448, 624, 184, 19},
+            {460, 643, 39, 238},
+            {491, 879, 186, 67},
+            {526, 686, 14, 155},
+            {499, 747, 25, 38},
+            {511, 656, 64, 31},
+            {526, 838, 63, 41},
+            {862, 653, 986, 44},
+            {1663, 945, 65, 98},
+            {1844, 694, 64, 51},
+            {1899, 742, 101, 42},
+            {1998, 782, 57, 51},
+            {2051, 831, 53, 48},
+            {2101, 878, 61, 41},
+            {2158, 919, 62, 51},
+            {2208, 968, 173, 49},
+            {2375, 1016, 61, 50},
+            {2431, 1063, 67, 52},
+            {2489, 1112, 130, 50},
+            {2610, 1159, 117, 41},
+            {2664, 1199, 108, 55},
+            {2720, 1252, 382, 53},
+            {1717, 1033, 66, 91},
+            {1778, 1084, 61, 83},
+            {1838, 1132, 59, 111},
+            {1894, 1235, 57, 81},
+            {1951, 1284, 57, 101},
+            {2000, 1334, 65, 171},
+            {2061, 1431, 59, 118},
+            {2117, 1483, 62, 119},
+            {2176, 1534, 60, 164},
+            {1842, 862, 105, 16},
+            {2011, 941, 93, 14},
+            {1860, 1040, 98, 13},
+            {2039, 1118, 105, 15},
+            {2204, 1291, 348, 23},
+            {2608, 1363, 100, 13},
+            {2818, 1304, 213, 132},
+            {3030, 1410, 122, 145},
+
             {3030, 1360, 105, 53},
             {3028, 1305, 56, 54},
             {2228, 1635, 63, 105},
@@ -392,6 +314,9 @@ public class LevelOne extends Levelmaker {
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
+        Pad3 = new Bouncepad(4332,1505);
+        Pad4 = new Bouncepad(4726,1797);
+        Pad5 = new Bouncepad(4910,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -399,9 +324,12 @@ public class LevelOne extends Levelmaker {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
@@ -430,7 +358,7 @@ public class LevelOne extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 670, 766, 962);
+        Spider = new Enemies(960, 687, 910, 1816);
     }
     @Override
 
@@ -499,6 +427,19 @@ public class LevelOne extends Levelmaker {
             blackplayer.jumpvelocity = 350;
 
         }
+        if(Pad3.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+        if(Pad4.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+        if(Pad5.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+
 
         platformcheck = false;
 
@@ -584,10 +525,15 @@ public class LevelOne extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        Pad.draw(myBatch);
+        Pad2.draw(myBatch);
+        Pad3.draw(myBatch);
+        Pad4.draw(myBatch);
+        Pad5.draw(myBatch);
 
 
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
+            FullLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -595,7 +541,7 @@ public class LevelOne extends Levelmaker {
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
+            TwoLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -603,7 +549,7 @@ public class LevelOne extends Levelmaker {
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
+            OneLifeBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -615,8 +561,7 @@ public class LevelOne extends Levelmaker {
 
             GameMode = false;
         }
-        Pad.draw(myBatch);
-        Pad2.draw(myBatch);
+
         myBatch.end();
 
 
