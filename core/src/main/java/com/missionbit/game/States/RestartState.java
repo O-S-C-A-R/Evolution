@@ -43,12 +43,12 @@ public class RestartState extends State
             if (Restart.contains(touchPos.x, touchPos.y))
             {
                 gsm.pop();
-                TutorialState.GameMode = true;
+                Levelmaker.GameMode = true;
             }
             else if (Exit.contains(touchPos.x, touchPos.y))
             {
                 gsm.set(new TitleState(gsm));
-                TutorialState.GameMode = false;
+                Levelmaker.GameMode = false;
             }
 
 

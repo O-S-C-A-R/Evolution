@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Collidable {
     public boolean hit(Rectangle other) {
         boolean flag = getrect().overlaps(other);
-        System.out.println(flag);
+        //System.out.println(flag);
 
         return flag;
     }

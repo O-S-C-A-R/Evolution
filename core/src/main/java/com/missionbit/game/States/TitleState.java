@@ -9,9 +9,6 @@ import com.missionbit.game.Buttons;
 import com.missionbit.game.Evolution;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Rumble;
-import com.missionbit.game.Spikes;
-
-import java.util.ArrayList;
 
 public class TitleState extends State
 {
@@ -56,7 +53,7 @@ public class TitleState extends State
             if (Start.HandleClick(touchPos))
             {
                 gsm.set(new TutorialState(gsm));
-                TutorialState.GameMode = true;
+                Levelmaker.GameMode = true;
             }
 
             //gsm.pop();

@@ -61,7 +61,7 @@ public class TutorialState extends Levelmaker {
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    protected static boolean GameMode = true;
+
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -240,7 +240,7 @@ blackplayer.tutorialupdate();
         if(GameMode == true)
         {
             Tutorial.draw(myBatch);
-            music.play();
+            //music.play();
         }
         else
         {
@@ -324,6 +324,8 @@ blackplayer.tutorialupdate();
     @Override
     public void dispose () {
         myBatch.dispose();
+        music.stop();
+        music.dispose();
 
     }
 }

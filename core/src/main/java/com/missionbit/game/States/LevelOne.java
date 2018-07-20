@@ -62,7 +62,7 @@ public class LevelOne extends Levelmaker {
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    protected static boolean GameMode = true;
+    //protected static boolean GameMode = true;
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -439,16 +439,19 @@ public class LevelOne extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
        // Pad.draw(myBatch);
+        System.out.println("Game mode " + GameMode);
         if(GameMode == true)
         {
+            System.out.println("Playing");
             Tutorial.draw(myBatch);
-            music.play();
+            //music.play();
         }
         else
         {
+            System.out.println("stopping");
             blackplayer.reset();
-            gsm.push(new RestartState(gsm));
             music.stop();
+            gsm.push(new RestartState(gsm));
         }
         myBatch.end();
         myBatch.begin();
@@ -526,7 +529,8 @@ public class LevelOne extends Levelmaker {
     @Override
     public void dispose () {
         myBatch.dispose();
-
+        music.stop();
+        music.dispose();
     }
 }
 
