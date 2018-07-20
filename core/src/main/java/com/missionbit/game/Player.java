@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
-
+import com.missionbit.game.States.GameStateManager;
+import com.missionbit.game.States.LevelOne;
 
 
 public class Player {
@@ -47,12 +47,19 @@ public class Player {
         //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+//        if(GameStateManager == LevelOne){
+//            BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BluePlayer.png")));
+//            DeathAnimation = Utils.LoadAnimation("images/player animation/BluePlayerDeath.png", 3, 4, 8, 0.05f);
+//
+//        }
+
         BlackPlayer.setX(x);
         BlackPlayer.setY(y);
         DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+
 
 
     }
