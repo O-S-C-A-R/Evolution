@@ -151,11 +151,11 @@ public class LevelTwo extends Levelmaker {
         blackplayer = new Player(700, 867);
         blackplayer.maxjump = 250;
 
-        Pad = new Bouncepad(2057,1135);
-        Pad2 = new Bouncepad(2936,1447);
-        Pad3 = new Bouncepad(4352,1505);
-        Pad4 = new Bouncepad(4746,1797);
-        Pad5 = new Bouncepad(4920,2075);
+        Pad = new Bouncepad(1531,934);
+        Pad2 = new Bouncepad(1617,1095);
+        Pad3 = new Bouncepad(1489,1185);
+        Pad4 = new Bouncepad(1601,1797);
+        Pad5 = new Bouncepad(1582,1295);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -268,15 +268,15 @@ public class LevelTwo extends Levelmaker {
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 350;
 
         }
 
