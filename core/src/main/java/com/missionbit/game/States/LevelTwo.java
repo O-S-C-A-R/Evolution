@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -24,16 +25,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
-import com.missionbit.game.Particles;
-public class TutorialTwo extends Levelmaker {
+//import com.missionbit.game.Particles;
+public class LevelTwo extends Levelmaker {
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Particles Portal;
+    //private Particles Portal;
     private OrthographicCamera camera;
+    private Particles Portal;
 
     private Player blackplayer;
     private Random randomSource;
@@ -47,16 +49,14 @@ public class TutorialTwo extends Levelmaker {
     private com.missionbit.game.Bouncepad Pad3;
     private com.missionbit.game.Bouncepad Pad4;
     private com.missionbit.game.Bouncepad Pad5;
-    private com.missionbit.game.Bouncepad Pad6;
-    private com.missionbit.game.Bouncepad Pad7;
 
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+    //    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
@@ -84,26 +84,186 @@ public class TutorialTwo extends Levelmaker {
 
     private static final int[][] PLAT_LOCS = new int[][]{
 
-            {32, 169, 505, 13},
-            {366, 336, 196, 16},
-            {564, 498, 177, 10},
-            {860, 389, 227, 13},
-            {1085, 280, 562, 26},
-            {1743, 376, 24, 118},
-            {1536, 477, 33, 131},
-            {1714, 571, 36, 138},
-            {1529, 693, 34, 144},
+            {1846, 677, 77, 22},
+            {2002, 775, 67, 11},
+            {1998, 781, 50, 52},
+            {2049, 824, 37, 53},
+            {2042, 811, 40, 21},
+            {2984, 1425, 123, 11},
+            {3030, 1424, 79, 133},
+            {4104, 1790, 259, 88},
+            {5638, 1033, 78, 15},
+            {5675, 1039, 26, 54},
+            {677, 843, 994, 104},
+            {633, 621, 139, 22},
+            {659, 642, 113, 19},
+            {686, 661, 98, 17},
+            {710, 677, 110, 21},
+            {741, 697, 123, 12},
+            {448, 624, 184, 19},
+            {460, 643, 39, 238},
+            {491, 879, 186, 67},
+            {526, 686, 14, 155},
+            {499, 747, 25, 38},
+            {511, 656, 64, 31},
+            {526, 838, 63, 41},
+            {862, 653, 986, 44},
+            {1663, 945, 65, 98},
+            {1844, 694, 64, 51},
+            {1899, 742, 101, 42},
+            {1998, 782, 57, 51},
+            {2051, 831, 53, 48},
+            {2101, 878, 61, 41},
+            {2158, 919, 62, 51},
+            {2208, 968, 173, 49},
+            {2375, 1016, 61, 50},
+            {2431, 1063, 67, 52},
+            {2489, 1112, 130, 50},
+            {2610, 1159, 117, 41},
+            {2664, 1199, 108, 55},
+            {2720, 1252, 382, 53},
+            {1717, 1033, 66, 91},
+            {1778, 1084, 61, 83},
+            {1838, 1132, 59, 111},
+            {1894, 1235, 57, 81},
+            {1951, 1284, 57, 101},
+            {2000, 1334, 65, 171},
+            {2061, 1431, 59, 118},
+            {2117, 1483, 62, 119},
+            {2176, 1534, 60, 164},
+            {1842, 862, 105, 16},
+            {2011, 941, 93, 14},
+            {1860, 1040, 98, 13},
+            {2039, 1118, 105, 15},
+            {2204, 1291, 348, 23},
+            {2608, 1363, 100, 13},
+            {2818, 1304, 213, 132},
+            {3030, 1410, 122, 145},
+            {3030, 1360, 105, 53},
+            {3028, 1305, 56, 54},
+            {2228, 1635, 63, 105},
+            {2287, 1683, 58, 112},
+            {2343, 1735, 309, 277},
+            {2646, 1777, 60, 111},
+            {2704, 1825, 58,138},
+            {2758, 1875, 62, 143},
+            {2818, 1932, 62, 129},
+            {2875, 1975, 59, 86},
+            {2924, 2024, 62, 132},
+            {2983, 2090, 244, 107},
+            {3216, 2132, 570, 24},
+            {3764, 2082, 74, 62},
+            {3823, 2034, 64, 49},
+            {3876, 1991, 62, 40},
+            {3932, 1933, 86, 59},
+            {3994, 1883, 68, 56},
+            {4049, 1835, 61, 50},
+            {4103, 179, 261, 41},
+            {4359, 1832, 57, 108},
+            {4411, 1883, 61, 68},
+            {4471, 1935, 61, 95},
+            {4529, 1991, 64, 96},
+            {4587, 2033, 60, 112},
+            {4644, 2083, 59, 165},
+            {4697, 2181, 60, 100},
+            {4752, 2227, 65, 130},
+            {4811, 2326, 73, 168},
+            {4864, 2378, 57, 168},
+            {4920, 2472, 362, 85},
+            {5276, 2428, 185, 47},
+            {5458, 2378, 166, 51},
+            {5624, 2378, 0, 0},
+            {3135, 1359, 90, 49},
+            {3192, 1403, 188, 55},
+            {3354, 1458, 152, 47},
+            {3497, 1396, 77, 64},
+            {3561, 1359, 71, 38},
+            {3621, 1303, 61, 57},
+            {3612, 1394, 125, 149},
+            {3740, 1304, 216, 123},
+            {3682, 1302, 60, 58},
+            {3240, 1459, 112, 53},
+            {3956, 1266, 63, 39},
+            {4016, 1305, 240, 56},
+            {4233, 1359, 162, 50},
+            {4376, 1408, 168, 52},
+            {4512, 1456, 280, 44},
+            {4610, 1494, 71, 58},
+            {4670, 1550, 118, 51},
+            {4039, 1365, 405, 131},
+            {4632, 1554, 187, 230},
+            {4820, 1782, 83, 88},
+            {4871, 1868, 85, 79},
+            {4924, 1943, 78, 64},
+            {4890, 1950, 7, 123},
+            {4972, 2070,119, 22},
+            {5027, 2090, 59, 72},
+            {5082, 2158, 256, 59},
+            {5277, 2117, 59, 40},
+            {5190, 2069, 89, 47},
+            {5040, 1972, 186, 99},
+            {5046, 1923, 126, 48},
+            {5031, 1833, 87, 90},
+            {5114, 1653, 110, 183},
+            {5217, 1595, 15, 58},
+            {5229, 1465, 199, 133},
+            {5423, 1450, 230, 97},
+            {5505, 1404, 92, 48},
+            {5469, 1229, 72, 178},
+            {5533, 1142, 59, 90},
+            {5587, 1091, 60, 51},
+            {5647, 1043, 57, 48},
+            {5699, 987, 123, 59},
+            {5821, 975, 309, 32},
+            {6129, 943, 28, 42},
+            {6156, 919, 27, 38},
+            {6185, 862, 219, 72},
+            {6278, 932, 31, 278},
+            {6105, 1185, 174, 45},
+            {6213, 1131, 49, 44},
+            {6245, 1004, 14, 120},
+            {6221, 946, 39, 46},
+            {5952, 1131, 153, 59},
+            {5954, 1178, 0, 1},
+            {5781, 1177, 172, 273},
+            {5730, 1226, 51, 90},
+            {5837, 1449, 121, 49},
+            {5889, 1494, 115, 136},
+            {5836, 1627, 55, 74},
+            {5779, 1678, 59, 164},
+            {5648, 1726, 131, 267},
+            {5474, 1776, 179, 49},
+            {5528, 1820, 123, 91},
+            {5584, 1906, 65, 89},
+            {5487, 1825, 96, 115},
+            {5636, 1992, 180, 77},
+            {5745, 2063, 117, 89},
+            {5798, 2148, 193, 148},
+            {5599, 2336, 244, 47},
+            {5701, 2277, 109, 61},
+    };
+    private static final float[][] spike_locs = new float[][]{
+            {2055, 877, 2212, 1045, 2371, 1046, 2376, 1013, 2217, 1011, 2217, 981, 2161, 964, 2158, 913, 2105, 915, 2101, 875, 2052, 877, },
+            {2376, 1063, 2376, 1078, 2431, 1082, 2432, 1063, 2432, 1063, 2375, 1064, },
+            {2432, 1110, 2409, 1100, 2430, 1089, 2433, 1106, 2459, 1159, 2487, 1114, 2435, 1113, },
+            {2491, 1161, 2509, 1190, 2527, 1161, 2495, 1156, 2493, 1160, },
+            {2560, 1166, 2736, 1341, 2736, 1341, 2840, 1341, 2865, 1292, 2730, 1290, 2729, 1262, 2674, 1247, 2665, 1199, 2613, 1190, 2612, 1165, 2562, 1164, 2561, 1167, },
+            {3193, 1456, 3213, 1489, 3230, 1458, 3195, 1457, },
+            {3364, 1509, 3520, 1509, 3682, 1364, 3635, 1365, 3627, 1390, 3571, 1397, 3571, 1440, 3522, 1448, 3516, 1486, 3359, 1489, 3364, 1509, },
+            {3951, 1308, 3983, 1358, 4012, 1303, 3951, 1309, },
+            {4019, 1365, 4030, 1385, 4043, 1365, 4019, 1364, },
+            {4449, 1462, 4488, 1548, 4528, 1508, 4512, 1507, 4514, 1459, 4448, 1461, },
+            {4549, 1506, 4577, 1553, 4605, 1501, 4549, 1505, },
+            {4821, 1874, 4850, 1897, 4859, 1962, 4890, 1967, 4920, 1993, 4922, 1949, 4875, 1949, 4869, 1881, 4820, 1870, },
+            {4974, 2095, 5007, 2126, 5015, 2176, 5066, 2189, 5074, 2222, 5198, 2224, 5200, 2214, 5087, 2211, 5085, 2165, 5037, 2164, 5031, 2092, 4974, 2096, },
+            {5081, 2228, 5104, 2253, 5121, 2238, 5147, 2262, 5168, 2235, 5203, 2289, 5240, 2236, 5265, 2263, 5284, 2231, 5307, 2253, 5328, 2219, 5082, 2228, },
     };
 
-    private static final float[][] spike_locs = new float[][]{
-            {716.0f, 749.99994f, 691.0f, 782.99994f, 685.0f, 739.99994f, 791.0f, 620.99994f, 842.0f, 657.99994f, 850.0f, 693.99994f, 890.0f, 656.99994f, 938.0f, 643.99994f, 1001.0f, 716.99994f, 984.0f, 846.99994f, 939.0f, 866.99994f, 895.0f, 919.99994f, 813.0f, 881.99994f, 747.0f, 829.99994f, 722.0f, 755.99994f, },
-            {1087.9999f, 735.99994f, 1077.9999f, 641.99994f, 1121.9999f, 569.99994f, 1168.9999f, 508.0f, 1267.9999f, 589.0f, 1314.9999f, 602.0f, 1318.9999f, 655.0f, 1344.9999f, 769.0f, 1313.9999f, 875.0f, 1193.9999f, 833.0f, 1086.9999f, 738.0f, },
-    };
     private static ArrayList<Platform> platforms;
 
     private ShapeRenderer debugRenderer;
 
-    public TutorialTwo(GameStateManager gsm)
+    public LevelTwo(GameStateManager gsm)
     {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
@@ -115,17 +275,14 @@ public class TutorialTwo extends Levelmaker {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(100,400);
+        blackplayer = new Player(600,640);
         blackplayer.maxjump = 250;
 
-        Pad = new Bouncepad(280,182);
-        Pad2 = new Bouncepad(481,357);
-        Pad3 = new Bouncepad(1546,307);
-        Pad4 = new Bouncepad(1566,524);
-        Pad5 = new Bouncepad(1708,628);
-        Pad6 = new Bouncepad(1562,734);
-        Pad7 = new Bouncepad(1721,416);
-
+        Pad = new Bouncepad(2057,1135);
+        Pad2 = new Bouncepad(2936,1447);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -133,15 +290,18 @@ public class TutorialTwo extends Levelmaker {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
+        Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        Portal = new Particles(1712, 856);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -150,7 +310,7 @@ public class TutorialTwo extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/TutorialTwo.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/Level.png")));
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -220,7 +380,6 @@ public class TutorialTwo extends Levelmaker {
     }
     @Override
     public void render(SpriteBatch myBatch) {
-
         // Clear the screen
         Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -229,30 +388,22 @@ public class TutorialTwo extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity =340;
+            blackplayer.jumpvelocity = 350;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 320;
+            blackplayer.jumpvelocity = 400;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 400;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
-
-        }
-        if(Pad6.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
-
-        }
-        if(Pad7.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 400;
 
         }
 
@@ -277,6 +428,11 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new TutorialTwo(gsm));
+            TutorialTwo.GameMode = true;
+        }
 
 
 
@@ -296,7 +452,8 @@ public class TutorialTwo extends Levelmaker {
             Pad.draw(myBatch);
             Pad2.draw(myBatch);
             Pad3.draw(myBatch);
-
+            Pad4.draw(myBatch);
+            Pad5.draw(myBatch);
             //music.play();
         }
         else
@@ -311,8 +468,7 @@ public class TutorialTwo extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        Portal.draw(myBatch);
-
+        // Portal.draw(myBatch);
 
         myBatch.end();
 
@@ -327,7 +483,7 @@ public class TutorialTwo extends Levelmaker {
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
-             Portal.drawDebug(debugRenderer);
+            // Portal.drawDebug(debugRenderer);
 
             Spider.drawDebug(debugRenderer);
             debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
@@ -347,35 +503,31 @@ public class TutorialTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
-        Pad4.draw(myBatch);
-        Pad5.draw(myBatch);
-        Pad6.draw(myBatch);
-        Pad7.draw(myBatch);
 
 
 
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            FullLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            TwoLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            OneLifeBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 0 && blackplayer.deathanimationfin())
@@ -387,15 +539,6 @@ public class TutorialTwo extends Levelmaker {
         myBatch.end();
 
 
-        if(blackplayer.getBounding().getY() < -400){
-            blackplayer.tutorial2update();
-
-        }
-        if(Portal.hit(blackplayer.getBounding())){
-            System.out.println("idk");
-            gsm.set(new LevelTwo(gsm));
-            LevelTwo.GameMode = true;
-        }
 
     }
 
@@ -406,7 +549,6 @@ public class TutorialTwo extends Levelmaker {
         music.dispose();
     }
 }
-
 
 
 
