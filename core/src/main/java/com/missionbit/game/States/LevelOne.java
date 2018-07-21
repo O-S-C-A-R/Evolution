@@ -83,7 +83,6 @@ public class LevelOne extends Levelmaker {
 
     private static final int[][] PLAT_LOCS = new int[][]{
 
-<<<<<<< HEAD
 
             {677, 843, 994, 104},
             {633, 621, 139, 22},
@@ -130,8 +129,7 @@ public class LevelOne extends Levelmaker {
             {2608, 1363, 100, 13},
             {2818, 1304, 213, 132},
             {3030, 1410, 122, 145},
-=======
->>>>>>> 00e20be236bd154d1e696d954eed87a03353cd72
+
             {677, 843, 994, 104},
             {633, 621, 139, 22},
             {659, 642, 113, 19},
