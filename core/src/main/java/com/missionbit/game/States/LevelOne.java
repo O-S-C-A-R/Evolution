@@ -293,7 +293,6 @@ public class LevelOne extends Levelmaker {
         camera = new OrthographicCamera();
         Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-       // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
