@@ -92,6 +92,12 @@ public class Player {
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
             Lives --; }
+    } public void tutorial2update(){
+        if(BlackPlayer.getY() < -400){
+            BlackPlayer.setX(100);
+            BlackPlayer.setY(500);
+            System.out.println("One life is gone");
+            Lives --; }
     }
 
     public void UpdateLast(){

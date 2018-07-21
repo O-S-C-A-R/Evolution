@@ -52,9 +52,9 @@ public class TutorialTwo extends Levelmaker {
     private Texture RestartScreen;
 
     private Buttons Fade;
-    //    private Buttons FullLives;
-//    private Buttons TwoLives;
-//    private Buttons OneLife;
+    private Buttons FullLives;
+    private Buttons TwoLives;
+    private Buttons OneLife;
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
@@ -65,7 +65,7 @@ public class TutorialTwo extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  true;
+    private boolean showDebug =  false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -113,14 +113,14 @@ public class TutorialTwo extends Levelmaker {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(100,1040);
+        blackplayer = new Player(100,400);
         blackplayer.maxjump = 250;
 
-        Pad = new Bouncepad(2057,1135);
-        Pad2 = new Bouncepad(2936,1447);
-        Pad3 = new Bouncepad(4352,1505);
-        Pad4 = new Bouncepad(4746,1797);
-        Pad5 = new Bouncepad(4920,2075);
+        Pad = new Bouncepad(280,182);
+        Pad2 = new Bouncepad(481,357);
+        Pad3 = new Bouncepad(1546,307);
+//        Pad4 = new Bouncepad(4746,1797);
+//        Pad5 = new Bouncepad(4920,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -128,12 +128,9 @@ public class TutorialTwo extends Levelmaker {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
+        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
@@ -218,6 +215,7 @@ public class TutorialTwo extends Levelmaker {
     }
     @Override
     public void render(SpriteBatch myBatch) {
+
         // Clear the screen
         Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -225,17 +223,17 @@ public class TutorialTwo extends Levelmaker {
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
-//        if(Pad.bounce(blackplayer)){
-//            blackplayer.jumpvelocity = 350;
-//
-//        }if(Pad2.bounce(blackplayer)){
-//            blackplayer.jumpvelocity = 350;
-//
-//        }
-//        if(Pad3.bounce(blackplayer)){
-//            blackplayer.jumpvelocity = 400;
-//
-//        }
+        if(Pad.bounce(blackplayer)){
+            blackplayer.jumpvelocity =340;
+
+        }if(Pad2.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 300;
+
+        }
+        if(Pad3.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 320;
+
+        }
 //        if(Pad4.bounce(blackplayer)){
 //            blackplayer.jumpvelocity = 400;
 //
@@ -285,8 +283,8 @@ public class TutorialTwo extends Levelmaker {
             Pad.draw(myBatch);
             Pad2.draw(myBatch);
             Pad3.draw(myBatch);
-            Pad4.draw(myBatch);
-            Pad5.draw(myBatch);
+//            Pad4.draw(myBatch);
+//            Pad5.draw(myBatch);
             //music.play();
         }
         else
@@ -340,7 +338,7 @@ public class TutorialTwo extends Levelmaker {
 
 
         if (blackplayer.Lives == 3) {
-            FullLivesBlue.draw(myBatch);
+            FullLives.draw(myBatch);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -348,7 +346,7 @@ public class TutorialTwo extends Levelmaker {
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLivesBlue.draw(myBatch);
+            TwoLives.draw(myBatch);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -356,7 +354,7 @@ public class TutorialTwo extends Levelmaker {
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLifeBlue.draw(myBatch);
+            OneLife.draw(myBatch);
             tooclose.r = 1;
             tooclose.g = 1;
             tooclose.b = 1;
@@ -372,7 +370,10 @@ public class TutorialTwo extends Levelmaker {
         myBatch.end();
 
 
+        if(blackplayer.getBounding().getY() < -400){
+            blackplayer.tutorial2update();
 
+        }
     }
 
     @Override

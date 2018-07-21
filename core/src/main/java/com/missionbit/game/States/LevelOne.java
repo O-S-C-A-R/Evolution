@@ -67,7 +67,7 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  true;
+    private boolean showDebug =  false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -291,7 +291,7 @@ public class LevelOne extends Levelmaker {
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        Portal = new Particles(6145, 1040);
+        Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
        // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
