@@ -12,8 +12,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
+import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -24,7 +26,6 @@ import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
 //import com.missionbit.game.Particles;
-
 public class LevelOne extends Levelmaker {
 
     /* game constants */
@@ -34,23 +35,31 @@ public class LevelOne extends Levelmaker {
     private static final int VIEWPORT_HEIGHT = 540;
     //private Particles Portal;
     private OrthographicCamera camera;
+    private Particles Portal;
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite Tutorial;
+    private Sprite LVLone;
     private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
 
-
     private com.missionbit.game.Bouncepad Pad;
+    private com.missionbit.game.Bouncepad Pad2;
+    private com.missionbit.game.Bouncepad Pad3;
+    private com.missionbit.game.Bouncepad Pad4;
+    private com.missionbit.game.Bouncepad Pad5;
+
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+//    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
+    private Buttons FullLivesBlue;
+    private Buttons TwoLivesBlue;
+    private Buttons OneLifeBlue;
     private Color tooclose;
 
 
@@ -58,11 +67,11 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false ;
+    private boolean showDebug =  false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    protected static boolean GameMode = true;
+    //protected static boolean GameMode = true;
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -74,202 +83,156 @@ public class LevelOne extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-            {559, 624, 72, 3},
-            {494, 628, 64, 10},
 
-            {495, 689, 4, 160},
 
-            {499, 644, 1, 42},
-
-            {505, 641, 49, 27},
-
-            {535, 691, 11, 148},
-
-            {541, 835, 39, 15},
-
-            {542, 669, 42, 22},
-
-            {631, 628, 26, 18},
-
-            {657, 646, 30, 14},
-
-            {687, 661, 24, 16},
-
-            {711, 677, 29, 19},
-
-            {740, 696, 122, 14},
-
-            {862, 658, 985, 37},
-
-            {674, 847, 1001, 55},
-
-            {495, 858, 181, 32},
-
-            {1634, 903, 39, 49},
-
-            {1672, 949, 57, 84},
-
-            {1843, 696, 56, 48},
-
-            {1899, 744, 102, 39},
-
-            {1999, 787, 58, 47},
-
-            {2057, 834, 49, 47},
-
-            {2101, 865, 11, 18},
-
-            {2102, 882, 46, 34},
-
-            {2145, 920, 61, 49},
-
-            {2206, 969, 172, 48},
-
-            {2372, 1017, 62, 48},
-
-            {1845, 860, 103, 13},
-
-            {1865, 1041, 88, 10},
-
-            {2008, 943, 98, 12},
-
-            {2043, 1116, 98, 14},
-
-            {2430, 1065, 59, 49},
-            {2486, 1119, 87, 40},
-            {2570, 1119, 41, 37},
-            {2612, 1158, 50, 40},
-            {2660, 1199, 62, 49},
-            {2722, 1248, 157, 44},
-            {2879, 1292, 208, 12},
-            {2609, 1364, 95, 8},
-            {2206, 1288, 348, 24},
-            {3084, 1302, 50, 58},
-            {3133, 1361, 62, 49},
-            {3189, 1410, 58, 317},
-            {3187, 1410, 60, 48},
-            {3237, 1462, 114, 50},
-            {2820, 1356, 210, 82},
-            {3028, 1357, 123, 199},
-            {1730, 1032, 53, 50},
-            {1783, 1082, 63, 53},
-            {1847, 1134, 48, 99},
-            {1895, 1233, 56, 48},
-            {1951, 1281, 57, 85},
-            {2009, 1331, 57, 106},
-            {2066, 1437, 53, 46},
-            {2119, 1481, 58, 54},
-            {2177, 1532, 59, 116},
-            {2235, 1634, 55, 50},
-            {2288, 1683, 57, 50},
-            {2345, 1733, 307, 42},
-            {2649, 1778, 56, 47},
-            {2701, 1830, 61, 56},
-            {2762, 1877, 4, 1},
-            {2763, 1875, 2, 1},
-            {2762, 1878, 59, 54},
-            {2820, 1931, 62, 44},
-            {2882, 1976, 53, 43},
-            {2935, 2019, 51, 69},
-            {2986, 2089, 240, 40},
-            {3224, 2132, 539, 82},
-            {3764, 2085, 2, 47},
-            {3766, 2083, 56, 48},
-            {3822, 2034, 53, 48},
-            {3875, 1991, 63, 43},
-            {3938, 1935, 55, 56},
-            {3993, 1885, 57, 50},
-            {4052, 1836, 52, 47},
-            {4104, 1796, 259, 40},
-            {3350, 1459, 161, 45},
-            {3511, 1407, 63, 52},
-            {3573, 1354, 59, 37},
-            {3632, 1306, 51, 48},
-            {3612, 1392, 120, 153},
-            {3732, 1392, 0, 0},
-            {3734, 1304, 212, 121},
-            {3947, 1286, 72, 21},
-            {4017, 1308, 216, 48},
-            {4231, 1356, 146, 50},
-            {4043, 1363, 401, 135},
-            {4443, 1424, 68, 34},
-            {4512, 1458, 101, 46},
-            {4609, 1506, 62, 47},
-            {4671, 1553, 52, 48},
-            {4723, 1601, 47, 92},
-            {4770, 1693, 49, 90},
-            {4632, 1557, 186, 228},
-            {4817, 1786, 43, 86},
-            {4866, 1872, 44, 76},
-            {4910, 1952, 66, 56},
-            {4976, 2008, 52, 83},
-            {5033, 2093, 41, 71},
-            {5074, 2164, 265, 53},
-            {4891, 1954, 84, 117},
-            {4361, 1836, 55, 48},
-            {4416, 1884, 57, 51},
-            {4473, 1935, 59, 55},
-            {4532, 1990, 62, 42},
-            {4594, 2032, 53, 51},
-            {4646, 2082, 57, 99},
-            {4703, 2181, 54, 54},
-            {4757, 2235, 57, 95},
-            {4814, 2330, 55, 47},
-            {4869, 2377, 56, 94},
-            {4924, 2471, 361, 42},
-            {5286, 2426, 171, 42},
-            {5278, 2118, 61, 44},
-            {5225, 2070, 57, 42},
-            {5164, 1971, 61, 99},
-            {5117, 1921, 47, 50},
-            {5076, 1833, 42, 87},
-            {5039, 1748, 35, 85},
-            {5074, 1701, 48, 46},
-            {5122, 1662, 55, 39},
-            {5177, 1605, 57, 49},
-            {5234, 1518, 196, 86},
-            {5430, 1451, 223, 101},
-            {5541, 1404, 54, 47},
-            {5428, 1233, 113, 171},
-            {5545, 1141, 48, 87},
-            {5120, 1701, 103, 137},
-            {5180, 1652, 43, 45},
-            {5075, 1747, 45, 80},
-            {5454, 2377, 147, 49},
-            {5600, 2336, 100, 38},
-            {5700, 2278, 97, 56},
-            {5796, 2156, 66, 123},
-            {5745, 2066, 51, 85},
-            {5638, 1993, 107, 73},
-            {5584, 1910, 54, 83},
-            {5487, 1911, 95, 31},
-            {5487, 1826, 43, 85},
-            {5475, 1777, 17, 49},
-            {5491, 1775, 158, 33},
-            {5647, 1730, 132, 42},
-            {5779, 1677, 57, 50},
-            {5836, 1628, 56, 49},
-            {5892, 1499, 85, 129},
-            {5837, 1449, 64, 46},
-            {5784, 1302, 55, 147},
-            {5733, 1227, 48, 84},
-            {5592, 1093, 54, 48},
-            {5646, 1048, 58, 42},
-            {5704, 1008, 118, 40},
-            {5822, 999, 307, 9},
-            {6095, 986, 33, 13},
-            {6129, 959, 27, 27},
-            {6156, 931, 28, 28},
-            {6184, 931, 102, 17},
-            {6286, 949, 19, 235},
-            {6101, 1175, 180, 18},
-            {6212, 1135, 51, 30},
-            {6247, 994, 11, 140},
-            {6217, 960, 44, 32},
-            {5949, 1133, 157, 49},
-            {5778, 1182, 171, 44},
-
-    };
+            {677, 843, 994, 104},
+            {633, 621, 139, 22},
+            {659, 642, 113, 19},
+            {686, 661, 98, 17},
+            {710, 677, 110, 21},
+            {741, 697, 123, 12},
+            {448, 624, 184, 19},
+            {460, 643, 39, 238},
+            {491, 879, 186, 67},
+            {526, 686, 14, 155},
+            {499, 747, 25, 38},
+            {511, 656, 64, 31},
+            {526, 838, 63, 41},
+            {862, 653, 986, 44},
+            {1663, 945, 65, 98},
+            {1844, 694, 64, 51},
+            {1899, 742, 101, 42},
+            {1998, 782, 57, 51},
+            {2051, 831, 53, 48},
+            {2101, 878, 61, 41},
+            {2158, 919, 62, 51},
+            {2208, 968, 173, 49},
+            {2375, 1016, 61, 50},
+            {2431, 1063, 67, 52},
+            {2489, 1112, 130, 50},
+            {2610, 1159, 117, 41},
+            {2664, 1199, 108, 55},
+            {2720, 1252, 382, 53},
+            {1717, 1033, 66, 91},
+            {1778, 1084, 61, 83},
+            {1838, 1132, 59, 111},
+            {1894, 1235, 57, 81},
+            {1951, 1284, 57, 101},
+            {2000, 1334, 65, 171},
+            {2061, 1431, 59, 118},
+            {2117, 1483, 62, 119},
+            {2176, 1534, 60, 164},
+            {1842, 862, 105, 16},
+            {2011, 941, 93, 14},
+            {1860, 1040, 98, 13},
+            {2039, 1118, 105, 15},
+            {2204, 1291, 348, 23},
+            {2608, 1363, 100, 13},
+            {2818, 1304, 213, 132},
+            {3030, 1410, 122, 145},
+            {3030, 1360, 105, 53},
+            {3028, 1305, 56, 54},
+            {2228, 1635, 63, 105},
+            {2287, 1683, 58, 112},
+            {2343, 1735, 309, 277},
+            {2646, 1777, 60, 111},
+            {2704, 1825, 58,138},
+            {2758, 1875, 62, 143},
+            {2818, 1932, 62, 129},
+            {2875, 1975, 59, 86},
+            {2924, 2024, 62, 132},
+            {2983, 2090, 244, 107},
+            {3216, 2132, 570, 24},
+            {3764, 2082, 74, 62},
+            {3823, 2034, 64, 49},
+            {3876, 1991, 62, 40},
+            {3932, 1933, 86, 59},
+            {3994, 1883, 68, 56},
+            {4049, 1835, 61, 50},
+            {4103, 179, 261, 41},
+            {4359, 1832, 57, 108},
+            {4411, 1883, 61, 68},
+            {4471, 1935, 61, 95},
+            {4529, 1991, 64, 96},
+            {4587, 2033, 60, 112},
+            {4644, 2083, 59, 165},
+            {4697, 2181, 60, 100},
+            {4752, 2227, 65, 130},
+            {4811, 2326, 73, 168},
+            {4864, 2378, 57, 168},
+            {4920, 2472, 362, 85},
+            {5276, 2428, 185, 47},
+            {5458, 2378, 166, 51},
+            {5624, 2378, 0, 0},
+            {3135, 1359, 90, 49},
+            {3192, 1403, 188, 55},
+            {3354, 1458, 152, 47},
+            {3497, 1396, 77, 64},
+            {3561, 1359, 71, 38},
+            {3621, 1303, 61, 57},
+            {3612, 1394, 125, 149},
+            {3740, 1304, 216, 123},
+            {3682, 1302, 60, 58},
+            {3240, 1459, 112, 53},
+            {3956, 1266, 63, 39},
+            {4016, 1305, 240, 56},
+            {4233, 1359, 162, 50},
+            {4376, 1408, 168, 52},
+            {4512, 1456, 280, 44},
+            {4610, 1494, 71, 58},
+            {4670, 1550, 118, 51},
+            {4039, 1365, 405, 131},
+            {4632, 1554, 187, 230},
+            {4820, 1782, 83, 88},
+            {4871, 1868, 85, 79},
+    {4924, 1943, 78, 64},
+                    {4890, 1950, 7, 123},
+                    {4972, 2070,119, 22},
+                    {5027, 2090, 59, 72},
+                    {5082, 2158, 256, 59},
+                    {5277, 2117, 59, 40},
+                    {5190, 2069, 89, 47},
+                    {5040, 1972, 186, 99},
+                    {5046, 1923, 126, 48},
+                    {5031, 1833, 87, 90},
+                    {5114, 1653, 110, 183},
+                    {5217, 1595, 15, 58},
+                    {5229, 1465, 199, 133},
+                    {5423, 1450, 230, 97},
+                    {5505, 1404, 92, 48},
+                    {5469, 1229, 72, 178},
+                    {5533, 1142, 59, 90},
+                    {5587, 1091, 60, 51},
+                    {5647, 1043, 57, 48},
+                    {5699, 987, 123, 59},
+                    {5821, 975, 309, 32},
+                    {6129, 943, 28, 42},
+                    {6156, 919, 27, 38},
+                    {6185, 862, 219, 72},
+                    {6278, 932, 31, 278},
+                    {6105, 1185, 174, 45},
+                    {6213, 1131, 49, 44},
+                    {6245, 1004, 14, 120},
+                    {6221, 946, 39, 46},
+                    {5952, 1131, 153, 59},
+                    {5954, 1178, 0, 1},
+                    {5781, 1177, 172, 273},
+                    {5730, 1226, 51, 90},
+                    {5837, 1449, 121, 49},
+                    {5889, 1494, 115, 136},
+                    {5836, 1627, 55, 74},
+                    {5779, 1678, 59, 164},
+                    {5648, 1726, 131, 267},
+                    {5474, 1776, 179, 49},
+                    {5528, 1820, 123, 91},
+                    {5584, 1906, 65, 89},
+                    {5487, 1825, 96, 115},
+                    {5636, 1992, 180, 77},
+                    {5745, 2063, 117, 89},
+                    {5798, 2148, 193, 148},
+                    {5599, 2336, 244, 47},
+                    {5701, 2277, 109, 61},
+            };
     private static final float[][] spike_locs = new float[][]{
             {2055, 877, 2212, 1045, 2371, 1046, 2376, 1013, 2217, 1011, 2217, 981, 2161, 964, 2158, 913, 2105, 915, 2101, 875, 2052, 877, },
             {2376, 1063, 2376, 1078, 2431, 1082, 2432, 1063, 2432, 1063, 2375, 1064, },
@@ -297,31 +260,39 @@ public class LevelOne extends Levelmaker {
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
         music.setVolume(0.4f);
-        music.play();
+        //music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(600,670);
+        blackplayer = new Player(600,640);
         blackplayer.maxjump = 250;
 
-        //Pad = new Bouncepad(1260,59);
+        Pad = new Bouncepad(2057,1135);
+        Pad2 = new Bouncepad(2936,1447);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
+
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
+        Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-       // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -330,7 +301,8 @@ public class LevelOne extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -344,7 +316,7 @@ public class LevelOne extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 670, 766, 962);
+        Spider = new Enemies(960, 687, 910, 1816);
     }
     @Override
 
@@ -406,10 +378,27 @@ public class LevelOne extends Levelmaker {
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
-       // if(Pad.bounce(blackplayer)){
-          //  blackplayer.jumpvelocity = 350;
+       if(Pad.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
 
-        //}
+        }if(Pad2.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad3.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+        if(Pad4.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+        if(Pad5.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 400;
+
+        }
+
+
         platformcheck = false;
 
         for (Platform p : platforms) {
@@ -430,6 +419,11 @@ public class LevelOne extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new TutorialTwo(gsm));
+            TutorialTwo.GameMode = true;
+        }
 
 
 
@@ -438,17 +432,27 @@ public class LevelOne extends Levelmaker {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
        // Pad.draw(myBatch);
+        System.out.println("Game mode " + GameMode);
+
         if(GameMode == true)
         {
-            Tutorial.draw(myBatch);
-            music.play();
+            System.out.println("Playing");
+            LVLone.draw(myBatch);
+            Pad.draw(myBatch);
+            Pad2.draw(myBatch);
+            Pad3.draw(myBatch);
+            Pad4.draw(myBatch);
+            Pad5.draw(myBatch);
+            //music.play();
         }
         else
         {
+            System.out.println("stopping");
             blackplayer.reset();
-            gsm.push(new RestartState(gsm));
             music.stop();
+            gsm.push(new RestartState(gsm));
         }
         myBatch.end();
         myBatch.begin();
@@ -486,13 +490,15 @@ public class LevelOne extends Levelmaker {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
 
 
+
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
+            FullLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -500,7 +506,7 @@ public class LevelOne extends Levelmaker {
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
+            TwoLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -508,7 +514,7 @@ public class LevelOne extends Levelmaker {
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
+            OneLifeBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -520,13 +526,18 @@ public class LevelOne extends Levelmaker {
 
             GameMode = false;
         }
+
         myBatch.end();
+
+
+
     }
 
     @Override
     public void dispose () {
         myBatch.dispose();
-
+        music.stop();
+        music.dispose();
     }
 }
 

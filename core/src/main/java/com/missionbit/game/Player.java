@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
-
+import com.missionbit.game.States.GameStateManager;
+import com.missionbit.game.States.LevelOne;
 
 
 public class Player {
@@ -26,6 +26,7 @@ public class Player {
     private Animation<TextureRegion> DeathAnimation;
     public float maxjump = 205;
     long lasthit;
+   // float playertop;
     float DeathAnimationTime = 0;
 
     public void draw(SpriteBatch batch){
@@ -43,14 +44,22 @@ public class Player {
 
 
     public Player(int x, int y){
+        //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+//        if(GameStateManager == LevelOne){
+//            BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BluePlayer.png")));
+//            DeathAnimation = Utils.LoadAnimation("images/player animation/BluePlayerDeath.png", 3, 4, 8, 0.05f);
+//
+//        }
+
         BlackPlayer.setX(x);
         BlackPlayer.setY(y);
         DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+
 
 
     }
@@ -83,6 +92,12 @@ public class Player {
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
             Lives --; }
+    } public void tutorial2update(){
+        if(BlackPlayer.getY() < -400){
+            BlackPlayer.setX(100);
+            BlackPlayer.setY(500);
+            System.out.println("One life is gone");
+            Lives --; }
     }
 
     public void UpdateLast(){
@@ -106,6 +121,10 @@ public class Player {
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX() < p.getRight()) {
             BlackPlayer.setX(p.getRight());
+
+        }
+        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getWidth() && p.getBottom() > lastposition.y)) {
+            jumpvelocity = 0;
 
         }
 
@@ -174,5 +193,10 @@ public class Player {
         return DeathAnimation.isAnimationFinished(DeathAnimationTime);
 
     }
+
+//    public  void setTop(float top){
+//        playertop = top;
+//    }
+
 
 }

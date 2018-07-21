@@ -24,8 +24,9 @@ import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
 
-public class TutorialState extends Levelmaker {
+public class TutorialState extends Levelmaker{
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
@@ -61,7 +62,7 @@ public class TutorialState extends Levelmaker {
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    protected static boolean GameMode = true;
+
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -227,7 +228,7 @@ blackplayer.tutorialupdate();
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
             gsm.set(new LevelOne(gsm));
-//            LevelOne.GameMode = true;
+          LevelOne.GameMode = true;
         }
 
 
@@ -240,7 +241,7 @@ blackplayer.tutorialupdate();
         if(GameMode == true)
         {
             Tutorial.draw(myBatch);
-            music.play();
+            //music.play();
         }
         else
         {
@@ -324,6 +325,8 @@ blackplayer.tutorialupdate();
     @Override
     public void dispose () {
         myBatch.dispose();
+        music.stop();
+        music.dispose();
 
     }
 }
