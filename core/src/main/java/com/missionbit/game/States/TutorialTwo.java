@@ -113,7 +113,7 @@ public class TutorialTwo extends Levelmaker {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(600,640);
+        blackplayer = new Player(100,1040);
         blackplayer.maxjump = 250;
 
         Pad = new Bouncepad(2057,1135);
@@ -341,26 +341,26 @@ public class TutorialTwo extends Levelmaker {
 
         if (blackplayer.Lives == 3) {
             FullLivesBlue.draw(myBatch);
-            tooclose.r = 0;
-            tooclose.g = 0;
-            tooclose.b = 0;
-            tooclose.a = 0;
+            tooclose.r = 1;
+            tooclose.g = 1;
+            tooclose.b = 1;
+            tooclose.a = 1;
         }
 
         else if (blackplayer.Lives == 2) {
             TwoLivesBlue.draw(myBatch);
-            tooclose.r = 0;
-            tooclose.g = 0;
-            tooclose.b = 0;
-            tooclose.a = 0;
+            tooclose.r = 1;
+            tooclose.g = 1;
+            tooclose.b = 1;
+            tooclose.a = 1;
 
         }
         else if (blackplayer.Lives == 1) {
             OneLifeBlue.draw(myBatch);
-            tooclose.r = 0;
-            tooclose.g = 0;
-            tooclose.b = 0;
-            tooclose.a = 0;
+            tooclose.r = 1;
+            tooclose.g = 1;
+            tooclose.b = 1;
+            tooclose.a = 1;
 
         }
         else if (blackplayer.Lives == 0 && blackplayer.deathanimationfin())
