@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -25,7 +26,6 @@ import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
 //import com.missionbit.game.Particles;
-
 public class LevelOne extends Levelmaker {
 
     /* game constants */
@@ -35,6 +35,7 @@ public class LevelOne extends Levelmaker {
     private static final int VIEWPORT_HEIGHT = 540;
     //private Particles Portal;
     private OrthographicCamera camera;
+    private Particles Portal;
 
     private Player blackplayer;
     private Random randomSource;
@@ -66,7 +67,7 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  false;
+    private boolean showDebug =  true;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -128,7 +129,6 @@ public class LevelOne extends Levelmaker {
             {2608, 1363, 100, 13},
             {2818, 1304, 213, 132},
             {3030, 1410, 122, 145},
-
             {3030, 1360, 105, 53},
             {3028, 1305, 56, 54},
             {2228, 1635, 63, 105},
@@ -161,32 +161,31 @@ public class LevelOne extends Levelmaker {
             {4864, 2378, 57, 168},
             {4920, 2472, 362, 85},
             {5276, 2428, 185, 47},
-                    {5458, 2378, 166, 51},
-                    {5624, 2378, 0, 0},
-                    {3135, 1359, 90, 49},
-                    {3192, 1403, 188, 55},
-                    {3354, 1458, 152, 47},
-                    {3497, 1396, 77, 64},
-                    {3561, 1359, 71, 38},
-                    {3621, 1303, 61, 57},
-                    {3612, 1394, 125, 149},
-                    {3740, 1304, 216, 123},
-                    {3682, 1302, 60, 58},
-                    {3240, 1459, 112, 53},
-                    {3956, 1266, 63, 39},
-                    {4016, 1305, 240, 56},
-                    {4233, 1359, 162, 50},
-                    {4376, 1408, 168, 52},
-                    {4512, 1456, 280, 44},
-                    {4610, 1494, 71, 58},
-                    {4670, 1550, 118, 51},
-                    {4039, 1365, 405, 131},
-                    {4632, 1554, 187, 230},
-                    {4820, 1782, 83, 88},
-                    {4871, 1868, 85, 79},
-                    {4924, 1943, 78, 64},
-                    {4890, 1950, 87, 123},
-                    {4972, 2070, 119, 22},
+            {5458, 2378, 166, 51},
+            {5624, 2378, 0, 0},
+            {3135, 1359, 90, 49},
+            {3192, 1403, 188, 55},
+            {3354, 1458, 152, 47},
+            {3497, 1396, 77, 64},
+            {3561, 1359, 71, 38},
+            {3621, 1303, 61, 57},
+            {3612, 1394, 125, 149},
+            {3740, 1304, 216, 123},
+            {3682, 1302, 60, 58},
+            {3240, 1459, 112, 53},
+            {3956, 1266, 63, 39},
+            {4016, 1305, 240, 56},
+            {4233, 1359, 162, 50},
+            {4376, 1408, 168, 52},
+            {4512, 1456, 280, 44},
+            {4610, 1494, 71, 58},
+            {4670, 1550, 118, 51},
+            {4039, 1365, 405, 131},
+            {4632, 1554, 187, 230},
+            {4820, 1782, 83, 88},
+            {4871, 1868, 85, 79}, {4924, 1943, 78, 64},
+                    {4890, 1950, 7, 123},
+                    {4972, 2070,119, 22},
                     {5027, 2090, 59, 72},
                     {5082, 2158, 256, 59},
                     {5277, 2117, 59, 40},
@@ -290,6 +289,7 @@ public class LevelOne extends Levelmaker {
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
+        Portal = new Particles(1750, 295);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
        // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
@@ -417,6 +417,11 @@ public class LevelOne extends Levelmaker {
         if (Spider.spidercollide(blackplayer)) {
             blackplayer.SpiderDie(Spider);
 
+        }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new LevelOne(gsm));
+            TutorialTwo.GameMode = true;
         }
 
 

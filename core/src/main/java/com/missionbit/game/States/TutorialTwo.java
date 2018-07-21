@@ -1,6 +1,5 @@
 package com.missionbit.game.States;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
@@ -16,7 +15,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
-import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -24,33 +22,42 @@ import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
 
-public class TutorialState extends Levelmaker{
+//import com.missionbit.game.Bouncepad;
+//import com.missionbit.game.Particles;
+public class TutorialTwo extends Levelmaker {
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Particles Portal;
+    //private Particles Portal;
     private OrthographicCamera camera;
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite Tutorial;
+    private Sprite LVLone;
     private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
 
     private com.missionbit.game.Bouncepad Pad;
+    private com.missionbit.game.Bouncepad Pad2;
+    private com.missionbit.game.Bouncepad Pad3;
+    private com.missionbit.game.Bouncepad Pad4;
+    private com.missionbit.game.Bouncepad Pad5;
+
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+    //    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
+    private Buttons FullLivesBlue;
+    private Buttons TwoLivesBlue;
+    private Buttons OneLifeBlue;
     private Color tooclose;
 
 
@@ -58,11 +65,11 @@ public class TutorialState extends Levelmaker{
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug =  true;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-
+    //protected static boolean GameMode = true;
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -74,48 +81,65 @@ public class TutorialState extends Levelmaker{
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-            {0, 0, 1800, 60}, // PLATFORMS
-            {390, 60, 78, 28},
-            {545, 60, 84, 75},
-            {754, 160, 235, 5},
+
+            {32, 169, 505, 13},
+            {366, 336, 196, 16},
+            {564, 498, 177, 10},
+            {860, 389, 227, 13},
+            {1085, 280, 562, 26},
+            {1743, 376, 24, 118},
+            {1536, 477, 33, 131},
+            {1714, 571, 36, 138},
+            {1529, 693, 34, 144},
     };
+
     private static final float[][] spike_locs = new float[][]{
-            {755, 59, 880, 125, 1000, 59},// SPIKES
-            {1359, 61,1450,100,1600, 235, 1800, 235, 1800, 61},
+            {716.0f, 749.99994f, 691.0f, 782.99994f, 685.0f, 739.99994f, 791.0f, 620.99994f, 842.0f, 657.99994f, 850.0f, 693.99994f, 890.0f, 656.99994f, 938.0f, 643.99994f, 1001.0f, 716.99994f, 984.0f, 846.99994f, 939.0f, 866.99994f, 895.0f, 919.99994f, 813.0f, 881.99994f, 747.0f, 829.99994f, 722.0f, 755.99994f, },
+            {1087.9999f, 735.99994f, 1077.9999f, 641.99994f, 1121.9999f, 569.99994f, 1168.9999f, 508.0f, 1267.9999f, 589.0f, 1314.9999f, 602.0f, 1318.9999f, 655.0f, 1344.9999f, 769.0f, 1313.9999f, 875.0f, 1193.9999f, 833.0f, 1086.9999f, 738.0f, },
     };
     private static ArrayList<Platform> platforms;
 
     private ShapeRenderer debugRenderer;
 
-    public TutorialState(GameStateManager gsm)
+    public TutorialTwo(GameStateManager gsm)
     {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
         music.setVolume(0.4f);
-        music.play();
+        //music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(90,59);
-        Pad = new Bouncepad(1260,59);
+        blackplayer = new Player(600,640);
+        blackplayer.maxjump = 250;
+
+        Pad = new Bouncepad(2057,1135);
+        Pad2 = new Bouncepad(2936,1447);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
+
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        Portal = new Particles(1750, 295);
+        // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -124,7 +148,8 @@ public class TutorialState extends Levelmaker{
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/Tutorial.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/TutorialTwo.png")));
+
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -138,7 +163,7 @@ public class TutorialState extends Levelmaker{
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 160, 766, 962);
+        Spider = new Enemies(960, 687, 910, 1816);
     }
     @Override
 
@@ -193,7 +218,6 @@ public class TutorialState extends Levelmaker{
     }
     @Override
     public void render(SpriteBatch myBatch) {
-blackplayer.tutorialupdate();
         // Clear the screen
         Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -201,10 +225,27 @@ blackplayer.tutorialupdate();
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
-        if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+//        if(Pad.bounce(blackplayer)){
+//            blackplayer.jumpvelocity = 350;
+//
+//        }if(Pad2.bounce(blackplayer)){
+//            blackplayer.jumpvelocity = 350;
+//
+//        }
+//        if(Pad3.bounce(blackplayer)){
+//            blackplayer.jumpvelocity = 400;
+//
+//        }
+//        if(Pad4.bounce(blackplayer)){
+//            blackplayer.jumpvelocity = 400;
+//
+//        }
+//        if(Pad5.bounce(blackplayer)){
+//            blackplayer.jumpvelocity = 400;
+//
+//        }
 
-        }
+
         platformcheck = false;
 
         for (Platform p : platforms) {
@@ -225,11 +266,7 @@ blackplayer.tutorialupdate();
             blackplayer.SpiderDie(Spider);
 
         }
-        if(Portal.hit(blackplayer.getBounding())){
-            System.out.println("idk");
-            gsm.set(new LevelOne(gsm));
-          LevelOne.GameMode = true;
-        }
+
 
 
         // CAMERA AND PLAYER DRAWING
@@ -237,24 +274,34 @@ blackplayer.tutorialupdate();
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
-        Pad.draw(myBatch);
+
+        // Pad.draw(myBatch);
+        System.out.println("Game mode " + GameMode);
+
         if(GameMode == true)
         {
-            Tutorial.draw(myBatch);
+            System.out.println("Playing");
+            LVLone.draw(myBatch);
+            Pad.draw(myBatch);
+            Pad2.draw(myBatch);
+            Pad3.draw(myBatch);
+            Pad4.draw(myBatch);
+            Pad5.draw(myBatch);
             //music.play();
         }
         else
         {
+            System.out.println("stopping");
             blackplayer.reset();
-            gsm.push(new RestartState(gsm));
             music.stop();
+            gsm.push(new RestartState(gsm));
         }
         myBatch.end();
         myBatch.begin();
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        Portal.draw(myBatch);
+        // Portal.draw(myBatch);
 
         myBatch.end();
 
@@ -269,7 +316,7 @@ blackplayer.tutorialupdate();
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
-            Portal.drawDebug(debugRenderer);
+            // Portal.drawDebug(debugRenderer);
 
             Spider.drawDebug(debugRenderer);
             debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
@@ -285,33 +332,35 @@ blackplayer.tutorialupdate();
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
 
 
+
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            FullLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            TwoLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            OneLifeBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 0 && blackplayer.deathanimationfin())
@@ -319,7 +368,11 @@ blackplayer.tutorialupdate();
 
             GameMode = false;
         }
+
         myBatch.end();
+
+
+
     }
 
     @Override
@@ -327,7 +380,10 @@ blackplayer.tutorialupdate();
         myBatch.dispose();
         music.stop();
         music.dispose();
-
     }
 }
+
+
+
+
 
