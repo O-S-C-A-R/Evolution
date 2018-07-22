@@ -53,6 +53,10 @@ public class LevelTwo extends Levelmaker {
     private com.missionbit.game.Bouncepad Pad7;
     private com.missionbit.game.Bouncepad Pad8;
     private com.missionbit.game.Bouncepad Pad9;
+    private com.missionbit.game.Bouncepad Pad10;
+    private com.missionbit.game.Bouncepad Pad12;
+    private com.missionbit.game.Bouncepad Pad13;
+    private com.missionbit.game.Bouncepad Pad11;
 
     private Rumble rumble;
     private Texture RestartScreen;
@@ -166,6 +170,11 @@ public class LevelTwo extends Levelmaker {
         Pad7 = new Bouncepad(2697,1763);
         Pad8 = new Bouncepad(2510,1934);
         Pad9 = new Bouncepad(2691,2068);
+        Pad10 = new Bouncepad(820,2045);
+        Pad12 = new Bouncepad(776,2389);
+        Pad11 = new Bouncepad(929,2547);
+        Pad13= new Bouncepad(775,2676);
+
 
 
 
@@ -307,6 +316,22 @@ public class LevelTwo extends Levelmaker {
             blackplayer.jumpvelocity = 350;
 
         }
+        if(Pad10.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 550;
+
+        }if(Pad11.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad12.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad13.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+
 
 
 
@@ -410,6 +435,10 @@ public class LevelTwo extends Levelmaker {
         Pad7.draw(myBatch);
         Pad8.draw(myBatch);
         Pad9.draw(myBatch);
+        Pad10.draw(myBatch);
+        Pad11.draw(myBatch);
+        Pad12.draw(myBatch);
+        Pad13.draw(myBatch);
 
 
 
