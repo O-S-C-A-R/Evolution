@@ -49,6 +49,10 @@ public class LevelTwo extends Levelmaker {
     private com.missionbit.game.Bouncepad Pad3;
     private com.missionbit.game.Bouncepad Pad4;
     private com.missionbit.game.Bouncepad Pad5;
+    private com.missionbit.game.Bouncepad Pad6;
+    private com.missionbit.game.Bouncepad Pad7;
+    private com.missionbit.game.Bouncepad Pad8;
+    private com.missionbit.game.Bouncepad Pad9;
 
     private Rumble rumble;
     private Texture RestartScreen;
@@ -84,6 +88,8 @@ public class LevelTwo extends Levelmaker {
 
     private static final int[][] PLAT_LOCS = new int[][]{
             {744, 790, 94, 46},
+            {2720, 1360, 1950, 1105},
+            {977, 2477, 4679, 216},
             {780, 816, 103, 63},
             {824, 857, 126, 57},
             {939, 854, 140, 36},
@@ -155,7 +161,14 @@ public class LevelTwo extends Levelmaker {
         Pad2 = new Bouncepad(1617,1095);
         Pad3 = new Bouncepad(1489,1185);
         Pad4 = new Bouncepad(1601,1797);
-        Pad5 = new Bouncepad(1582,1295);
+        Pad5 = new Bouncepad(1479,1406);
+        Pad6 = new Bouncepad(2557,1365);
+        Pad7 = new Bouncepad(2697,1763);
+        Pad8 = new Bouncepad(2510,1934);
+        Pad9 = new Bouncepad(2691,2068);
+
+
+
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -279,6 +292,22 @@ public class LevelTwo extends Levelmaker {
             blackplayer.jumpvelocity = 350;
 
         }
+        if(Pad6.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 550;
+
+        }if(Pad7.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad8.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad9.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+
 
 
         platformcheck = false;
@@ -322,11 +351,7 @@ public class LevelTwo extends Levelmaker {
         {
             System.out.println("Playing");
             LVLone.draw(myBatch);
-            Pad.draw(myBatch);
-            Pad2.draw(myBatch);
-            Pad3.draw(myBatch);
-            Pad4.draw(myBatch);
-            Pad5.draw(myBatch);
+
             //music.play();
         }
         else
@@ -376,6 +401,15 @@ public class LevelTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        Pad.draw(myBatch);
+        Pad2.draw(myBatch);
+        Pad3.draw(myBatch);
+        Pad4.draw(myBatch);
+        Pad5.draw(myBatch);
+        Pad6.draw(myBatch);
+        Pad7.draw(myBatch);
+        Pad8.draw(myBatch);
+        Pad9.draw(myBatch);
 
 
 
