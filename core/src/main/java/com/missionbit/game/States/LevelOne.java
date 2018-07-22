@@ -267,7 +267,7 @@ public class LevelOne extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(600,640);
-        blackplayer.maxjump = 250;
+        blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
@@ -379,23 +379,22 @@ public class LevelOne extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
        if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 800;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 800;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
-
+            blackplayer.jumpvelocity = 750;
         }
 
 

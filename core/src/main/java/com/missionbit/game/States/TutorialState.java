@@ -202,7 +202,7 @@ blackplayer.tutorialupdate();
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }
         platformcheck = false;

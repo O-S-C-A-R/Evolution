@@ -32,6 +32,7 @@ public class TutorialTwo extends Levelmaker {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
+    private static final int ExtraJump = 200;
     private Particles Portal;
     private OrthographicCamera camera;
 
@@ -76,6 +77,7 @@ public class TutorialTwo extends Levelmaker {
     private Buttons LeftButton;
     private Buttons RightButton;
     private Buttons UpButton;
+    private Buttons SuperJump;
     Vector3 touchPos;
 
 
@@ -116,7 +118,8 @@ public class TutorialTwo extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(100,400);
-        blackplayer.maxjump = 250;
+        blackplayer.maxjump = 450;
+        blackplayer.UltimateJump = -700;
 
         Pad = new Bouncepad(280,182);
         Pad2 = new Bouncepad(481,357);
@@ -131,7 +134,7 @@ public class TutorialTwo extends Levelmaker {
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
+        SuperJump = new Buttons(690,-70 ,"images/ui/SuperJump.png");
 
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
@@ -208,6 +211,10 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.Jump();
             JumpSound.play();
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
+        {
+            blackplayer.SuperJump();
+        }
     }
 
     @Override
@@ -229,18 +236,18 @@ public class TutorialTwo extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity =340;
+            blackplayer.jumpvelocity =740;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 700;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 320;
+            blackplayer.jumpvelocity = 620;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 600;
 
         }
         if(Pad5.bounce(blackplayer)){
@@ -347,6 +354,7 @@ public class TutorialTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        SuperJump.draw(myBatch);
         Pad4.draw(myBatch);
         Pad5.draw(myBatch);
         Pad6.draw(myBatch);
