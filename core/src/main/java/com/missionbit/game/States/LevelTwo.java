@@ -314,7 +314,7 @@ public class LevelTwo extends Levelmaker {
         }
         if(Pad9.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-=
+
         }
         if(Pad10.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
