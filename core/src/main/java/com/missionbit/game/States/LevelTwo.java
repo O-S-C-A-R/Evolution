@@ -159,7 +159,7 @@ public class LevelTwo extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(700, 867);
-        blackplayer.maxjump = 250;
+        blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(1531,934);
         Pad2 = new Bouncepad(1617,1095);
@@ -283,33 +283,33 @@ public class LevelTwo extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad6.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 550;
+            blackplayer.jumpvelocity = 850;
 
         }if(Pad7.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad8.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 650;
 
         }
         if(Pad9.bounce(blackplayer)){
