@@ -26,7 +26,7 @@ public class Player {
     public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
     public float maxjump = 405;
-    public float UltimateJump = -1000;
+    public float UltimateJump = 1000;
     long lasthit;
    // float playertop;
     float DeathAnimationTime = 0;
