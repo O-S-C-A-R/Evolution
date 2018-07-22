@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -24,16 +25,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
-import com.missionbit.game.Particles;
-public class TutorialTwo extends Levelmaker {
+//import com.missionbit.game.Particles;
+public class LevelTwo extends Levelmaker {
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    private Particles Portal;
+    //private Particles Portal;
     private OrthographicCamera camera;
+    private Particles Portal;
 
     private Player blackplayer;
     private Random randomSource;
@@ -49,14 +51,20 @@ public class TutorialTwo extends Levelmaker {
     private com.missionbit.game.Bouncepad Pad5;
     private com.missionbit.game.Bouncepad Pad6;
     private com.missionbit.game.Bouncepad Pad7;
+    private com.missionbit.game.Bouncepad Pad8;
+    private com.missionbit.game.Bouncepad Pad9;
+    private com.missionbit.game.Bouncepad Pad10;
+    private com.missionbit.game.Bouncepad Pad12;
+    private com.missionbit.game.Bouncepad Pad13;
+    private com.missionbit.game.Bouncepad Pad11;
 
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+    //    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
@@ -83,27 +91,62 @@ public class TutorialTwo extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-
-            {32, 169, 505, 13},
-            {366, 336, 196, 16},
-            {564, 498, 177, 10},
-            {860, 389, 227, 13},
-            {1085, 280, 562, 26},
-            {1743, 376, 24, 118},
-            {1536, 477, 33, 131},
-            {1714, 571, 36, 138},
-            {1529, 693, 34, 144},
+            {744, 790, 94, 46},
+            {2720, 1360, 1950, 1105},
+            {977, 2477, 4679, 216},
+            {780, 816, 103, 63},
+            {824, 857, 126, 57},
+            {939, 854, 140, 36},
+            {1080, 873, 558, 64},
+            {497, 793, 246, 5},
+            {413, 794, 94, 359},
+            {497, 1152, 585, 46},
+            {1074, 1057, 411, 137},
+            {1632, 934, 1237, 423},
+            {895, 1186, 585, 649},
+            {1475, 1739, 1030, 303},
+            {553, 1851, 940, 185},
+            {594, 2016, 176, 1963},
+            {761, 3817, 5920, 100},
+            {6318, 3615, 370, 210},
+            {6577, 3332, 301, 286},
+            {6873, 3043, 452, 289},
+            {7203, 1715, 90, 1339},
+            {6876, 1485, 347, 401},
+            {6593, 1226, 292, 359},
+            {4993, 728, 1608, 584},
+            {3085, 731, 1752, 585},
+            {3033, 1308, 55, 123},
+            {3079, 1387, 197, 413},
+            {3267, 1699, 2149, 390},
+            {5394, 1951, 264, 345},
+            {5650, 2152, 252, 326},
+            {950, 2464, 4707, 230},
     };
+
 
     private static final float[][] spike_locs = new float[][]{
-            {716.0f, 749.99994f, 691.0f, 782.99994f, 685.0f, 739.99994f, 791.0f, 620.99994f, 842.0f, 657.99994f, 850.0f, 693.99994f, 890.0f, 656.99994f, 938.0f, 643.99994f, 1001.0f, 716.99994f, 984.0f, 846.99994f, 939.0f, 866.99994f, 895.0f, 919.99994f, 813.0f, 881.99994f, 747.0f, 829.99994f, 722.0f, 755.99994f, },
-            {1087.9999f, 735.99994f, 1077.9999f, 641.99994f, 1121.9999f, 569.99994f, 1168.9999f, 508.0f, 1267.9999f, 589.0f, 1314.9999f, 602.0f, 1318.9999f, 655.0f, 1344.9999f, 769.0f, 1313.9999f, 875.0f, 1193.9999f, 833.0f, 1086.9999f, 738.0f, },
+            {2055, 877, 2212, 1045, 2371, 1046, 2376, 1013, 2217, 1011, 2217, 981, 2161, 964, 2158, 913, 2105, 915, 2101, 875, 2052, 877, },
+            {2376, 1063, 2376, 1078, 2431, 1082, 2432, 1063, 2432, 1063, 2375, 1064, },
+            {2432, 1110, 2409, 1100, 2430, 1089, 2433, 1106, 2459, 1159, 2487, 1114, 2435, 1113, },
+            {2491, 1161, 2509, 1190, 2527, 1161, 2495, 1156, 2493, 1160, },
+            {2560, 1166, 2736, 1341, 2736, 1341, 2840, 1341, 2865, 1292, 2730, 1290, 2729, 1262, 2674, 1247, 2665, 1199, 2613, 1190, 2612, 1165, 2562, 1164, 2561, 1167, },
+            {3193, 1456, 3213, 1489, 3230, 1458, 3195, 1457, },
+            {3364, 1509, 3520, 1509, 3682, 1364, 3635, 1365, 3627, 1390, 3571, 1397, 3571, 1440, 3522, 1448, 3516, 1486, 3359, 1489, 3364, 1509, },
+            {3951, 1308, 3983, 1358, 4012, 1303, 3951, 1309, },
+            {4019, 1365, 4030, 1385, 4043, 1365, 4019, 1364, },
+            {4449, 1462, 4488, 1548, 4528, 1508, 4512, 1507, 4514, 1459, 4448, 1461, },
+            {4549, 1506, 4577, 1553, 4605, 1501, 4549, 1505, },
+            {4821, 1874, 4850, 1897, 4859, 1962, 4890, 1967, 4920, 1993, 4922, 1949, 4875, 1949, 4869, 1881, 4820, 1870, },
+            {4974, 2095, 5007, 2126, 5015, 2176, 5066, 2189, 5074, 2222, 5198, 2224, 5200, 2214, 5087, 2211, 5085, 2165, 5037, 2164, 5031, 2092, 4974, 2096, },
+            {5081, 2228, 5104, 2253, 5121, 2238, 5147, 2262, 5168, 2235, 5203, 2289, 5240, 2236, 5265, 2263, 5284, 2231, 5307, 2253, 5328, 2219, 5082, 2228, },
     };
+
     private static ArrayList<Platform> platforms;
 
     private ShapeRenderer debugRenderer;
 
-    public TutorialTwo(GameStateManager gsm)
+    public LevelTwo(GameStateManager gsm)
     {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
@@ -115,16 +158,25 @@ public class TutorialTwo extends Levelmaker {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(100,400);
+        blackplayer = new Player(700, 867);
         blackplayer.maxjump = 250;
 
-        Pad = new Bouncepad(280,182);
-        Pad2 = new Bouncepad(481,357);
-        Pad3 = new Bouncepad(1546,307);
-        Pad4 = new Bouncepad(1566,524);
-        Pad5 = new Bouncepad(1708,628);
-        Pad6 = new Bouncepad(1562,734);
-        Pad7 = new Bouncepad(1721,416);
+        Pad = new Bouncepad(1531,934);
+        Pad2 = new Bouncepad(1617,1095);
+        Pad3 = new Bouncepad(1489,1185);
+        Pad4 = new Bouncepad(1601,1797);
+        Pad5 = new Bouncepad(1479,1406);
+        Pad6 = new Bouncepad(2557,1365);
+        Pad7 = new Bouncepad(2697,1763);
+        Pad8 = new Bouncepad(2510,1934);
+        Pad9 = new Bouncepad(2691,2068);
+        Pad10 = new Bouncepad(820,2045);
+        Pad12 = new Bouncepad(776,2389);
+        Pad11 = new Bouncepad(929,2547);
+        Pad13= new Bouncepad(775,2676);
+
+
+
 
 
 
@@ -133,15 +185,18 @@ public class TutorialTwo extends Levelmaker {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
+        Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-        Portal = new Particles(1712, 856);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -150,7 +205,7 @@ public class TutorialTwo extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/TutorialTwo.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -220,7 +275,6 @@ public class TutorialTwo extends Levelmaker {
     }
     @Override
     public void render(SpriteBatch myBatch) {
-
         // Clear the screen
         Gdx.gl.glClearColor(tooclose.r, tooclose.g,tooclose.b, tooclose.a );
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -229,32 +283,56 @@ public class TutorialTwo extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity =340;
+            blackplayer.jumpvelocity = 350;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 320;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 350;
 
         }
         if(Pad6.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 550;
+
+        }if(Pad7.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
 
         }
-        if(Pad7.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+        if(Pad8.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
 
         }
+        if(Pad9.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad10.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 550;
+
+        }if(Pad11.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad12.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+        if(Pad13.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 350;
+
+        }
+
+
 
 
         platformcheck = false;
@@ -277,6 +355,11 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new TutorialTwo(gsm));
+            TutorialTwo.GameMode = true;
+        }
 
 
 
@@ -293,9 +376,6 @@ public class TutorialTwo extends Levelmaker {
         {
             System.out.println("Playing");
             LVLone.draw(myBatch);
-            Pad.draw(myBatch);
-            Pad2.draw(myBatch);
-            Pad3.draw(myBatch);
 
             //music.play();
         }
@@ -311,8 +391,7 @@ public class TutorialTwo extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        Portal.draw(myBatch);
-
+        // Portal.draw(myBatch);
 
         myBatch.end();
 
@@ -327,7 +406,7 @@ public class TutorialTwo extends Levelmaker {
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
-             Portal.drawDebug(debugRenderer);
+            // Portal.drawDebug(debugRenderer);
 
             Spider.drawDebug(debugRenderer);
             debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
@@ -347,35 +426,44 @@ public class TutorialTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        Pad.draw(myBatch);
+        Pad2.draw(myBatch);
+        Pad3.draw(myBatch);
         Pad4.draw(myBatch);
         Pad5.draw(myBatch);
         Pad6.draw(myBatch);
         Pad7.draw(myBatch);
+        Pad8.draw(myBatch);
+        Pad9.draw(myBatch);
+        Pad10.draw(myBatch);
+        Pad11.draw(myBatch);
+        Pad12.draw(myBatch);
+        Pad13.draw(myBatch);
 
 
 
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            FullLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            TwoLivesBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
-            tooclose.r = 1;
-            tooclose.g = 1;
-            tooclose.b = 1;
-            tooclose.a = 1;
+            OneLifeBlue.draw(myBatch);
+            tooclose.r = 0;
+            tooclose.g = 0;
+            tooclose.b = 0;
+            tooclose.a = 0;
 
         }
         else if (blackplayer.Lives == 0 && blackplayer.deathanimationfin())
@@ -387,15 +475,6 @@ public class TutorialTwo extends Levelmaker {
         myBatch.end();
 
 
-        if(blackplayer.getBounding().getY() < -400){
-            blackplayer.tutorial2update();
-
-        }
-        if(Portal.hit(blackplayer.getBounding())){
-            System.out.println("idk");
-            gsm.set(new LevelTwo(gsm));
-            LevelTwo.GameMode = true;
-        }
 
     }
 
@@ -406,7 +485,6 @@ public class TutorialTwo extends Levelmaker {
         music.dispose();
     }
 }
-
 
 
 
