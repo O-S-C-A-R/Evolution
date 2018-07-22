@@ -251,15 +251,15 @@ public class TutorialTwo extends Levelmaker {
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 500;
 
         }
         if(Pad6.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 500;
 
         }
         if(Pad7.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 300;
+            blackplayer.jumpvelocity = 500;
 
         }
 
