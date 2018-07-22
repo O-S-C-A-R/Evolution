@@ -84,7 +84,16 @@ public class LevelOne extends Levelmaker {
 
     private static final int[][] PLAT_LOCS = new int[][]{
 
-
+            {1845, 678, 139, 65},
+            {1899, 731, 112, 52},
+            {2000, 769, 141, 64},
+            {2055, 806, 167, 73},
+            {3030, 1435, 122, 119},
+            {3029, 1304, 55, 249},
+            {2819, 1304, 211, 131},
+            {3613, 1309, 121, 237},
+            {3724, 1302, 225, 122},
+            {4106, 1789, 256, 133},
             {677, 843, 994, 104},
             {633, 621, 139, 22},
             {659, 642, 113, 19},
@@ -267,7 +276,7 @@ public class LevelOne extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(600,640);
-        blackplayer.maxjump = 250;
+        blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
@@ -379,23 +388,22 @@ public class LevelOne extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
        if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }
         if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 800;
 
         }
         if(Pad4.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
+            blackplayer.jumpvelocity = 800;
 
         }
         if(Pad5.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 400;
-
+            blackplayer.jumpvelocity = 750;
         }
 
 
