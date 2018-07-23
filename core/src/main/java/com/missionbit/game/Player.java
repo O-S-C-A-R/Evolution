@@ -176,15 +176,16 @@ public class Player {
 
 
     }
-    public void reset(){
+    public void reset(float X, float Y){
 
-        BlackPlayer.setX(40);
-        BlackPlayer.setY(62);
+        BlackPlayer.setX(X);
+        BlackPlayer.setY(Y);
         System.out.println("You Died");
         Lives = 3;
         DeathAnimationTime = 0;
         Xvelocity = 0;
     }
+
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
            jumpvelocity = 220;

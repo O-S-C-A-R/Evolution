@@ -250,7 +250,7 @@ blackplayer.tutorialupdate();
         }
         else
         {
-            blackplayer.reset();
+            blackplayer.reset(40, 92);
             gsm.push(new RestartState(gsm));
             music.stop();
         }

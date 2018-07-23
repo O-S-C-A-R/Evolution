@@ -174,6 +174,7 @@ public class TutorialTwo extends Levelmaker {
 
         // velocity = new Vector2(0, 0);
         Spider = new Enemies(960, 687, 910, 1816);
+
     }
     @Override
 
@@ -336,7 +337,7 @@ public class TutorialTwo extends Levelmaker {
         else
         {
             System.out.println("stopping");
-            blackplayer.reset();
+            blackplayer.reset(70, 202);
             music.stop();
             gsm.push(new RestartState(gsm));
         }
