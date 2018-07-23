@@ -92,7 +92,7 @@ public class TutorialState extends Levelmaker{
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
-        music.setVolume(0.4f);
+        music.setVolume(0.2f);
         music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
@@ -131,6 +131,7 @@ public class TutorialState extends Levelmaker{
         for (int[] loc : PLAT_LOCS) {
             platforms.add(new Platform(loc[0], loc[1], loc[2], loc[3]));
         }
+
 
         for (float[] loc : spike_locs) {
             spikes.add(new Spikes(loc));

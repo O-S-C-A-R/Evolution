@@ -61,6 +61,7 @@ public class TutorialTwo extends Levelmaker {
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
+    private Buttons SuperSpeed;
     private Color tooclose;
 
 
@@ -134,7 +135,8 @@ public class TutorialTwo extends Levelmaker {
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        SuperJump = new Buttons(690,-70 ,"images/ui/SuperJump.png");
+        SuperJump = new Buttons(690,-50 ,"images/ui/SuperJump.png");
+        SuperSpeed = new Buttons(690, -10, "images/ui/SuperSpeed.png");
 
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
@@ -203,6 +205,12 @@ public class TutorialTwo extends Levelmaker {
 
                     }
                 }
+                if (touchPos.x > SuperSpeed.getX() && touchPos.x < SuperSpeed.getX() + SuperSpeed.getWidth()) {
+                    if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform) {
+                        blackplayer.Xvelocity = 400;
+
+                    }
+                }
 
             }
         }
@@ -220,6 +228,20 @@ public class TutorialTwo extends Levelmaker {
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
             blackplayer.jumpvelocity = 600;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+            blackplayer.Xvelocity = 400;
+        }
+        else
+        {
+            blackplayer.Xvelocity = 0;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.D) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
+            blackplayer.Xvelocity = 400;
+        }
+        else
+        {
+            blackplayer.Xvelocity = 0;
         }
     }
 
@@ -279,7 +301,7 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
-        
+
 
 
 
@@ -349,6 +371,7 @@ public class TutorialTwo extends Levelmaker {
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
         SuperJump.draw(myBatch);
+        SuperSpeed.draw(myBatch);
         Pad4.draw(myBatch);
         Pad5.draw(myBatch);
         Pad6.draw(myBatch);
