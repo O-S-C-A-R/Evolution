@@ -24,8 +24,9 @@ import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
 
-public class TutorialState extends Levelmaker {
+public class TutorialState extends Levelmaker{
 
     /* game constants */
     private static final int CAMERA_OFFSET_X = 350;
@@ -201,7 +202,7 @@ blackplayer.tutorialupdate();
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 675;
 
         }
         platformcheck = false;
@@ -227,7 +228,7 @@ blackplayer.tutorialupdate();
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
             gsm.set(new LevelOne(gsm));
-//            LevelOne.GameMode = true;
+          LevelOne.GameMode = true;
         }
 
 

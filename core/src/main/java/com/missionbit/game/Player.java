@@ -9,22 +9,24 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-
-
+import com.missionbit.game.States.GameStateManager;
+import com.missionbit.game.States.LevelOne;
 
 
 public class Player {
     protected Sprite BlackPlayer;
     private static final float PLAYER_SPEED = 445f;
+    public float SuperJumpVelocity = 0;
     public float jumpvelocity = 0;
     protected float Xvelocity = 0;
     public boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
-    private static final int GRAVITY = -5;
+    private static final int GRAVITY = -15;
     private  static int DRAG = 5;
     public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
-    public float maxjump = 205;
+    public float maxjump = 405;
+    public float UltimateJump = 1000;
     long lasthit;
    // float playertop;
     float DeathAnimationTime = 0;
@@ -47,12 +49,19 @@ public class Player {
         //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
         BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+//        if(GameStateManager == LevelOne){
+//            BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BluePlayer.png")));
+//            DeathAnimation = Utils.LoadAnimation("images/player animation/BluePlayerDeath.png", 3, 4, 8, 0.05f);
+//
+//        }
+
         BlackPlayer.setX(x);
         BlackPlayer.setY(y);
         DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
+
 
 
     }
@@ -63,6 +72,12 @@ public class Player {
         jumpvelocity= maxjump;
         touchplatform = false;
 
+    }
+
+    public void SuperJump()
+    {
+        SuperJumpVelocity = UltimateJump;
+        touchplatform = false;
     }
     public void Update(){
         if(Xvelocity != 0) {
@@ -76,12 +91,22 @@ public class Player {
             jumpvelocity += GRAVITY;
 
         }
+        if(!touchplatform)
+        {
+            SuperJumpVelocity += GRAVITY;
+        }
         BlackPlayer.setY(BlackPlayer.getY()+ jumpvelocity * Gdx.graphics.getDeltaTime());
         BlackPlayer.setX(BlackPlayer.getX()+ Xvelocity * Gdx.graphics.getDeltaTime());
     }
     public void tutorialupdate(){
         if(BlackPlayer.getY() < -400){
             BlackPlayer.setX(20);
+            BlackPlayer.setY(500);
+            System.out.println("One life is gone");
+            Lives --; }
+    } public void tutorial2update(){
+        if(BlackPlayer.getY() < -400){
+            BlackPlayer.setX(100);
             BlackPlayer.setY(500);
             System.out.println("One life is gone");
             Lives --; }
@@ -101,6 +126,7 @@ public class Player {
         if ((p.getTop() > BlackPlayer.getY() && p.getTop() < lastposition.y)) {
             BlackPlayer.setY(p.getTop() - 1);
             jumpvelocity = 0;
+            SuperJumpVelocity = 0;
             touchplatform = true;
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX() < p.getLeft()) {
@@ -110,9 +136,9 @@ public class Player {
             BlackPlayer.setX(p.getRight());
 
         }
-        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getHeight() && p.getBottom() > lastposition.y)) {
+        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getWidth() && p.getBottom() > lastposition.y)) {
             jumpvelocity = 0;
-
+            SuperJumpVelocity = 0;
         }
 
 

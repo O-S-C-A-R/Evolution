@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -25,7 +26,6 @@ import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
 //import com.missionbit.game.Particles;
-
 public class LevelOne extends Levelmaker {
 
     /* game constants */
@@ -35,23 +35,31 @@ public class LevelOne extends Levelmaker {
     private static final int VIEWPORT_HEIGHT = 540;
     //private Particles Portal;
     private OrthographicCamera camera;
+    private Particles Portal;
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite Tutorial;
+    private Sprite LVLone;
     private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
 
     private com.missionbit.game.Bouncepad Pad;
     private com.missionbit.game.Bouncepad Pad2;
+    private com.missionbit.game.Bouncepad Pad3;
+    private com.missionbit.game.Bouncepad Pad4;
+    private com.missionbit.game.Bouncepad Pad5;
+
     private Rumble rumble;
     private Texture RestartScreen;
 
     private Buttons Fade;
-    private Buttons FullLives;
-    private Buttons TwoLives;
-    private Buttons OneLife;
+//    private Buttons FullLives;
+//    private Buttons TwoLives;
+//    private Buttons OneLife;
+    private Buttons FullLivesBlue;
+    private Buttons TwoLivesBlue;
+    private Buttons OneLifeBlue;
     private Color tooclose;
 
 
@@ -59,7 +67,7 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  true;
+    private boolean showDebug =  false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -75,6 +83,7 @@ public class LevelOne extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
+
 
 //            {677, 843, 994, 104},
 //            {633, 621, 139, 22},
@@ -122,6 +131,16 @@ public class LevelOne extends Levelmaker {
 //            {2818, 1304, 213, 132},
 //            {3030, 1410, 122, 145},
 
+            {1845, 678, 139, 65},
+            {1899, 731, 112, 52},
+            {2000, 769, 141, 64},
+            {2055, 806, 167, 73},
+            {3030, 1435, 122, 119},
+            {3029, 1304, 55, 249},
+            {2819, 1304, 211, 131},
+            {3613, 1309, 121, 237},
+            {3724, 1302, 225, 122},
+            {4106, 1789, 256, 133},
             {677, 843, 994, 104},
             {633, 621, 139, 22},
             {659, 642, 113, 19},
@@ -199,32 +218,32 @@ public class LevelOne extends Levelmaker {
             {4864, 2378, 57, 168},
             {4920, 2472, 362, 85},
             {5276, 2428, 185, 47},
-                    {5458, 2378, 166, 51},
-                    {5624, 2378, 0, 0},
-                    {3135, 1359, 90, 49},
-                    {3192, 1403, 188, 55},
-                    {3354, 1458, 152, 47},
-                    {3497, 1396, 77, 64},
-                    {3561, 1359, 71, 38},
-                    {3621, 1303, 61, 57},
-                    {3612, 1394, 125, 149},
-                    {3740, 1304, 216, 123},
-                    {3682, 1302, 60, 58},
-                    {3240, 1459, 112, 53},
-                    {3956, 1266, 63, 39},
-                    {4016, 1305, 240, 56},
-                    {4233, 1359, 162, 50},
-                    {4376, 1408, 168, 52},
-                    {4512, 1456, 280, 44},
-                    {4610, 1494, 71, 58},
-                    {4670, 1550, 118, 51},
-                    {4039, 1365, 405, 131},
-                    {4632, 1554, 187, 230},
-                    {4820, 1782, 83, 88},
-                    {4871, 1868, 85, 79},
-                    {4924, 1943, 78, 64},
-                    {4890, 1950, 87, 123},
-                    {4972, 2070, 119, 22},
+            {5458, 2378, 166, 51},
+            {5624, 2378, 0, 0},
+            {3135, 1359, 90, 49},
+            {3192, 1403, 188, 55},
+            {3354, 1458, 152, 47},
+            {3497, 1396, 77, 64},
+            {3561, 1359, 71, 38},
+            {3621, 1303, 61, 57},
+            {3612, 1394, 125, 149},
+            {3740, 1304, 216, 123},
+            {3682, 1302, 60, 58},
+            {3240, 1459, 112, 53},
+            {3956, 1266, 63, 39},
+            {4016, 1305, 240, 56},
+            {4233, 1359, 162, 50},
+            {4376, 1408, 168, 52},
+            {4512, 1456, 280, 44},
+            {4610, 1494, 71, 58},
+            {4670, 1550, 118, 51},
+            {4039, 1365, 405, 131},
+            {4632, 1554, 187, 230},
+            {4820, 1782, 83, 88},
+            {4871, 1868, 85, 79},
+            {4924, 1943, 78, 64},
+                    {4890, 1950, 7, 123},
+                    {4972, 2070,119, 22},
                     {5027, 2090, 59, 72},
                     {5082, 2158, 256, 59},
                     {5277, 2117, 59, 40},
@@ -304,10 +323,13 @@ public class LevelOne extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(600,640);
-        blackplayer.maxjump = 250;
+        blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
+        Pad3 = new Bouncepad(4352,1505);
+        Pad4 = new Bouncepad(4746,1797);
+        Pad5 = new Bouncepad(4920,2075);
 
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
@@ -315,15 +337,18 @@ public class LevelOne extends Levelmaker {
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
+//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
+//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
+        Portal = new Particles(6245, 1040);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
-       // Portal = new Particles(1750, 295);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
 
@@ -332,7 +357,8 @@ public class LevelOne extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        Tutorial = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+
         // Initialize platforms
         platforms = new ArrayList<Platform>();
 
@@ -346,7 +372,7 @@ public class LevelOne extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 670, 766, 962);
+        Spider = new Enemies(960, 687, 910, 1816);
     }
     @Override
 
@@ -409,12 +435,24 @@ public class LevelOne extends Levelmaker {
         myBatch.setProjectionMatrix(camera.combined);
 
        if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 350;
+            blackplayer.jumpvelocity = 750;
 
         }
+        if(Pad3.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 800;
+
+        }
+        if(Pad4.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 800;
+
+        }
+        if(Pad5.bounce(blackplayer)){
+            blackplayer.jumpvelocity = 750;
+        }
+
 
         platformcheck = false;
 
@@ -436,6 +474,11 @@ public class LevelOne extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        if(Portal.hit(blackplayer.getBounding())){
+            System.out.println("idk");
+            gsm.set(new TutorialTwo(gsm));
+            TutorialTwo.GameMode = true;
+        }
 
 
 
@@ -451,7 +494,12 @@ public class LevelOne extends Levelmaker {
         if(GameMode == true)
         {
             System.out.println("Playing");
-            Tutorial.draw(myBatch);
+            LVLone.draw(myBatch);
+            Pad.draw(myBatch);
+            Pad2.draw(myBatch);
+            Pad3.draw(myBatch);
+            Pad4.draw(myBatch);
+            Pad5.draw(myBatch);
             //music.play();
         }
         else
@@ -497,13 +545,15 @@ public class LevelOne extends Levelmaker {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
 
 
+
         if (blackplayer.Lives == 3) {
-            FullLives.draw(myBatch);
+            FullLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -511,7 +561,7 @@ public class LevelOne extends Levelmaker {
         }
 
         else if (blackplayer.Lives == 2) {
-            TwoLives.draw(myBatch);
+            TwoLivesBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -519,7 +569,7 @@ public class LevelOne extends Levelmaker {
 
         }
         else if (blackplayer.Lives == 1) {
-            OneLife.draw(myBatch);
+            OneLifeBlue.draw(myBatch);
             tooclose.r = 0;
             tooclose.g = 0;
             tooclose.b = 0;
@@ -531,9 +581,10 @@ public class LevelOne extends Levelmaker {
 
             GameMode = false;
         }
-        Pad.draw(myBatch);
-        Pad2.draw(myBatch);
+
         myBatch.end();
+
+
 
     }
 
