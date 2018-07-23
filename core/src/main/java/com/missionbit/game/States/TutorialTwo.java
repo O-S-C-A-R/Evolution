@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
@@ -24,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 //import com.missionbit.game.Bouncepad;
-import com.missionbit.game.Particles;
 public class TutorialTwo extends Levelmaker {
 
     /* game constants */
@@ -40,6 +40,7 @@ public class TutorialTwo extends Levelmaker {
     private Random randomSource;
     private Sprite LVLone;
     private Sound JumpSound;
+    private Sound pad;
     private Sprite Bouncepad;
     private Music music;
 
@@ -117,7 +118,9 @@ public class TutorialTwo extends Levelmaker {
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
-
+        pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
+        pad.setLooping(1,false);
+        pad.setVolume(1, 0.01f);
         blackplayer = new Player(100,400);
         blackplayer.maxjump = 450;
         blackplayer.UltimateJump = -700;
@@ -228,6 +231,7 @@ public class TutorialTwo extends Levelmaker {
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
             blackplayer.jumpvelocity = 600;
+
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
             blackplayer.Xvelocity = 400;
@@ -265,19 +269,19 @@ public class TutorialTwo extends Levelmaker {
 
         if(Pad4.bounce(blackplayer)){
             blackplayer.jumpvelocity = 600;
-
+            pad.play();
         }
         if(Pad5.bounce(blackplayer)){
             blackplayer.jumpvelocity = 500;
-
+            pad.play();
         }
         if(Pad6.bounce(blackplayer)){
             blackplayer.jumpvelocity = 500;
-
+            pad.play();
         }
         if(Pad7.bounce(blackplayer)){
             blackplayer.jumpvelocity = 500;
-
+            pad.play();
         }
 
 
