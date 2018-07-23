@@ -489,11 +489,11 @@ public class LevelOne extends Levelmaker {
         myBatch.begin();
 
        // Pad.draw(myBatch);
-        System.out.println("Game mode " + GameMode);
+        //System.out.println("Game mode " + GameMode);
 
         if(GameMode == true)
         {
-            System.out.println("Playing");
+            //System.out.println("Playing");
             LVLone.draw(myBatch);
             Pad.draw(myBatch);
             Pad2.draw(myBatch);

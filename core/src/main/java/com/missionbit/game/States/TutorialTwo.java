@@ -207,7 +207,12 @@ public class TutorialTwo extends Levelmaker {
                 }
                 if (touchPos.x > SuperSpeed.getX() && touchPos.x < SuperSpeed.getX() + SuperSpeed.getWidth()) {
                     if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.Xvelocity = 400;
+                        if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
+                            if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
+                                blackplayer.Xvelocity = 400;
+                            }
+                        }
+
 
                     }
                 }
@@ -230,7 +235,8 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.jumpvelocity = 600;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity = 400;
+            blackplayer.Xvelocity = -400;
+            System.out.println("Super Left");
         }
         else
         {
@@ -238,6 +244,7 @@ public class TutorialTwo extends Levelmaker {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.D) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
             blackplayer.Xvelocity = 400;
+            System.out.println("Super Right");
         }
         else
         {
@@ -312,11 +319,11 @@ public class TutorialTwo extends Levelmaker {
         myBatch.begin();
 
         // Pad.draw(myBatch);
-        System.out.println("Game mode " + GameMode);
+        //System.out.println("Game mode " + GameMode);
 
         if(GameMode == true)
         {
-            System.out.println("Playing");
+            //System.out.println("Playing");
             LVLone.draw(myBatch);
 
 
