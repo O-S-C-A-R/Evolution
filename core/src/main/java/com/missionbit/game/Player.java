@@ -18,7 +18,7 @@ public class Player {
     private static final float PLAYER_SPEED = 445f;
     public float SuperJumpVelocity = 0;
     public float jumpvelocity = 0;
-    protected float Xvelocity = 0;
+    public float Xvelocity = 0;
     public boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -15;
