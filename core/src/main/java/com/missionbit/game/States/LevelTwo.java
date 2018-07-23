@@ -208,9 +208,9 @@ public class LevelTwo extends Levelmaker {
 //        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
 //        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
 //        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesPurple.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesPurple.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLivePurple.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
