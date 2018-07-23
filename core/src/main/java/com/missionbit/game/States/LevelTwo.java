@@ -84,6 +84,7 @@ public class LevelTwo extends Levelmaker {
     private Buttons LeftButton;
     private Buttons RightButton;
     private Buttons UpButton;
+    private Buttons SuperJump;
     Vector3 touchPos;
 
 
@@ -171,6 +172,8 @@ public class LevelTwo extends Levelmaker {
         tooclose = new Color(1,1,1,1);
 
         blackplayer = new Player(700, 867);
+        SuperJump = new Buttons(690,-50 ,"images/ui/SuperJump.png");
+
         blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(1531,934);
@@ -244,6 +247,12 @@ public class LevelTwo extends Levelmaker {
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
+                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
+                    if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
+                        blackplayer.jumpvelocity = 600;
+
+                    }
+                }
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
@@ -266,6 +275,10 @@ public class LevelTwo extends Levelmaker {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             blackplayer.Moveleft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
+        {
+            blackplayer.jumpvelocity = 600;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             blackplayer.Moveright();
@@ -438,6 +451,7 @@ public class LevelTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        SuperJump.draw(myBatch);
         Pad.draw(myBatch);
         Pad2.draw(myBatch);
         Pad3.draw(myBatch);
