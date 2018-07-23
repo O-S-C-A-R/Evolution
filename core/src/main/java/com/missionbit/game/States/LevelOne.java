@@ -322,7 +322,7 @@ public class LevelOne extends Levelmaker {
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
 
-        blackplayer = new Player(600,640);
+        blackplayer = new Player(600,740);
         blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(2057,1135);
