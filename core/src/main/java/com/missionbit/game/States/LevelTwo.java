@@ -39,7 +39,8 @@ public class LevelTwo extends Levelmaker {
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite LVLone;
+    private Sprite LVLDrawer;
+    private Sprite LVLDrawer2;
     private Sound JumpSound;
     private Sprite Bouncepad;
     private Music music;
@@ -220,7 +221,11 @@ public class LevelTwo extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
+        LVLDrawer = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
+        LVLDrawer.setX(4200);
+
+        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level2otherhalf.png")));
+
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -418,7 +423,9 @@ public class LevelTwo extends Levelmaker {
         if(GameMode == true)
         {
             System.out.println("Playing");
-            LVLone.draw(myBatch);
+            LVLDrawer.draw(myBatch);
+            LVLDrawer2.draw(myBatch);
+
 
             //music.play();
         }
