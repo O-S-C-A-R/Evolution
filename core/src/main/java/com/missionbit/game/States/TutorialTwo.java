@@ -197,6 +197,12 @@ public class TutorialTwo extends Levelmaker {
                         JumpSound.play();
                     }
                 }
+                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
+                    if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
+                        blackplayer.jumpvelocity = 600;
+
+                    }
+                }
 
             }
         }
@@ -213,7 +219,7 @@ public class TutorialTwo extends Levelmaker {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
-            blackplayer.SuperJump();
+            blackplayer.jumpvelocity = 600;
         }
     }
 
@@ -235,13 +241,7 @@ public class TutorialTwo extends Levelmaker {
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
-        if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity =740;
 
-        }if(Pad2.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 700;
-
-        }
         if(Pad3.bounce(blackplayer)){
             blackplayer.jumpvelocity = 610;
 
@@ -284,6 +284,7 @@ public class TutorialTwo extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        
 
 
 
@@ -300,9 +301,7 @@ public class TutorialTwo extends Levelmaker {
         {
             System.out.println("Playing");
             LVLone.draw(myBatch);
-            Pad.draw(myBatch);
-            Pad2.draw(myBatch);
-            Pad3.draw(myBatch);
+
 
             //music.play();
         }
