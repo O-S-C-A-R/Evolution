@@ -24,7 +24,6 @@ import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.logging.Level;
 
 public class TutorialState extends Levelmaker{
 
@@ -40,6 +39,7 @@ public class TutorialState extends Levelmaker{
     private Random randomSource;
     private Sprite Tutorial;
     private Sound JumpSound;
+    private Sound pad;
     private Sprite Bouncepad;
     private Music music;
 
@@ -92,12 +92,16 @@ public class TutorialState extends Levelmaker{
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
-        music.setVolume(0.2f);
+        music.setVolume(0.1f);
         music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
+        pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
+        pad.setLooping( 1, false);
+        pad.setVolume(1, 0.01f);
+
 
         blackplayer = new Player(90,59);
         Pad = new Bouncepad(1260,59);
@@ -204,7 +208,7 @@ blackplayer.tutorialupdate();
 
         if(Pad.bounce(blackplayer)){
             blackplayer.jumpvelocity = 675;
-
+            pad.play();
         }
         platformcheck = false;
 

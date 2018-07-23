@@ -41,6 +41,7 @@ public class LevelOne extends Levelmaker {
     private Random randomSource;
     private Sprite LVLone;
     private Sound JumpSound;
+    private Sound pad;
     private Sprite Bouncepad;
     private Music music;
 
@@ -321,6 +322,10 @@ public class LevelOne extends Levelmaker {
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
+        pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
+        pad.setLooping( 1, false);
+        pad.setVolume(1, 0.01f);
+
 
         blackplayer = new Player(600,740);
         blackplayer.maxjump = 450;
@@ -436,21 +441,27 @@ public class LevelOne extends Levelmaker {
 
        if(Pad.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
+            pad.play();
 
         }if(Pad2.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
+            pad.play();
 
         }
         if(Pad3.bounce(blackplayer)){
             blackplayer.jumpvelocity = 800;
+            pad.play();
 
         }
         if(Pad4.bounce(blackplayer)){
             blackplayer.jumpvelocity = 800;
+            pad.play();
 
         }
         if(Pad5.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
+            pad.play();
+
         }
 
 

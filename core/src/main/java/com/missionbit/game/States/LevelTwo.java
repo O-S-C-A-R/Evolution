@@ -39,8 +39,10 @@ public class LevelTwo extends Levelmaker {
 
     private Player blackplayer;
     private Random randomSource;
-    private Sprite LVLone;
+    private Sprite LVLDrawer;
+    private Sprite LVLDrawer2;
     private Sound JumpSound;
+    private Sound pad;
     private Sprite Bouncepad;
     private Music music;
 
@@ -84,6 +86,7 @@ public class LevelTwo extends Levelmaker {
     private Buttons LeftButton;
     private Buttons RightButton;
     private Buttons UpButton;
+    private Buttons SuperJump;
     Vector3 touchPos;
 
 
@@ -169,8 +172,13 @@ public class LevelTwo extends Levelmaker {
         JumpSound.setLooping(1,false);
         JumpSound.setVolume(1, 0.01f);
         tooclose = new Color(1,1,1,1);
+        pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
+        pad.setLooping(1,false);
+        pad.setVolume(1, 0.01f);
 
         blackplayer = new Player(700, 867);
+        SuperJump = new Buttons(690,-50 ,"images/ui/SuperJump.png");
+
         blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(1531,934);
@@ -217,7 +225,11 @@ public class LevelTwo extends Levelmaker {
         //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
-        LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
+        LVLDrawer = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
+        LVLDrawer.setX(4200);
+
+        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level2otherhalf.png")));
+
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -244,6 +256,12 @@ public class LevelTwo extends Levelmaker {
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
+                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
+                    if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
+                        blackplayer.jumpvelocity = 600;
+
+                    }
+                }
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
@@ -266,6 +284,10 @@ public class LevelTwo extends Levelmaker {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             blackplayer.Moveleft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
+        {
+            blackplayer.jumpvelocity = 600;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             blackplayer.Moveright();
@@ -314,52 +336,52 @@ public class LevelTwo extends Levelmaker {
 
         if(Pad.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }if(Pad2.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad3.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad4.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad5.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad6.bounce(blackplayer)){
             blackplayer.jumpvelocity = 850;
-
+            pad.play();
         }if(Pad7.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad8.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad9.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad10.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
-
+            pad.play();
         }if(Pad11.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
         if(Pad12.bounce(blackplayer)){
             blackplayer.jumpvelocity = 550;
-
+            pad.play();
         }
         if(Pad13.bounce(blackplayer)){
             blackplayer.jumpvelocity = 650;
-
+            pad.play();
         }
 
 
@@ -405,7 +427,9 @@ public class LevelTwo extends Levelmaker {
         if(GameMode == true)
         {
             System.out.println("Playing");
-            LVLone.draw(myBatch);
+            LVLDrawer.draw(myBatch);
+            LVLDrawer2.draw(myBatch);
+
 
             //music.play();
         }
@@ -456,6 +480,7 @@ public class LevelTwo extends Levelmaker {
         LeftButton.draw(myBatch);
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
+        SuperJump.draw(myBatch);
         Pad.draw(myBatch);
         Pad2.draw(myBatch);
         Pad3.draw(myBatch);

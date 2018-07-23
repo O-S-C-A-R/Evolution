@@ -11,7 +11,6 @@ public class Bouncepad extends Collidable {
     public Rectangle getrect() {
         return Bouncepad.getBoundingRectangle();
     }
-
     private Sprite Bouncepad;
 public  Bouncepad(int x, int y){
     Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
