@@ -300,6 +300,7 @@ public class LevelTwo extends Levelmaker {
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
             blackplayer.jumpvelocity = 600;
+            pad.play();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
             blackplayer.Xvelocity -= 400;

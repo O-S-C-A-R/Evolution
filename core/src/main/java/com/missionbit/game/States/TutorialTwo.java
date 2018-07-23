@@ -240,21 +240,18 @@ public class TutorialTwo extends Levelmaker {
             pad.play();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity = -400;
+            blackplayer.Xvelocity = -600;
+            blackplayer.DRAG = 20;
             System.out.println("Super Left");
         }
-        else
-        {
-            blackplayer.Xvelocity = 0;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.D) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity = 400;
+            blackplayer.Xvelocity = 600;
+            blackplayer.DRAG = -20;
+
             System.out.println("Super Right");
         }
-        else
-        {
-            blackplayer.Xvelocity = 0;
-        }
+
     }
 
     @Override
