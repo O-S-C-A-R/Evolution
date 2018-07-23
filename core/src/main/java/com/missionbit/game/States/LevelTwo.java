@@ -211,13 +211,6 @@ public class LevelTwo extends Levelmaker {
         UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-<<<<<<< HEAD
-=======
-//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-
->>>>>>> a177f80991cbac61d67e8f9bf433eabc4f289696
         FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesPurple.png");
         TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
         OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLivePurple.png");
