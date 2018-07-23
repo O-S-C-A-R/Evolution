@@ -94,8 +94,7 @@ public class LevelTwo extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-            {744, 790, 94, 46},
-            { 1641, 772, 1199, 589},
+
     {1773, 1566, 603, 22},
     {2721, 1357, 974, 1328},
     {772, 2040, 912, 45},
@@ -115,8 +114,15 @@ public class LevelTwo extends Levelmaker {
     {4730, 370, 48, 39},
     {4778, 333, 52, 37},
     {3835, 616, 1309, 256},
+                    {742, 778, 126, 60},
+            {741, 777, 164, 61},
+            {1633, 900, 416, 461},
+            {2722, 1359, 948, 1336},
+            {2722, 1287, 363, 376},
+            {2624, 1002, 154, 355},
 
-    {2720, 1360, 1950, 1105},
+
+            {2720, 1360, 1950, 1105},
             {977, 2477, 4679, 216},
             {780, 816, 103, 63},
             {824, 857, 126, 57},
@@ -205,18 +211,9 @@ public class LevelTwo extends Levelmaker {
         UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-<<<<<<< HEAD
-        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesBlue.png");
-        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesBlue.png");
-        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLiveBlue.png");
-=======
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesPurple.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesPurple.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLivePurple.png");
->>>>>>> 68de1b1e9b3eaa5039c54cc06b486c7790751858
+        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesPurple.png");
+        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
+        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLivePurple.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
