@@ -263,11 +263,6 @@ public class TutorialTwo extends Levelmaker {
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
-
-        if(Pad3.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 610;
-
-        }
         if(Pad4.bounce(blackplayer)){
             blackplayer.jumpvelocity = 600;
 
