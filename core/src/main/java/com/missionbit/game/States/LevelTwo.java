@@ -200,17 +200,17 @@ public class LevelTwo extends Levelmaker {
 
 
 
-        LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
-        RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
+        LeftButton = new Buttons(-70, -100, "images/ui/LeftButtonPurple.png");
+        RightButton = new Buttons(30, -100, "images/ui/RightButtonPurple.png");
+        UpButton = new Buttons(690, -100, "images/ui/UpButtonPurple.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 //        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
 //        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
 //        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
+        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesPurple.png");
+        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesPurple.png");
+        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLivePurple.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
@@ -300,6 +300,7 @@ public class LevelTwo extends Levelmaker {
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
             blackplayer.jumpvelocity = 600;
+            pad.play();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
             blackplayer.Xvelocity -= 400;

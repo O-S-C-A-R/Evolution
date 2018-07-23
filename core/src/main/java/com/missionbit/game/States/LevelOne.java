@@ -339,9 +339,9 @@ public class LevelOne extends Levelmaker {
         Pad5 = new Bouncepad(4920,2075);
 
 
-        LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
-        RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
-        UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
+        LeftButton = new Buttons(-70, -100, "images/ui/LeftButtonBlue.png");
+        RightButton = new Buttons(30, -100, "images/ui/RightButtonBlue.png");
+        UpButton = new Buttons(690, -100, "images/ui/UpButtonBlue.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 //        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
