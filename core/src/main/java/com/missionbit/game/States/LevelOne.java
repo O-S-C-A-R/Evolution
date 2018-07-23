@@ -516,7 +516,7 @@ public class LevelOne extends Levelmaker {
         else
         {
             System.out.println("stopping");
-            blackplayer.reset();
+            blackplayer.reset(632, 703);
             music.stop();
             gsm.push(new RestartState(gsm));
         }

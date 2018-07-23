@@ -302,7 +302,7 @@ public class LevelTwo extends Levelmaker {
             blackplayer.jumpvelocity = 600;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity = 400;
+            blackplayer.Xvelocity -= 400;
         }
         else
         {
@@ -436,7 +436,7 @@ public class LevelTwo extends Levelmaker {
         else
         {
             System.out.println("stopping");
-            blackplayer.reset();
+            blackplayer.reset(100, 100);
             music.stop();
             gsm.push(new RestartState(gsm));
         }
