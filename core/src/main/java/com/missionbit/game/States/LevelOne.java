@@ -40,6 +40,8 @@ public class LevelOne extends Levelmaker {
     private Player blackplayer;
     private Random randomSource;
     private Sprite LVLone;
+    private Sprite LVLoneotherhalf;
+
     private Sound JumpSound;
     private Sound pad;
     private Sprite Bouncepad;
@@ -363,6 +365,10 @@ public class LevelOne extends Levelmaker {
         platforms = new ArrayList<Platform>();
 
         LVLone = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOne.png")));
+        LVLoneotherhalf = new Sprite(new Texture(Gdx.files.internal("images/map/LevelOneotherhalf.png")));
+        LVLone.setX(4198);
+        LVLone.setY(67);
+
 
         // Initialize platforms
         platforms = new ArrayList<Platform>();
@@ -506,6 +512,7 @@ public class LevelOne extends Levelmaker {
         {
             //System.out.println("Playing");
             LVLone.draw(myBatch);
+            LVLoneotherhalf.draw(myBatch);
             Pad.draw(myBatch);
             Pad2.draw(myBatch);
             Pad3.draw(myBatch);
