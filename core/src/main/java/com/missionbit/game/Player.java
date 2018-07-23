@@ -22,7 +22,7 @@ public class Player {
     public boolean touchplatform = true;
     private Vector2 lastposition = new Vector2();
     private static final int GRAVITY = -15;
-    private  static int DRAG = 5;
+    public static int DRAG = 5;
     public static int Lives = 3;
     private Animation<TextureRegion> DeathAnimation;
     public float maxjump = 405;
