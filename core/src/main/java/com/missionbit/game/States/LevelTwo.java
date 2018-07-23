@@ -29,7 +29,7 @@ import java.util.Random;
 public class LevelTwo extends Levelmaker {
 
     /* game constants */
-    private static final int CAMERA_OFFSET_X = 350;
+    private static final int CAMERA_OFFSET_X = 0;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
@@ -200,17 +200,17 @@ public class LevelTwo extends Levelmaker {
 
 
 
-        LeftButton = new Buttons(-70, -100, "images/ui/LeftButtonPurple.png");
-        RightButton = new Buttons(30, -100, "images/ui/RightButtonPurple.png");
-        UpButton = new Buttons(690, -100, "images/ui/UpButtonPurple.png");
+        LeftButton = new Buttons(-420, -100, "images/ui/LeftButtonPurple.png");
+        RightButton = new Buttons(-320, -100, "images/ui/RightButtonPurple.png");
+        UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
 //        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
 //        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
 //        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesBlue.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesBlue.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLiveBlue.png");
+        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesBlue.png");
+        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLiveBlue.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels

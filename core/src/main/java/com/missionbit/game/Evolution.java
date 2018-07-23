@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.missionbit.game.States.GameStateManager;
 import com.missionbit.game.States.LevelOne;
+import com.missionbit.game.States.LevelTwo;
 import com.missionbit.game.States.RestartState;
 import com.missionbit.game.States.TitleState;
 import com.missionbit.game.States.TutorialState;
@@ -25,7 +26,7 @@ public class Evolution extends ApplicationAdapter
     {
         batch = new SpriteBatch();
         gsm = new GameStateManager();
-        gsm.push(new TutorialTwo( gsm));
+        gsm.push(new LevelTwo(gsm));
         Gdx.gl.glClearColor(1, 1, 1, 1);
     }
 
