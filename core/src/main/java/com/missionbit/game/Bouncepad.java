@@ -1,6 +1,7 @@
 package com.missionbit.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +12,7 @@ public class Bouncepad extends Collidable {
     public Rectangle getrect() {
         return Bouncepad.getBoundingRectangle();
     }
-
+    private Music music;
     private Sprite Bouncepad;
 public  Bouncepad(int x, int y){
     Bouncepad = new Sprite(new Texture(Gdx.files.internal("images/Enemies/BouncePad.png")));
