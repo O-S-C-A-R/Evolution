@@ -318,7 +318,7 @@ public class LevelOne extends Levelmaker {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 2.mp3"));
         music.setLooping(true);
-        music.setVolume(0.4f);
+        music.setVolume(0.2f);
         music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);

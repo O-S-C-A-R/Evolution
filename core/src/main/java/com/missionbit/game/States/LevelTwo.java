@@ -70,7 +70,6 @@ public class LevelTwo extends Levelmaker {
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
-    private Buttons SuperJump;
     private Color tooclose;
 
 
@@ -78,7 +77,7 @@ public class LevelTwo extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -87,11 +86,8 @@ public class LevelTwo extends Levelmaker {
     private Buttons LeftButton;
     private Buttons RightButton;
     private Buttons UpButton;
-<<<<<<< HEAD
     private Buttons SuperJump;
     private Buttons SuperSpeed;
-=======
->>>>>>> bb1dcb301a95053423bd28e753e6de4b77d5d023
     Vector3 touchPos;
 
 
@@ -241,10 +237,7 @@ public class LevelTwo extends Levelmaker {
         pad.setVolume(1, 0.01f);
 
         blackplayer = new Player(700, 867);
-<<<<<<< HEAD
-=======
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
->>>>>>> bb1dcb301a95053423bd28e753e6de4b77d5d023
 
         blackplayer.maxjump = 450;
 
@@ -539,7 +532,6 @@ public class LevelTwo extends Levelmaker {
 
             }
 
-<<<<<<< HEAD
         blackplayer.UpdateLast();
 
         camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
@@ -575,9 +567,8 @@ public class LevelTwo extends Levelmaker {
             tooclose.b = 0;
             tooclose.a = 0;
         }
-=======
             blackplayer.UpdateLast();
-
+            myBatch.end();
             camera.position.set(CAMERA_OFFSET_X, CAMERA_OFFSET_Y, 0);
             camera.update();
             myBatch.setProjectionMatrix(camera.combined);
@@ -626,7 +617,6 @@ public class LevelTwo extends Levelmaker {
 
                 GameMode = false;
             }
->>>>>>> bb1dcb301a95053423bd28e753e6de4b77d5d023
 
             myBatch.end();
 
