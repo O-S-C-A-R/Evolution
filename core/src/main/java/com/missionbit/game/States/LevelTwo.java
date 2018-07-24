@@ -78,7 +78,7 @@ public class LevelTwo extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -305,11 +305,13 @@ public class LevelTwo extends Levelmaker {
 
     protected void handleInput() {
         for (int i = 0; i < 10; i++) {
+
             if (Gdx.input.isTouched(i)) {
                 touchPos = new Vector3();
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
+                System.out.println(blackplayer.nojump);
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&&blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         blackplayer.jumpvelocity = 700;
@@ -355,7 +357,7 @@ public class LevelTwo extends Levelmaker {
                 JumpSound.play();
             }
             System.out.println(blackplayer.jumpvelocity);
-            if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform&& blackplayer.jumpvelocity<=0.001) {
+            if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && !blackplayer.nojump) {
                 blackplayer.jumpvelocity = 700;
                 pad.play();
             }
@@ -521,6 +523,10 @@ public class LevelTwo extends Levelmaker {
             }
             if (!platformcheck && blackplayer.touchplatform) {
                 blackplayer.touchplatform = false;
+            }
+            if(!platformcheck){
+    blackplayer.nojump = true;
+
             }
 
             blackplayer.UpdateLast();
