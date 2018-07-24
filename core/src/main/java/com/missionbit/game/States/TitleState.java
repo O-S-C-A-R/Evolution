@@ -43,15 +43,20 @@ public class TitleState extends State
         music.play();
     }
 
-    protected void handleInput()
-    {
+    protected void handleInput() {
+        if ((Gdx.input.isKeyPressed(Input.Keys.SPACE))){
+        gsm.set(new TutorialState(gsm));
+        Levelmaker.GameMode = true;
+    }
+
+
         if(Gdx.input.justTouched())
         {
             touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             cam.unproject(touchPos);
 
-            if (Start.HandleClick(touchPos)||(Gdx.input.isKeyPressed(Input.Keys.E)))
+            if (Start.HandleClick(touchPos));
             {
 
                 gsm.set(new TutorialState(gsm));

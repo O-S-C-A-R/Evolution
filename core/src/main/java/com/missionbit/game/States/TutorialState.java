@@ -116,7 +116,7 @@ public class TutorialState extends Levelmaker{
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-       // small = new Laser(200, 100);
+       small = new Laser(200, 100);
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
@@ -262,7 +262,7 @@ blackplayer.tutorialupdate();
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
         Portal.draw(myBatch);
-        //small.draw(myBatch);
+        small.draw(myBatch);
         myBatch.end();
 
 
