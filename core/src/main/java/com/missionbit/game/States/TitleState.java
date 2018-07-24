@@ -1,6 +1,7 @@
 package com.missionbit.game.States;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -50,14 +51,14 @@ public class TitleState extends State
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             cam.unproject(touchPos);
 
-            if (Start.HandleClick(touchPos))
+            if (Start.HandleClick(touchPos)||(Gdx.input.isKeyPressed(Input.Keys.E)))
             {
 
                 gsm.set(new TutorialState(gsm));
                 Levelmaker.GameMode = true;
             }
 
-            //gsm.pop();
+
 
         }
     }
