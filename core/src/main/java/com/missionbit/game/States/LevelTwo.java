@@ -151,11 +151,15 @@ public class LevelTwo extends Levelmaker {
             {3267, 1699, 2149, 390},
             {5394, 1951, 264, 345},
             {5650, 2152, 252, 326},
+            {2470, 3211, 168, 19},
+            {2759, 3347, 954, 25},
             {950, 2464, 4707, 230},
     };
 
 
     private static final float[][] spike_locs = new float[][]{
+            {1680, 2755, 1726, 2750, 1765, 2758, 1803, 2750, 1840, 2750, 1868, 2759, 1894, 2752, 1898, 2746, 1914, 2749, 1914, 2689, 1677, 2696, 1678, 2757, },
+            {2322, 2705, 2402, 2777, 2429, 2860, 2578, 2904, 2603, 2898, 2500, 2741, 2505, 2693, 2326, 2704, },
             {1972, 1362, 1993, 1410, 2042, 1359, 2087, 1434, 2128, 1352, 2148, 1396, 2183, 1360, 2223, 1412, 2267, 1358, 2284, 1382, 2313, 1358, 2355, 1412, 2371, 1378, 2386, 1395, 2399, 1379, 2435, 1434, 2487, 1359, 2508, 1390, 2534, 1364, 2537, 1403, 2585, 1373, 2631, 1367, 2637, 1359, 1973, 1362,},
             {1782, 1571, 1793, 1554, 2330, 1561, 2330, 1576,},
             {1878, 1552, 1892, 1532, 1905, 1556, 1876, 1553, 1885, 1544,},
@@ -231,7 +235,7 @@ public class LevelTwo extends Levelmaker {
         LVLDrawer = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
         LVLDrawer.setX(4200);
 
-        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level2otherhalf.png")));
+        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2otherhalf.png")));
 
 
         // Initialize platforms
@@ -247,7 +251,7 @@ public class LevelTwo extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 687, 910, 1816);
+        Spider = new Enemies(2770, 3350, 2770, 1816);
     }
     @Override
 
