@@ -310,7 +310,7 @@ public class LevelTwo extends Levelmaker {
                 touchPos.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
                 camera.unproject(touchPos);
                 System.out.println(touchPos);
-                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
+                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&&blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         blackplayer.jumpvelocity = 700;
 
@@ -322,7 +322,7 @@ public class LevelTwo extends Levelmaker {
                     }
 
                 }
-                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
+                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&& blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         blackplayer.jumpvelocity = 690;
 
@@ -354,7 +354,8 @@ public class LevelTwo extends Levelmaker {
                 blackplayer.Jump();
                 JumpSound.play();
             }
-            if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform) {
+            System.out.println(blackplayer.jumpvelocity);
+            if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform&& blackplayer.jumpvelocity<=0.001) {
                 blackplayer.jumpvelocity = 700;
                 pad.play();
             }

@@ -122,7 +122,9 @@ public class Player {
     }
     public void collide(Platform p)
 
-    {
+    { if(touchplatform == true)
+        jumpvelocity= 0;
+
         if ((p.getTop() > BlackPlayer.getY() && p.getTop() < lastposition.y)) {
             BlackPlayer.setY(p.getTop() - 1);
             jumpvelocity = 0;
@@ -131,13 +133,13 @@ public class Player {
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX() < p.getLeft()) {
             BlackPlayer.setX(p.getLeft() - BlackPlayer.getWidth());
-
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX() < p.getRight()) {
             BlackPlayer.setX(p.getRight());
-
         }
-        else if ((p.getBottom() >= BlackPlayer.getY() + BlackPlayer.getWidth() && p.getBottom() > lastposition.y)) {
+        else if ((p.getBottom() <= BlackPlayer.getY() + BlackPlayer.getHeight() && p.getBottom() > lastposition.y)) {
+//            System.out.println("hyvuhdjid");
             jumpvelocity = 0;
+            BlackPlayer.setY(p.getBottom()-BlackPlayer.getHeight()-1);
             SuperJumpVelocity = 0;
         }
 
