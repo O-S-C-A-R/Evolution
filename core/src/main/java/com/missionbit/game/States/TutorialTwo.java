@@ -64,6 +64,8 @@ public class TutorialTwo extends Levelmaker {
     private Buttons OneLifeBlue;
     private Buttons SuperSpeed;
     private Color tooclose;
+    private boolean RightTouch = false;
+    private boolean LeftTouch = false;
 
 
     private Enemies Spider;
@@ -138,8 +140,8 @@ public class TutorialTwo extends Levelmaker {
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");
         RightButton = new Buttons(30, -100, "images/ui/RightButton.png");
         UpButton = new Buttons(690, -100, "images/ui/UpButton.png");
-        SuperJump = new Buttons(690,-50 ,"images/ui/SuperJump.png");
-        SuperSpeed = new Buttons(690, -10, "images/ui/SuperSpeed.png");
+        SuperJump = new Buttons(690,-30 ,"images/ui/SuperJump.png");
+        SuperSpeed = new Buttons(690, 40, "images/ui/SuperSpeed.png");
 
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
@@ -189,12 +191,16 @@ public class TutorialTwo extends Levelmaker {
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
                     if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
                         blackplayer.Moveleft();
+                        LeftTouch = true;
+                        RightTouch = false;
                     }
 
                 }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
                         blackplayer.Moveright();
+                        RightTouch = true;
+                        LeftTouch = false;
                     }
                 }
                 if (touchPos.x > UpButton.getX() && touchPos.x < UpButton.getX() + UpButton.getWidth()) {
@@ -206,21 +212,40 @@ public class TutorialTwo extends Levelmaker {
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         blackplayer.jumpvelocity = 600;
+                        pad.play();
 
                     }
                 }
+
                 if (touchPos.x > SuperSpeed.getX() && touchPos.x < SuperSpeed.getX() + SuperSpeed.getWidth()) {
-                    if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform) {
-                        if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
-                            if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
-                                blackplayer.Xvelocity = 400;
+                    if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform && RightTouch) {
+                                blackplayer.Xvelocity = 600;
+                                blackplayer.DRAG = -20;
                             }
                         }
 
-
+                if (touchPos.x > SuperSpeed.getX() && touchPos.x < SuperSpeed.getX() + SuperSpeed.getWidth()) {
+                    if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform && LeftTouch) {
+                        blackplayer.Xvelocity = -600;
+                        blackplayer.DRAG = 20;
                     }
                 }
 
+
+//                    }
+//                }
+//                if (touchPos.x > SuperSpeed.getX() && touchPos.x < SuperSpeed.getX() + SuperSpeed.getWidth()) {
+//                    if (touchPos.y > SuperSpeed.getY() && touchPos.y < SuperSpeed.getY() + SuperSpeed.getHeight() && blackplayer.touchplatform) {
+//                        if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
+//                            if (touchPos.y > LeftButton.getY() && touchPos.y < LeftButton.getY() + LeftButton.getHeight()) {
+//                                blackplayer.Xvelocity = -600;
+//                                blackplayer.DRAG = 20;
+//                            }
+//                        }
+//
+//
+//                    }
+//                }
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {

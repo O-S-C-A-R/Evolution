@@ -87,6 +87,7 @@ public class LevelTwo extends Levelmaker {
     private Buttons RightButton;
     private Buttons UpButton;
     private Buttons SuperJump;
+    private Buttons SuperSpeed;
     Vector3 touchPos;
 
 
@@ -187,7 +188,6 @@ public class LevelTwo extends Levelmaker {
         pad.setVolume(1, 0.01f);
 
         blackplayer = new Player(700, 867);
-        SuperJump = new Buttons(690,-50 ,"images/ui/SuperJump.png");
 
         blackplayer.maxjump = 450;
 
@@ -213,7 +213,9 @@ public class LevelTwo extends Levelmaker {
         LeftButton = new Buttons(-420, -100, "images/ui/LeftButtonPurple.png");
         RightButton = new Buttons(-320, -100, "images/ui/RightButtonPurple.png");
         UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
-        //Fade = new Buttons(-140,-120 ,"images/Fade.png");
+        SuperJump = new Buttons(340,-30 ,"images/ui/SuperJump.png");
+        SuperSpeed = new Buttons(340, 40, "images/ui/SuperSpeed.png");
+
 
         FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesPurple.png");
         TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
@@ -265,8 +267,8 @@ public class LevelTwo extends Levelmaker {
                 System.out.println(touchPos);
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
+                        pad.play();
                         blackplayer.jumpvelocity = 700;
-
                     }
                 }
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
@@ -482,6 +484,7 @@ public class LevelTwo extends Levelmaker {
         RightButton.draw(myBatch);
         UpButton.draw(myBatch);
         SuperJump.draw(myBatch);
+        SuperSpeed.draw(myBatch);
         Pad.draw(myBatch);
         Pad2.draw(myBatch);
         Pad3.draw(myBatch);

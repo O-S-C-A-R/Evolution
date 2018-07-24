@@ -27,7 +27,7 @@ public class Evolution extends ApplicationAdapter
         batch = new SpriteBatch();
         gsm = new GameStateManager();
 
-        gsm.push(new TitleState( gsm));
+        gsm.push(new TutorialTwo(gsm));
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
     }
