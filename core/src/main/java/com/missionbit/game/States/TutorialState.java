@@ -16,7 +16,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
-import com.missionbit.game.Laser;
 import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
@@ -34,7 +33,6 @@ public class TutorialState extends Levelmaker{
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
     private Particles Portal;
-    private Laser small;
     private OrthographicCamera camera;
 
     private Player blackplayer;
@@ -116,7 +114,7 @@ public class TutorialState extends Levelmaker{
         FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
         TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
         OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-       small = new Laser(200, 100);
+
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
@@ -262,7 +260,6 @@ blackplayer.tutorialupdate();
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
         Portal.draw(myBatch);
-        small.draw(myBatch);
         myBatch.end();
 
 
