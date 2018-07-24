@@ -29,7 +29,7 @@ import java.util.Random;
 public class LevelTwo extends Levelmaker {
 
     /* game constants */
-    private static final int CAMERA_OFFSET_X = 350;
+    private static final int CAMERA_OFFSET_X = 0;
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
@@ -94,8 +94,7 @@ public class LevelTwo extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
-            {744, 790, 94, 46},
-            { 1641, 772, 1199, 589},
+
     {1773, 1566, 603, 22},
     {2721, 1357, 974, 1328},
     {772, 2040, 912, 45},
@@ -115,8 +114,15 @@ public class LevelTwo extends Levelmaker {
     {4730, 370, 48, 39},
     {4778, 333, 52, 37},
     {3835, 616, 1309, 256},
+                    {742, 778, 126, 60},
+            {741, 777, 164, 61},
+            {1633, 900, 416, 461},
+            {2722, 1359, 948, 1336},
+            {2722, 1287, 363, 376},
+            {2624, 1002, 154, 355},
 
-    {2720, 1360, 1950, 1105},
+
+            {2720, 1360, 1950, 1105},
             {977, 2477, 4679, 216},
             {780, 816, 103, 63},
             {824, 857, 126, 57},
@@ -145,11 +151,15 @@ public class LevelTwo extends Levelmaker {
             {3267, 1699, 2149, 390},
             {5394, 1951, 264, 345},
             {5650, 2152, 252, 326},
+            {2470, 3211, 168, 19},
+            {2759, 3347, 954, 25},
             {950, 2464, 4707, 230},
     };
 
 
     private static final float[][] spike_locs = new float[][]{
+            {1680, 2755, 1726, 2750, 1765, 2758, 1803, 2750, 1840, 2750, 1868, 2759, 1894, 2752, 1898, 2746, 1914, 2749, 1914, 2689, 1677, 2696, 1678, 2757, },
+            {2322, 2705, 2402, 2777, 2429, 2860, 2578, 2904, 2603, 2898, 2500, 2741, 2505, 2693, 2326, 2704, },
             {1972, 1362, 1993, 1410, 2042, 1359, 2087, 1434, 2128, 1352, 2148, 1396, 2183, 1360, 2223, 1412, 2267, 1358, 2284, 1382, 2313, 1358, 2355, 1412, 2371, 1378, 2386, 1395, 2399, 1379, 2435, 1434, 2487, 1359, 2508, 1390, 2534, 1364, 2537, 1403, 2585, 1373, 2631, 1367, 2637, 1359, 1973, 1362,},
             {1782, 1571, 1793, 1554, 2330, 1561, 2330, 1576,},
             {1878, 1552, 1892, 1532, 1905, 1556, 1876, 1553, 1885, 1544,},
@@ -200,17 +210,14 @@ public class LevelTwo extends Levelmaker {
 
 
 
-        LeftButton = new Buttons(-70, -100, "images/ui/LeftButtonPurple.png");
-        RightButton = new Buttons(30, -100, "images/ui/RightButtonPurple.png");
-        UpButton = new Buttons(690, -100, "images/ui/UpButtonPurple.png");
+        LeftButton = new Buttons(-420, -100, "images/ui/LeftButtonPurple.png");
+        RightButton = new Buttons(-320, -100, "images/ui/RightButtonPurple.png");
+        UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
         //Fade = new Buttons(-140,-120 ,"images/Fade.png");
 
-//        FullLives = new Buttons(-140, 350, "images/ui/FullLives.png");
-//        TwoLives = new Buttons(-140, 350, "images/ui/TwoLives.png");
-//        OneLife = new Buttons(-140, 350, "images/ui/OneLife.png");
-        FullLivesBlue = new Buttons(-140, 350, "images/ui/FullLivesPurple.png");
-        TwoLivesBlue = new Buttons(-140, 350, "images/ui/TwoLivesPurple.png");
-        OneLifeBlue = new Buttons(-140, 350, "images/ui/OneLivePurple.png");
+        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesPurple.png");
+        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
+        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLivePurple.png");
 
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
@@ -228,7 +235,7 @@ public class LevelTwo extends Levelmaker {
         LVLDrawer = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2.png")));
         LVLDrawer.setX(4200);
 
-        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level2otherhalf.png")));
+        LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2otherhalf.png")));
 
 
         // Initialize platforms
@@ -244,7 +251,7 @@ public class LevelTwo extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(960, 687, 910, 1816);
+        Spider = new Enemies(2770, 3350, 2770, 1816);
     }
     @Override
 
@@ -258,7 +265,7 @@ public class LevelTwo extends Levelmaker {
                 System.out.println(touchPos);
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.jumpvelocity = 600;
+                        blackplayer.jumpvelocity = 700;
 
                     }
                 }
@@ -285,10 +292,7 @@ public class LevelTwo extends Levelmaker {
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             blackplayer.Moveleft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
-        {
-            blackplayer.jumpvelocity = 600;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             blackplayer.Moveright();
         }
@@ -299,23 +303,19 @@ public class LevelTwo extends Levelmaker {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && blackplayer.touchplatform)
         {
-            blackplayer.jumpvelocity = 600;
+            blackplayer.jumpvelocity = 700;
             pad.play();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.A) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity -= 400;
+            blackplayer.Xvelocity = -600;
+            blackplayer.DRAG = 20;
         }
-        else
-        {
-            blackplayer.Xvelocity = 0;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.D) && Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
-            blackplayer.Xvelocity = 400;
+            blackplayer.Xvelocity = 600;
+            blackplayer.DRAG = -20;
         }
-        else
-        {
-            blackplayer.Xvelocity = 0;
-        }
+
     }
 
     @Override

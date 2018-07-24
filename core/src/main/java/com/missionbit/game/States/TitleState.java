@@ -1,6 +1,7 @@
 package com.missionbit.game.States;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -42,22 +43,27 @@ public class TitleState extends State
         music.play();
     }
 
-    protected void handleInput()
-    {
+    protected void handleInput() {
+        if ((Gdx.input.isKeyPressed(Input.Keys.SPACE))){
+        gsm.set(new TutorialState(gsm));
+        Levelmaker.GameMode = true;
+    }
+
+
         if(Gdx.input.justTouched())
         {
             touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             cam.unproject(touchPos);
 
-            if (Start.HandleClick(touchPos))
+            if (Start.HandleClick(touchPos));
             {
 
                 gsm.set(new TutorialState(gsm));
                 Levelmaker.GameMode = true;
             }
 
-            //gsm.pop();
+
 
         }
     }
