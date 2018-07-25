@@ -610,7 +610,7 @@ public class LevelOne extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        small.draw(myBatch);
+        small.draw(myBatch, 1633, 838);
         // Portal.draw(myBatch);
 
         myBatch.end();
