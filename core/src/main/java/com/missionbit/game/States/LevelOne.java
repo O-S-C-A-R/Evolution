@@ -47,7 +47,7 @@ public class LevelOne extends Levelmaker {
     private Sound pad;
     private Sprite Bouncepad;
     private Music music;
-    private Laser small;
+    private Laser laser;
     private com.missionbit.game.Bouncepad Pad;
     private com.missionbit.game.Bouncepad Pad2;
     private com.missionbit.game.Bouncepad Pad3;
@@ -71,7 +71,7 @@ public class LevelOne extends Levelmaker {
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug =  false;
+    private boolean showDebug =  true;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -435,7 +435,7 @@ public class LevelOne extends Levelmaker {
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
-        small = new Laser(960,687);
+        laser = new Laser( 1633, 838);
 
         debugRenderer = new ShapeRenderer();
 
@@ -569,6 +569,11 @@ public class LevelOne extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+
+        if (laser.collide(blackplayer)){
+            blackplayer.LaserDie(laser);
+        }
+
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
             gsm.set(new TutorialTwo(gsm));
@@ -610,7 +615,7 @@ public class LevelOne extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-        small.draw(myBatch, 1633, 838);
+        laser.draw(myBatch);
         // Portal.draw(myBatch);
 
         myBatch.end();
@@ -626,6 +631,8 @@ public class LevelOne extends Levelmaker {
             for (Spikes s : spikes) {
                 s.drawDebug(debugRenderer);
             }
+
+            laser.drawDebug(debugRenderer);
            // Portal.drawDebug(debugRenderer);
 
             Spider.drawDebug(debugRenderer);

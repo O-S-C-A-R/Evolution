@@ -11,8 +11,6 @@ public class Spikes {
     public Spikes(float[] points) {
         boolean showDebug = true;
         spike = new Polygon(points);
-
-
     }
 
     public void drawDebug(ShapeRenderer renderer) {
