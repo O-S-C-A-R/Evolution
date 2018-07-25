@@ -59,7 +59,7 @@ public class TitleState extends State
             if (Start.HandleClick(touchPos));
             {
 
-                gsm.set(new LevelTwo(gsm));
+                gsm.set(new TutorialState(gsm));
                 Levelmaker.GameMode = true;
             }
 
