@@ -126,7 +126,7 @@ public class Player {
     public void collide(Platform p)
 
     {
-        System.out.println("Start");
+
         if ((p.getTop() > BlackPlayer.getY() && p.getTop() <= lastposition.y)) {
             BlackPlayer.setY(p.getTop() - 1);
             jumpvelocity = 0;
@@ -158,8 +158,8 @@ public class Player {
         else{
             nojump = true;
         }
-        System.out.println("touchplatform " + touchplatform);
-        System.out.println("topleft " + topleft + " topright " + topright + " bottomleft " + bottomleft + " bottomright " + bottomright + " nojump " + nojump);
+//        System.out.println("touchplatform " + touchplatform);
+//        System.out.println("topleft " + topleft + " topright " + topright + " bottomleft " + bottomleft + " bottomright " + bottomright + " nojump " + nojump);
 
 
     }

@@ -67,7 +67,7 @@ public class RestartState extends State
         TextureRegion drawFrame = DeathAnimation.getKeyFrame(DeathAnimationTime, false);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(drawFrame,Gdx.graphics.getWidth() / 2 - drawFrame.getRegionWidth() / 2, Gdx.graphics.getHeight() / 2 - drawFrame.getRegionHeight() / 2);
+        sb.draw(drawFrame,275,50);
         sb.end();
         if(DeathAnimation.isAnimationFinished(DeathAnimationTime))
         {

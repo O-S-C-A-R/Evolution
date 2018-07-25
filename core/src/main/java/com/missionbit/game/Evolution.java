@@ -27,6 +27,11 @@ public class Evolution extends ApplicationAdapter
         gsm = new GameStateManager();
         gsm.push(new TitleState(gsm));
 
+<<<<<<< HEAD
+=======
+
+        gsm.push(new LevelOne(gsm));
+>>>>>>> 5e5119ba4238c35989ffa35f7b64203e5fdf4afd
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
     }
