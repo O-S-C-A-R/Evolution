@@ -114,7 +114,7 @@ public class TutorialTwo extends Levelmaker {
         super(gsm);
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
-        music.setVolume(0.4f);
+        music.setVolume(0.2f);
         //music.play();
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1,false);
@@ -354,7 +354,7 @@ public class TutorialTwo extends Levelmaker {
             LVLone.draw(myBatch);
 
 
-            //music.play();
+            music.play();
         }
         else
         {
@@ -367,7 +367,7 @@ public class TutorialTwo extends Levelmaker {
         myBatch.begin();
 
         blackplayer.draw(myBatch);
-        Spider.draw(myBatch);
+        //Spider.draw(myBatch);
         Portal.draw(myBatch);
 
 
