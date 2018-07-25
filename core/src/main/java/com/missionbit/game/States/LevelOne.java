@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Laser;
 import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
@@ -46,7 +47,7 @@ public class LevelOne extends Levelmaker {
     private Sound pad;
     private Sprite Bouncepad;
     private Music music;
-
+    private Laser small;
     private com.missionbit.game.Bouncepad Pad;
     private com.missionbit.game.Bouncepad Pad2;
     private com.missionbit.game.Bouncepad Pad3;
@@ -432,6 +433,7 @@ public class LevelOne extends Levelmaker {
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
+        small = new Laser(960,687);
 
         debugRenderer = new ShapeRenderer();
 
@@ -606,7 +608,8 @@ public class LevelOne extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
-       // Portal.draw(myBatch);
+        small.draw(myBatch);
+        // Portal.draw(myBatch);
 
         myBatch.end();
 
