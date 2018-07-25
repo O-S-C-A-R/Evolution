@@ -609,7 +609,6 @@ public class LevelTwo extends Levelmaker {
 
                 GameMode = false;
             }
-
             myBatch.end();
 
 
