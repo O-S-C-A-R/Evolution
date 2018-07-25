@@ -382,7 +382,7 @@ public class FinalLevel extends Levelmaker {
         pad.setLooping(1, false);
         pad.setVolume(1, 0.01f);
 
-        blackplayer = new Player(700, 867);
+        blackplayer = new Player(700, 867,"images/player/OrangePlayer.png","images/player animation/OrangePlayerDeath.png");
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
 
         blackplayer.maxjump = 450;

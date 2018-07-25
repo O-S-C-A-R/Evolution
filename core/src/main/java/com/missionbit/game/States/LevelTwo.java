@@ -233,7 +233,7 @@ public class LevelTwo extends Levelmaker {
         pad.setLooping(1, false);
         pad.setVolume(1, 0.01f);
 
-        blackplayer = new Player(700, 867);
+        blackplayer = new Player(700, 867,"images/player/PurplePlayer.png","images/player animation/PurplePlayer Death.png");
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
 
         blackplayer.maxjump = 450;

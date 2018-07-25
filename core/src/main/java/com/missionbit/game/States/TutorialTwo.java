@@ -123,7 +123,7 @@ public class TutorialTwo extends Levelmaker {
         pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
         pad.setLooping(1,false);
         pad.setVolume(1, 0.01f);
-        blackplayer = new Player(100,400);
+        blackplayer = new Player(100,400,"images/player/BlackPlayer.png", "images/player animation/TutorialPlayerDeath.png");
         blackplayer.maxjump = 450;
         blackplayer.UltimateJump = -700;
 

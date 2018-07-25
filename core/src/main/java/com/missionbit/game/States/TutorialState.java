@@ -103,7 +103,7 @@ public class TutorialState extends Levelmaker{
         pad.setVolume(1, 0.01f);
 
 
-        blackplayer = new Player(90,59);
+        blackplayer = new Player(90,59, "images/player/BlackPlayer.png","images/player animation/TutorialPlayerDeath.png");
         Pad = new Bouncepad(1260,59);
 
         LeftButton = new Buttons(-70, -100, "images/ui/LeftButton.png");

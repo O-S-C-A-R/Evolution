@@ -48,10 +48,10 @@ public class Player {
     }
 
 
-    public Player(int x, int y){
+    public Player(int x, int y, String playerimage,String animation){
         //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal(playerimage)));
 //        if(GameStateManager == LevelOne){
 //            BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BluePlayer.png")));
 //            DeathAnimation = Utils.LoadAnimation("images/player animation/BluePlayerDeath.png", 3, 4, 8, 0.05f);
@@ -60,7 +60,7 @@ public class Player {
 
         BlackPlayer.setX(x);
         BlackPlayer.setY(y);
-        DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
+        DeathAnimation = Utils.LoadAnimation(animation, 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);

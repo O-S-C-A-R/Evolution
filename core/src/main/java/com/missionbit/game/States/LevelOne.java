@@ -406,7 +406,7 @@ public class LevelOne extends Levelmaker {
         pad.setVolume(1, 0.01f);
 
 
-        blackplayer = new Player(600,740);
+        blackplayer = new Player(600,740, "images/player/BluePlayer.png","images/player animation/BluePlayerDeath.png");
         blackplayer.maxjump = 450;
 
         Pad = new Bouncepad(2057,1135);
