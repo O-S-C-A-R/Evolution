@@ -268,7 +268,7 @@ public class LevelTwo extends Levelmaker {
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        Portal = new Particles(6245, 1040);
+        Portal = new Particles(4862, 468);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -463,8 +463,8 @@ public class LevelTwo extends Levelmaker {
             }
             if (Portal.hit(blackplayer.getBounding())) {
                 System.out.println("idk");
-                gsm.set(new TutorialTwo(gsm));
-                TutorialTwo.GameMode = true;
+                gsm.set(new FinalLevel(gsm));
+                FinalLevel.GameMode = true;
             }
 
 
@@ -490,6 +490,7 @@ public class LevelTwo extends Levelmaker {
                 System.out.println("stopping");
                 blackplayer.reset(720, 868);
                 music.stop();
+
                 gsm.push(new RestartState(gsm));
             }
             myBatch.end();
@@ -497,7 +498,7 @@ public class LevelTwo extends Levelmaker {
 
             blackplayer.draw(myBatch);
             Spider.draw(myBatch);
-            // Portal.draw(myBatch);
+             Portal.draw(myBatch);
 
             myBatch.end();
 
@@ -512,7 +513,7 @@ public class LevelTwo extends Levelmaker {
                 for (Spikes s : spikes) {
                     s.drawDebug(debugRenderer);
                 }
-                // Portal.drawDebug(debugRenderer);
+                 Portal.drawDebug(debugRenderer);
 
                 Spider.drawDebug(debugRenderer);
                 debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());

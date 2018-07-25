@@ -17,7 +17,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class Player {
     protected Sprite BlackPlayer;
-    private static final float PLAYER_SPEED = 445f;
+    private static final float PLAYER_SPEED = 500f;
     public float SuperJumpVelocity = 0;
     public float jumpvelocity = 0;
     public float Xvelocity = 0;
@@ -127,7 +127,7 @@ public class Player {
 
     {
         System.out.println("Start");
-        if ((p.getTop() > BlackPlayer.getY() && p.getTop() < lastposition.y)) {
+        if ((p.getTop() > BlackPlayer.getY() && p.getTop() <= lastposition.y)) {
             BlackPlayer.setY(p.getTop() - 1);
             jumpvelocity = 0;
             SuperJumpVelocity = 0;
