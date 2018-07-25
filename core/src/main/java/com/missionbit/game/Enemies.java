@@ -66,7 +66,6 @@ public Rectangle getBounding() {
     return new Rectangle(pos.x,pos.y,texture.getRegionWidth(),texture.getRegionHeight());
     }
 
-
     public float getTop(){
         return getBounding().getY()+getBounding().height;
     }

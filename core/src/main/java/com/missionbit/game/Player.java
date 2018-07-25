@@ -206,6 +206,19 @@ public class Player {
         Xvelocity = 0;
     }
 
+    public void LaserDie(Laser beam){
+        if(System.currentTimeMillis() - lasthit > 500){
+            Lives -- ;
+            System.out.println("One life is gone");
+            lasthit = System.currentTimeMillis();
+
+        }
+
+        CollideWithLaser(beam);
+
+
+    }
+
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
             jumpvelocity = 220;
@@ -216,6 +229,24 @@ public class Player {
 
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getRight() && BlackPlayer.getX() < sp.getRight()) {
+            Xvelocity =  220;
+            DRAG = -5;
+
+        }
+
+
+    }
+
+    public void CollideWithLaser(Laser beam) {
+        if ((beam.getTop() > BlackPlayer.getY() && beam.getTop() < lastposition.y)) {
+            jumpvelocity = 220;
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > beam.getLeft() && BlackPlayer.getX() < beam.getLeft()) {
+            Xvelocity = - 220;
+            DRAG = 5;
+
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > beam.getRight() && BlackPlayer.getX() < beam.getRight()) {
             Xvelocity =  220;
             DRAG = -5;
 
