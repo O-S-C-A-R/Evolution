@@ -158,7 +158,7 @@ public class Player {
         else{
             nojump = true;
         }
-        System.out.println("test2 " + (!topleft && !topright));
+        System.out.println("touchplatform " + touchplatform);
         System.out.println("topleft " + topleft + " topright " + topright + " bottomleft " + bottomleft + " bottomright " + bottomright + " nojump " + nojump);
 
 

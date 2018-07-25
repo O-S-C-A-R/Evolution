@@ -153,8 +153,6 @@ public class LevelTwo extends Levelmaker {
             {6876, 1560, 389, 325},
             {7204, 1883, 401, 220},
             {7191, 2075, 465, 174},
-            {2010, 938, 88, 16},
-            {2010, 938, 88, 16},
             {7166, 2165, 64, 332},
             {7088, 2207, 83, 293},
             {7052, 2311, 39, 199},
@@ -357,8 +355,9 @@ public class LevelTwo extends Levelmaker {
                 blackplayer.Jump();
                 JumpSound.play();
             }
-            System.out.println(blackplayer.jumpvelocity);
+
             if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && !blackplayer.nojump) {
+                System.out.println("test3 " + blackplayer.nojump);
                 blackplayer.jumpvelocity = 700;
                 pad.play();
             }
