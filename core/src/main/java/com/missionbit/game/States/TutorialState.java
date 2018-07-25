@@ -137,6 +137,7 @@ public class TutorialState extends Levelmaker{
         }
 
 
+
         for (float[] loc : spike_locs) {
             spikes.add(new Spikes(loc));
         }
@@ -207,7 +208,7 @@ blackplayer.tutorialupdate();
         myBatch.setProjectionMatrix(camera.combined);
 
         if(Pad.bounce(blackplayer)){
-            blackplayer.jumpvelocity = 675;
+            blackplayer.jumpvelocity = 655;
             pad.play();
         }
         platformcheck = false;

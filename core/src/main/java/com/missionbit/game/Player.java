@@ -31,7 +31,7 @@ public class Player {
     public float maxjump = 405;
     public float UltimateJump = 1000;
     long lasthit;
-   // float playertop;
+    // float playertop;
     float DeathAnimationTime = 0;
 
     public void draw(SpriteBatch batch){
@@ -133,12 +133,12 @@ public class Player {
             SuperJumpVelocity = 0;
             touchplatform = true;
 
-        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX() < p.getLeft()) {
+        } else if(BlackPlayer.getX() +  BlackPlayer.getWidth() > p.getLeft() && BlackPlayer.getX() < p.getLeft()) {
             BlackPlayer.setX(p.getLeft() - BlackPlayer.getWidth());
-        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX() < p.getRight()) {
+        } else if( BlackPlayer.getX() +  BlackPlayer.getWidth() > p.getRight() && BlackPlayer.getX() < p.getRight()) {
             BlackPlayer.setX(p.getRight());
         }
-        else if ((p.getBottom() <= BlackPlayer.getY() + BlackPlayer.getHeight() && p.getBottom() > lastposition.y)) {
+        if ((p.getBottom() <= BlackPlayer.getY() + BlackPlayer.getHeight()) && p.getBottom() > lastposition.y + 1) {
 //            System.out.println("hyvuhdjid");
             jumpvelocity = 0;
             BlackPlayer.setY(p.getBottom()-BlackPlayer.getHeight()-1);
@@ -208,7 +208,7 @@ public class Player {
 
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
-           jumpvelocity = 220;
+            jumpvelocity = 220;
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getLeft() && BlackPlayer.getX() < sp.getLeft()) {
             Xvelocity = - 220;
