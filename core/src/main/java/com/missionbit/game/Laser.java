@@ -23,10 +23,12 @@ public class Laser {
     private float Cannontime = 0;
     private float KickBackLeftTime = 0;
     private Vector2 pos;
+    private long LaserTime;
+    private boolean LaserOn = true;
+    private boolean CannonDirection = true;
 
-    public Laser(float x, float y){
-
-
+    public Laser(float x, float y, boolean Direction){
+        CannonDirection = Direction;
         Cannon = new ParticleEffect();
         Cannon.load(Gdx.files.internal("images/particle effects/Laser"), Gdx.files.internal("images/particle effects"));
         Cannon.setPosition(x, y);
@@ -36,36 +38,85 @@ public class Laser {
         pos.x = x;
         pos.y = y;
 
-         beam = Utils.LoadAnimation("images/Enemies/LaserBeam-2.png",2,13,25,0.2f);
-         KickBackLeft = Utils.LoadAnimation("images/Enemies/ShootingLaserCannon.png",5,5,25,0.2f);
+
+
+         if(CannonDirection == true)
+         {
+             KickBackLeft = Utils.LoadAnimation("images/Enemies/ShootingLaserCannon.png",5,5,24,0.2f);
+             beam = Utils.LoadAnimation("images/Enemies/LaserBeam-2.png",2,13,15,0.2f);
+         }
+         else
+         {
+             KickBackLeft = Utils.LoadAnimation("images/Enemies/SideLaser.png",5,5,24,0.2f);
+             beam = Utils.LoadAnimation("images/Enemies/LaserBeam-2.png",2,13,15,0.2f);
+         }
+         LaserTime = System.currentTimeMillis();
     }
       public void draw(SpriteBatch batch){
      // Cannon.draw(batch, Gdx.graphics.getDeltaTime());
       //small.draw(batch);
 
-      KickBackLeftTime += Gdx.graphics.getDeltaTime();
+
       TextureRegion KickBackLeftFrame = KickBackLeft.getKeyFrame(KickBackLeftTime, true);
       batch.draw(KickBackLeftFrame, pos.x, pos.y);
+      System.out.println("Laser " + LaserOn + " " + Cannontime + " " + (System.currentTimeMillis() - LaserTime));
+      if (LaserOn)
+      {
+          KickBackLeftTime += Gdx.graphics.getDeltaTime();
+          Cannontime += Gdx.graphics.getDeltaTime();
+          TextureRegion drawFrame = beam.getKeyFrame(Cannontime, false);
+          if(CannonDirection == true)
+          {
+              batch.draw(drawFrame ,pos.x + 97, pos.y + 40);
+          }
 
-      Cannontime += Gdx.graphics.getDeltaTime();
-      TextureRegion drawFrame = beam.getKeyFrame(Cannontime, true);
-      batch.draw(drawFrame ,pos.x + 97, pos.y + 40);
+          else
+          {
+              batch.draw(drawFrame ,pos.x - 347, pos.y + 55);
+          }
+      }
 
+      if(beam.isAnimationFinished(Cannontime) && LaserOn == true)
+      {
+          LaserOn = false;
+          LaserTime = System.currentTimeMillis();
+      }
+      if (System.currentTimeMillis() - LaserTime > 3000 && LaserOn == false)
+      {
+          LaserOn = true;
+          Cannontime = 0;
+          KickBackLeftTime = 0;
+
+      }
       }
 
     public boolean collide (Player idk){
+        if(LaserOn == false)
+        {
+            return false;
+        }
         boolean flag = getBounding().overlaps(idk.getBounding());
         return flag ;
     }
 
     public Rectangle getBounding() {
         TextureRegion texture = beam.getKeyFrame(Cannontime, true);
-        return new Rectangle(pos.x+97,pos.y+40,texture.getRegionWidth(),texture.getRegionHeight());
+        if(CannonDirection == true)
+        {
+            return new Rectangle(pos.x + 97, pos.y + 40, texture.getRegionWidth(), texture.getRegionHeight());
+        }
+        else
+        {
+            return new Rectangle(pos.x + -347, pos.y + 55, texture.getRegionWidth(), texture.getRegionHeight());
+        }
     }
 
     public void drawDebug(ShapeRenderer renderer){
-        Rectangle rect = getBounding();
-        renderer.rect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+        if(LaserOn == true)
+        {
+            Rectangle rect = getBounding();
+            renderer.rect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
+        }
     }
 
     public float getTop(){
