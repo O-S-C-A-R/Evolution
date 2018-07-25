@@ -77,7 +77,7 @@ public class TitleState extends State
         Gdx.gl.glClearColor(1, 1, 1, 1);
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(TitleScreen, 0, 0);
+        sb.draw(TitleScreen, -50, -50);
         sb.end();
 
         rumble.rumble(2f, 1f);
@@ -89,7 +89,7 @@ public class TitleState extends State
 
         cam.update();
         sb.begin();
-        sb.draw(TitleScreen, 0, 0);
+        sb.draw(TitleScreen, -50, -50);
         sb.end();
 
 

@@ -609,7 +609,7 @@ public class LevelOne extends Levelmaker {
     @Override
     public void dispose () {
         myBatch.dispose();
-        music.stop();
+        //music.stop();
         music.dispose();
     }
 }

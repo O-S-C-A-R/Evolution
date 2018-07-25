@@ -297,7 +297,7 @@ public class LevelTwo extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
-        Spider = new Enemies(2770, 3380, 2770, 3100);
+        Spider = new Enemies(2770, 3360, 2770, 3100);
     }
 
     @Override
