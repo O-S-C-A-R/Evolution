@@ -53,6 +53,6 @@ public class TutorialTwoIntroState extends State
     }
     public void dispose()
     {
-
+Utils.disposeAnimation(TutorialTwoAnimation);
     }
 }

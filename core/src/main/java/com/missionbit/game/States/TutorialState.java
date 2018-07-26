@@ -331,6 +331,7 @@ blackplayer.tutorialupdate();
     public void dispose () {
         myBatch.dispose();
         music.stop();
+        Tutorial.getTexture().dispose();
         music.dispose();
 
     }

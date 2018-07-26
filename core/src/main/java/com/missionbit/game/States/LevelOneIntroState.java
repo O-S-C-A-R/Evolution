@@ -53,6 +53,6 @@ public class LevelOneIntroState extends State
     }
     public void dispose()
     {
-
+        Utils.disposeAnimation(LevelOneAnimation);
     }
 }

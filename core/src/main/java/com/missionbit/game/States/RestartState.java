@@ -47,7 +47,8 @@ public class RestartState extends State
             }
             else if (Exit.contains(touchPos.x, touchPos.y))
             {
-                gsm.set(new TitleState(gsm));
+                gsm.clear();
+                gsm.push(new TitleState(gsm));
                 Levelmaker.GameMode = false;
             }
 

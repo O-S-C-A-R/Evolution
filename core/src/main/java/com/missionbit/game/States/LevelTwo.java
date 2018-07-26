@@ -674,6 +674,8 @@ public class LevelTwo extends Levelmaker {
         public void dispose () {
             myBatch.dispose();
             music.stop();
+            LVLDrawer.getTexture().dispose();
+            LVLDrawer2.getTexture().dispose();
             music.dispose();
         }
     }

@@ -770,6 +770,8 @@ public class LevelOne extends Levelmaker {
     public void dispose () {
         myBatch.dispose();
         //music.stop();
+        LVLone.getTexture().dispose();
+        LVLoneotherhalf.getTexture().dispose();
         music.dispose();
     }
 }

@@ -26,7 +26,6 @@ public class TutorialIntroState extends State
 
     protected void handleInput()
     {
-
     }
 
     public void update(float dt)
@@ -54,6 +53,6 @@ public class TutorialIntroState extends State
     }
     public void dispose()
     {
-
+        Utils.disposeAnimation(TutorialAnimation);
     }
 }

@@ -23,6 +23,14 @@ public class Utils {
             }
 
         }
+
         return new Animation<TextureRegion>(Duration, Frames);
+    }
+
+    public static void disposeAnimation(Animation<TextureRegion> animation){
+        TextureRegion[] frames = animation.getKeyFrames();
+        for(int i = 0; i < frames.length; i++){
+            frames[i].getTexture().dispose();
+        }
     }
 }
