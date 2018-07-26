@@ -19,14 +19,12 @@ import com.missionbit.game.Laser;
 import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
-import com.missionbit.game.Rumble;
 import com.missionbit.game.Spikes;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-//import com.missionbit.game.Bouncepad;
-//import com.missionbit.game.Particles;
+
 public class LevelTwo extends Levelmaker {
 
     /* game constants */
@@ -34,7 +32,6 @@ public class LevelTwo extends Levelmaker {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
-    //private Particles Portal;
     private OrthographicCamera camera;
     private Particles Portal;
 
@@ -44,7 +41,6 @@ public class LevelTwo extends Levelmaker {
     private Sprite LVLDrawer2;
     private Sound JumpSound;
     private Sound pad;
-    private Sprite Bouncepad;
     private Music music;
     private Laser laser1;
     private Laser laser2;
@@ -65,13 +61,6 @@ public class LevelTwo extends Levelmaker {
     private com.missionbit.game.Bouncepad Pad13;
     private com.missionbit.game.Bouncepad Pad11;
 
-    private Rumble rumble;
-    private Texture RestartScreen;
-
-    private Buttons Fade;
-    //    private Buttons FullLives;
-//    private Buttons TwoLives;
-//    private Buttons OneLife;
     private Buttons FullLivesBlue;
     private Buttons TwoLivesBlue;
     private Buttons OneLifeBlue;
@@ -86,13 +75,11 @@ public class LevelTwo extends Levelmaker {
 
 
     private SpriteBatch myBatch;
-    //private Vector2 velocity;
-    private float Speed;
-    private boolean showDebug = false;
+    private boolean showDebug = true;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
-    //protected static boolean GameMode = true;
+
 
     private Buttons LeftButton;
     private Buttons RightButton;
@@ -241,7 +228,7 @@ public class LevelTwo extends Levelmaker {
         music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
         music.setLooping(true);
         music.setVolume(0.4f);
-        //music.play();
+
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1, false);
         JumpSound.setVolume(1, 0.01f);
@@ -296,7 +283,6 @@ public class LevelTwo extends Levelmaker {
 
         debugRenderer = new ShapeRenderer();
 
-        //LOAD IMAGES
         platforms = new ArrayList<Platform>();
 
         LVLDrawer = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2Full.png")));
@@ -305,7 +291,7 @@ public class LevelTwo extends Levelmaker {
         LVLDrawer2 = new Sprite(new Texture(Gdx.files.internal("images/map/Level 2otherhalf.png")));
 
 
-        // Initialize platforms
+
         platforms = new ArrayList<Platform>();
 
         for (int[] loc : PLAT_LOCS) {
@@ -408,11 +394,9 @@ public class LevelTwo extends Levelmaker {
         }
         @Override
         public void render (SpriteBatch myBatch){
-            // Clear the screen
             Gdx.gl.glClearColor(tooclose.r, tooclose.g, tooclose.b, tooclose.a);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            //Set up our camera
             myBatch.setProjectionMatrix(camera.combined);
 
 
@@ -524,7 +508,7 @@ public class LevelTwo extends Levelmaker {
             }
 
 
-            // CAMERA AND PLAYER DRAWING
+
             camera.position.set(blackplayer.getBounding().getX() + CAMERA_OFFSET_X, blackplayer.getBounding().getY() + CAMERA_OFFSET_Y, 0);
             camera.update();
             myBatch.setProjectionMatrix(camera.combined);
@@ -532,7 +516,7 @@ public class LevelTwo extends Levelmaker {
             Portal.draw(myBatch);
 
 
-            // Pad.draw(myBatch);
+
             System.out.println("Game mode " + GameMode);
 
             if (GameMode == true) {
@@ -541,9 +525,6 @@ public class LevelTwo extends Levelmaker {
                 LVLDrawer2.draw(myBatch);
 
 
-
-
-                //music.play();
             } else {
                 System.out.println("stopping");
                 blackplayer.reset(720, 868);
@@ -696,12 +677,6 @@ public class LevelTwo extends Levelmaker {
             music.dispose();
         }
     }
-
-//1478, 1614, 33, 34},
-//{6843, 3219, 34, 37},
-//{7168, 2839, 35, 42},
-//{4835, 1132, 41, 28},
-//{5903, 2210, 46, 36},
 
 
 

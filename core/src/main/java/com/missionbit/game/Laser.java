@@ -1,10 +1,8 @@
 package com.missionbit.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -17,7 +15,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Laser {
     private ParticleEffect Cannon;
-    private Sprite small;
     private Animation<TextureRegion> beam;
     private Animation<TextureRegion> KickBackLeft;
     private float Cannontime = 0;
@@ -53,8 +50,7 @@ public class Laser {
          LaserTime = System.currentTimeMillis();
     }
       public void draw(SpriteBatch batch){
-     // Cannon.draw(batch, Gdx.graphics.getDeltaTime());
-      //small.draw(batch);
+
 
 
       TextureRegion KickBackLeftFrame = KickBackLeft.getKeyFrame(KickBackLeftTime, true);
@@ -130,7 +126,5 @@ public class Laser {
     }
 
 
-//1730, 878
-//1633,838
 
 }
