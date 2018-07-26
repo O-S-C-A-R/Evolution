@@ -408,7 +408,7 @@ public class LevelOne extends Levelmaker {
     public LevelOne(GameStateManager gsm)
     {
         super(gsm);
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 2.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 6.mp3"));
         music.setLooping(true);
         music.setVolume(0.2f);
         music.play();

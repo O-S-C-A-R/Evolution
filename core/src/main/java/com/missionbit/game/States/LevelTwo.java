@@ -225,10 +225,6 @@ public class LevelTwo extends Levelmaker {
 
     public LevelTwo(GameStateManager gsm) {
         super(gsm);
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/Howling-wind.mp3"));
-        music.setLooping(true);
-        music.setVolume(0.4f);
-
         JumpSound = Gdx.audio.newSound(Gdx.files.internal("music/Swooshing.mp3"));
         JumpSound.setLooping(1, false);
         JumpSound.setVolume(1, 0.01f);
@@ -236,6 +232,11 @@ public class LevelTwo extends Levelmaker {
         pad = Gdx.audio.newSound(Gdx.files.internal("music/My Song 4.mp3"));
         pad.setLooping(1, false);
         pad.setVolume(1, 0.01f);
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 2.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+//        music.play();
 
         blackplayer = new Player(700, 867,"images/player/PurplePlayer.png","images/player animation/PurplePlayer Death.png");
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
