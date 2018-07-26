@@ -17,7 +17,7 @@ import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 public class Player {
     protected Sprite BlackPlayer;
-    private static final float PLAYER_SPEED = 445f;
+    private static final float PLAYER_SPEED = 500f;
     public float SuperJumpVelocity = 0;
     public float jumpvelocity = 0;
     public float Xvelocity = 0;
@@ -48,10 +48,10 @@ public class Player {
     }
 
 
-    public Player(int x, int y){
+    public Player(int x, int y, String playerimage,String animation){
         //playertop =BlackPlayer.getY()+BlackPlayer.getHeight();
         lasthit = System.currentTimeMillis();
-        BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BlackPlayer.png")));
+        BlackPlayer = new Sprite( new Texture(Gdx.files.internal(playerimage)));
 //        if(GameStateManager == LevelOne){
 //            BlackPlayer = new Sprite( new Texture(Gdx.files.internal("images/player/BluePlayer.png")));
 //            DeathAnimation = Utils.LoadAnimation("images/player animation/BluePlayerDeath.png", 3, 4, 8, 0.05f);
@@ -60,7 +60,7 @@ public class Player {
 
         BlackPlayer.setX(x);
         BlackPlayer.setY(y);
-        DeathAnimation = Utils.LoadAnimation("images/player animation/TutorialPlayerDeath.png", 3, 4, 8, 0.05f);
+        DeathAnimation = Utils.LoadAnimation(animation, 3, 4, 8, 0.05f);
     }
     public void Moveleft(){
         BlackPlayer.setX(BlackPlayer.getX()-Gdx.graphics.getDeltaTime() * PLAYER_SPEED);
@@ -126,8 +126,8 @@ public class Player {
     public void collide(Platform p)
 
     {
-        System.out.println("Start");
-        if ((p.getTop() > BlackPlayer.getY() && p.getTop() < lastposition.y)) {
+
+        if ((p.getTop() > BlackPlayer.getY() && p.getTop() <= lastposition.y)) {
             BlackPlayer.setY(p.getTop() - 1);
             jumpvelocity = 0;
             SuperJumpVelocity = 0;
@@ -158,8 +158,8 @@ public class Player {
         else{
             nojump = true;
         }
-        System.out.println("test2 " + (!topleft && !topright));
-        System.out.println("topleft " + topleft + " topright " + topright + " bottomleft " + bottomleft + " bottomright " + bottomright + " nojump " + nojump);
+//        System.out.println("touchplatform " + touchplatform);
+//        System.out.println("topleft " + topleft + " topright " + topright + " bottomleft " + bottomleft + " bottomright " + bottomright + " nojump " + nojump);
 
 
     }
@@ -206,6 +206,19 @@ public class Player {
         Xvelocity = 0;
     }
 
+    public void LaserDie(Laser beam){
+        if(System.currentTimeMillis() - lasthit > 500){
+            Lives -- ;
+            System.out.println("One life is gone");
+            lasthit = System.currentTimeMillis();
+
+        }
+
+        CollideWithLaser(beam);
+
+
+    }
+
     public void CollideWithSpider(Enemies sp) {
         if ((sp.getTop() > BlackPlayer.getY() && sp.getTop() < lastposition.y)) {
             jumpvelocity = 220;
@@ -216,6 +229,24 @@ public class Player {
 
 
         } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > sp.getRight() && BlackPlayer.getX() < sp.getRight()) {
+            Xvelocity =  220;
+            DRAG = -5;
+
+        }
+
+
+    }
+
+    public void CollideWithLaser(Laser beam) {
+        if ((beam.getTop() > BlackPlayer.getY() && beam.getTop() < lastposition.y)) {
+            jumpvelocity = 220;
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > beam.getLeft() && BlackPlayer.getX() < beam.getLeft()) {
+            Xvelocity = - 220;
+            DRAG = 5;
+
+
+        } else if ((int) BlackPlayer.getX() + (int) BlackPlayer.getWidth() > beam.getRight() && BlackPlayer.getX() < beam.getRight()) {
             Xvelocity =  220;
             DRAG = -5;
 

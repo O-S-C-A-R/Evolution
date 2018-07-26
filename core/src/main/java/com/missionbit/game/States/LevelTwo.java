@@ -73,6 +73,12 @@ public class LevelTwo extends Levelmaker {
 
 
     private Enemies Spider;
+    private Enemies Spider2;
+    private Enemies Spider3;
+    private Enemies Spider4;
+    private Enemies Spider5;
+
+
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
@@ -94,6 +100,8 @@ public class LevelTwo extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
+            {2250, 2458, 3532, 229},
+            {6284, 1580, 399, 475},
             {741, 725, 161, 113},
             {780, 792, 182, 87},
             {820, 848, 117, 66},
@@ -233,7 +241,7 @@ public class LevelTwo extends Levelmaker {
         pad.setLooping(1, false);
         pad.setVolume(1, 0.01f);
 
-        blackplayer = new Player(700, 867);
+        blackplayer = new Player(700, 867,"images/player/PurplePlayer.png","images/player animation/PurplePlayer Death.png");
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
 
         blackplayer.maxjump = 450;
@@ -268,7 +276,7 @@ public class LevelTwo extends Levelmaker {
         randomSource = new Random();
         // TODO Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        Portal = new Particles(6245, 1040);
+        Portal = new Particles(4862, 468);
         camera.setToOrtho(false, VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -297,6 +305,10 @@ public class LevelTwo extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
+        Spider5 = new Enemies(5134, 1475, 5134, 5957);
+        Spider4 = new Enemies(6285, 2063, 6285, 2063);
+        Spider3 = new Enemies(3921, 3206, 3921, 4547);
+        Spider2 = new Enemies(1774, 1587, 1774, 2324);
         Spider = new Enemies(2770, 3360, 2770, 3100);
     }
 
@@ -355,8 +367,9 @@ public class LevelTwo extends Levelmaker {
                 blackplayer.Jump();
                 JumpSound.play();
             }
-            System.out.println(blackplayer.jumpvelocity);
+
             if (Gdx.input.isKeyPressed(Input.Keys.L) && blackplayer.touchplatform || Gdx.input.isKeyPressed(Input.Keys.E) && !blackplayer.nojump) {
+                System.out.println("test3 " + blackplayer.nojump);
                 blackplayer.jumpvelocity = 700;
                 pad.play();
             }
@@ -456,14 +469,31 @@ public class LevelTwo extends Levelmaker {
                 }
             }
 
+
             if (Spider.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider4.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider2.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider3.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider5.spidercollide(blackplayer)) {
                 blackplayer.SpiderDie(Spider);
 
             }
             if (Portal.hit(blackplayer.getBounding())) {
                 System.out.println("idk");
-                gsm.set(new TutorialTwo(gsm));
-                TutorialTwo.GameMode = true;
+                gsm.set(new FinalLevel(gsm));
+                FinalLevel.GameMode = true;
             }
 
 
@@ -489,6 +519,7 @@ public class LevelTwo extends Levelmaker {
                 System.out.println("stopping");
                 blackplayer.reset(720, 868);
                 music.stop();
+
                 gsm.push(new RestartState(gsm));
             }
             myBatch.end();
@@ -496,7 +527,15 @@ public class LevelTwo extends Levelmaker {
 
             blackplayer.draw(myBatch);
             Spider.draw(myBatch);
-            // Portal.draw(myBatch);
+            Spider2.draw(myBatch);
+            Spider3.draw(myBatch);
+            Spider4.draw(myBatch);
+            Spider5.draw(myBatch);
+
+
+
+
+            Portal.draw(myBatch);
 
             myBatch.end();
 
@@ -511,9 +550,13 @@ public class LevelTwo extends Levelmaker {
                 for (Spikes s : spikes) {
                     s.drawDebug(debugRenderer);
                 }
-                // Portal.drawDebug(debugRenderer);
+                 Portal.drawDebug(debugRenderer);
 
                 Spider.drawDebug(debugRenderer);
+                Spider2.drawDebug(debugRenderer);
+                Spider3.drawDebug(debugRenderer);
+
+
                 debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
                 debugRenderer.end();
             }
@@ -608,7 +651,6 @@ public class LevelTwo extends Levelmaker {
 
                 GameMode = false;
             }
-
             myBatch.end();
 
 
