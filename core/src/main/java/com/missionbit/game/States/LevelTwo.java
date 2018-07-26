@@ -75,7 +75,7 @@ public class LevelTwo extends Levelmaker {
 
 
     private SpriteBatch myBatch;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -236,7 +236,7 @@ public class LevelTwo extends Levelmaker {
         music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 2.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
-//        music.play();
+        music.play();
 
         blackplayer = new Player(700, 867,"images/player/PurplePlayer.png","images/player animation/PurplePlayer Death.png");
         SuperJump = new Buttons(690, -50, "images/ui/SuperJump.png");
