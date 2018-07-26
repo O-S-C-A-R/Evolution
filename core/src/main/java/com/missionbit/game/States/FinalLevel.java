@@ -437,7 +437,7 @@ public class FinalLevel extends Levelmaker {
 
         FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesBlue.png");
         TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
-        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLifeBlue.png");
+        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLiveBlue.png");
         SuperJump = new Buttons(340,100,"images/ui/SuperJump.png");
 
 
