@@ -75,7 +75,7 @@ public class LevelTwo extends Levelmaker {
 
 
     private SpriteBatch myBatch;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
