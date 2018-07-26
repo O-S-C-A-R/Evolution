@@ -8,10 +8,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
@@ -23,7 +21,6 @@ import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
 import com.missionbit.game.Spikes;
-import com.missionbit.game.Utils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -408,7 +405,7 @@ public class LevelOne extends Levelmaker {
     public LevelOne(GameStateManager gsm)
     {
         super(gsm);
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 6.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/My Song 2 1.mp3"));
         music.setLooping(true);
         music.setVolume(0.2f);
         music.play();
