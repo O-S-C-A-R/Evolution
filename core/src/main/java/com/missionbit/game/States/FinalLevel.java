@@ -428,16 +428,16 @@ public class FinalLevel extends Levelmaker {
 //        Pad13 = new Bouncepad(775, 2676);
 
 
-        LeftButton = new Buttons(-420, -100, "images/ui/LeftButton.png");
-        RightButton = new Buttons(-320, -100, "images/ui/RightButton.png");
-        UpButton = new Buttons(340, -100, "images/ui/UpButton.png");
+        LeftButton = new Buttons(-420, -100, "images/ui/LeftButtonPurple.png");
+        RightButton = new Buttons(-320, -100, "images/ui/RightButtonBlue.png");
+        UpButton = new Buttons(340, -100, "images/ui/UpButtonPurple.png");
         SuperJump = new Buttons(340,-30 ,"images/ui/SuperJump.png");
         SuperSpeed = new Buttons(340, 40, "images/ui/SuperSpeed.png");
 
 
-        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLives.png");
-        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLives.png");
-        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLife.png");
+        FullLivesBlue = new Buttons(-490, 350, "images/ui/FullLivesBlue.png");
+        TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
+        OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLifeBlue.png");
         SuperJump = new Buttons(340,100,"images/ui/SuperJump.png");
 
 

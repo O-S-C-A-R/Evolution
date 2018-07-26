@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
@@ -21,6 +23,7 @@ import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
 import com.missionbit.game.Rumble;
 import com.missionbit.game.Spikes;
+import com.missionbit.game.Utils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,6 +37,7 @@ public class LevelOne extends Levelmaker {
     private static final int CAMERA_OFFSET_Y = 150;
     private static final int VIEWPORT_WIDTH = 960;
     private static final int VIEWPORT_HEIGHT = 540;
+    private float LevelOneAnimationTime = 0;
     //private Particles Portal;
     private OrthographicCamera camera;
     private Particles Portal;
@@ -420,6 +424,7 @@ public class LevelOne extends Levelmaker {
         blackplayer = new Player(600,740, "images/player/BluePlayer.png","images/player animation/BluePlayerDeath.png");
         blackplayer.maxjump = 450;
 
+
         Pad = new Bouncepad(2057,1135);
         Pad2 = new Bouncepad(2936,1447);
         Pad3 = new Bouncepad(4352,1505);
@@ -544,6 +549,7 @@ public class LevelOne extends Levelmaker {
         //Set up our camera
         myBatch.setProjectionMatrix(camera.combined);
 
+
        if(Pad.bounce(blackplayer)){
             blackplayer.jumpvelocity = 750;
             pad.play();
@@ -627,7 +633,7 @@ public class LevelOne extends Levelmaker {
 
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
-            gsm.set(new TutorialTwo(gsm));
+            gsm.set(new TutorialTwoIntroState(gsm));
             TutorialTwo.GameMode = true;
         }
 
@@ -638,6 +644,7 @@ public class LevelOne extends Levelmaker {
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
         myBatch.begin();
+
 
        // Pad.draw(myBatch);
         //System.out.println("Game mode " + GameMode);
