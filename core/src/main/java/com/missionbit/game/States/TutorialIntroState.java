@@ -47,6 +47,7 @@ public class TutorialIntroState extends State
         if(TutorialAnimation.isAnimationFinished(TutorialAnimationTime))
         {
             sb.begin();
+            gsm.clear();
             gsm.push(new TutorialState(gsm));
             sb.end();
         }

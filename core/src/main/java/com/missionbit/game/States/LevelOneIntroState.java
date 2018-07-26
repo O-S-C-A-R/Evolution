@@ -46,6 +46,7 @@ public class LevelOneIntroState extends State
         if(LevelOneAnimation.isAnimationFinished(LevelOneAnimationTime))
         {
             sb.begin();
+            gsm.clear();
             gsm.push(new LevelOne(gsm));
             sb.end();
         }

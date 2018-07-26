@@ -37,5 +37,14 @@ public class GameStateManager {
         states.peek().render(sb);
     }
 
+    public void clear()
+    {
+        while (!states.empty())
+        {
+            State tmp = states.pop();
+            tmp.dispose();
+        }
+    }
+
 }
 
