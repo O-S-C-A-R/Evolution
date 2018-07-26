@@ -360,7 +360,7 @@ public class FinalLevel extends Levelmaker {
 
 
     private static final float[][] spike_locs = new float[][]{
-            {4476, 3223, 417, 97,34,67},
+            {0, 0, 0, 0,0,0},
 
     };
 
@@ -471,7 +471,7 @@ public class FinalLevel extends Levelmaker {
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&&blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         pad.play();
-                        blackplayer.jumpvelocity = 720;
+                        blackplayer.jumpvelocity = 920;
                     }
                 }
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
@@ -482,7 +482,7 @@ public class FinalLevel extends Levelmaker {
                 }
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&& blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.jumpvelocity = 710;
+                        blackplayer.jumpvelocity = 900;
 
                     }
                 }

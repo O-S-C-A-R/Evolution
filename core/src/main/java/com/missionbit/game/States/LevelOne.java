@@ -50,6 +50,8 @@ public class LevelOne extends Levelmaker {
     private Laser laser;
     private Laser laser1;
     private Laser laser2;
+    private Laser laser3;
+
 
     private com.missionbit.game.Bouncepad Pad;
     private com.missionbit.game.Bouncepad Pad2;
@@ -445,8 +447,10 @@ public class LevelOne extends Levelmaker {
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
         laser = new Laser( 1633, 838, true);
-        laser1 = new Laser(2277, 998, false);
+        laser1 = new Laser(2287, 998, false);
         laser2 = new Laser(4545, 1618, false);
+        laser3 = new Laser(5613, 1462,  true);
+
 
 
         debugRenderer = new ShapeRenderer();
@@ -617,6 +621,9 @@ public class LevelOne extends Levelmaker {
         if (laser2.collide(blackplayer)){
             blackplayer.LaserDie(laser1);
         }
+        if (laser3.collide(blackplayer)){
+            blackplayer.LaserDie(laser1);
+        }
 
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
@@ -667,6 +674,8 @@ public class LevelOne extends Levelmaker {
         laser.draw(myBatch);
         laser1.draw(myBatch);
         laser2.draw(myBatch);
+        laser3.draw(myBatch);
+
 
         // Portal.draw(myBatch);
 
