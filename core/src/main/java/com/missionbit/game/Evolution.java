@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.missionbit.game.States.FinalLevel;
 import com.missionbit.game.States.GameStateManager;
 import com.missionbit.game.States.LevelOne;
+import com.missionbit.game.States.LevelTwo;
 import com.missionbit.game.States.TitleState;
 import com.missionbit.game.States.TutorialState;
 import com.missionbit.game.States.TutorialTwo;
@@ -26,13 +27,6 @@ public class Evolution extends ApplicationAdapter
         batch = new SpriteBatch();
         gsm = new GameStateManager();
         gsm.push(new TitleState(gsm));
-
-<<<<<<< HEAD
-=======
-
-        gsm.push(new LevelOne(gsm));
->>>>>>> 5e5119ba4238c35989ffa35f7b64203e5fdf4afd
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
     }
 

@@ -69,10 +69,16 @@ public class LevelOne extends Levelmaker {
 
 
     private Enemies Spider;
+    private Enemies Spider2;
+    private Enemies Spider3;
+    private Enemies Spider4;
+    private Enemies Spider5;
+
+
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
-    private boolean showDebug = true;
+    private boolean showDebug = false;
 
 
     private ArrayList<Spikes> spikes = new ArrayList<Spikes>();
@@ -464,6 +470,11 @@ public class LevelOne extends Levelmaker {
 
         // velocity = new Vector2(0, 0);
         Spider = new Enemies(960, 687, 910, 1816);
+        Spider2 = new Enemies(2207, 1314, 2207, 2554);
+        Spider3 = new Enemies(4056, 1493, 4056, 4438);
+        Spider4 = new Enemies(5832, 1009, 5832, 6123);
+        Spider5 = new Enemies(5129, 1839, 5129, 5223);
+
     }
     @Override
 
@@ -571,6 +582,26 @@ public class LevelOne extends Levelmaker {
             blackplayer.SpiderDie(Spider);
 
         }
+        if (Spider2.spidercollide(blackplayer)) {
+            blackplayer.SpiderDie(Spider);
+
+        }
+
+        if (Spider3.spidercollide(blackplayer)) {
+            blackplayer.SpiderDie(Spider);
+
+        }
+
+        if (Spider4.spidercollide(blackplayer)) {
+            blackplayer.SpiderDie(Spider);
+
+        }
+
+        if (Spider5.spidercollide(blackplayer)) {
+            blackplayer.SpiderDie(Spider);
+
+        }
+
 
         if (laser.collide(blackplayer)){
             blackplayer.LaserDie(laser);
@@ -621,6 +652,11 @@ public class LevelOne extends Levelmaker {
 
         blackplayer.draw(myBatch);
         Spider.draw(myBatch);
+        Spider2.draw(myBatch);
+        Spider3.draw(myBatch);
+        Spider4.draw(myBatch);
+        Spider5.draw(myBatch);
+
         laser.draw(myBatch);
         laser1.draw(myBatch);
         // Portal.draw(myBatch);
