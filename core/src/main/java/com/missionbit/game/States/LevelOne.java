@@ -437,7 +437,7 @@ public class LevelOne extends Levelmaker {
         //TODO Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
         laser = new Laser( 1633, 838, true);
-        laser1 = new Laser(1733, 938, false);
+        laser1 = new Laser(2277, 998, false);
 
         debugRenderer = new ShapeRenderer();
 

@@ -48,7 +48,7 @@ public class Laser {
          else
          {
              KickBackLeft = Utils.LoadAnimation("images/Enemies/SideLaser.png",5,5,24,0.2f);
-             beam = Utils.LoadAnimation("images/Enemies/LaserBeam-2.png",2,13,15,0.2f);
+             beam = Utils.LoadAnimation("images/Enemies/LaserBeam clone.png",1,26,15,0.2f);
          }
          LaserTime = System.currentTimeMillis();
     }
@@ -72,7 +72,7 @@ public class Laser {
 
           else
           {
-              batch.draw(drawFrame ,pos.x - 347, pos.y + 55);
+              batch.draw(drawFrame ,pos.x - 847, pos.y + 55);
           }
       }
 
@@ -107,7 +107,7 @@ public class Laser {
         }
         else
         {
-            return new Rectangle(pos.x + -347, pos.y + 55, texture.getRegionWidth(), texture.getRegionHeight());
+            return new Rectangle(pos.x - 847, pos.y + 55, texture.getRegionWidth(), texture.getRegionHeight());
         }
     }
 
