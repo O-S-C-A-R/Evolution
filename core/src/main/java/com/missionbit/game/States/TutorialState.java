@@ -233,7 +233,7 @@ blackplayer.tutorialupdate();
         }
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
-            gsm.set(new LevelOne(gsm));
+            gsm.set(new LevelOneIntroState(gsm));
           LevelOne.GameMode = true;
         }
 
