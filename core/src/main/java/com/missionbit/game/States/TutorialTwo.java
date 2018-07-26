@@ -452,7 +452,7 @@ public class TutorialTwo extends Levelmaker {
         }
         if(Portal.hit(blackplayer.getBounding())){
             System.out.println("idk");
-            gsm.set(new LevelTwo(gsm));
+            gsm.set(new LevelTwoIntroState(gsm));
             LevelTwo.GameMode = true;
         }
 
