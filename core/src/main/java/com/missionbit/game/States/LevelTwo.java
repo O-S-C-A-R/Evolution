@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.Bouncepad;
 import com.missionbit.game.Buttons;
 import com.missionbit.game.Enemies;
+import com.missionbit.game.Laser;
 import com.missionbit.game.Particles;
 import com.missionbit.game.Platform;
 import com.missionbit.game.Player;
@@ -45,6 +46,11 @@ public class LevelTwo extends Levelmaker {
     private Sound pad;
     private Sprite Bouncepad;
     private Music music;
+    private Laser laser1;
+    private Laser laser2;
+    private Laser laser3;
+    private Laser laser;
+
 
     private com.missionbit.game.Bouncepad Pad2;
     private com.missionbit.game.Bouncepad Pad3;
@@ -218,6 +224,9 @@ public class LevelTwo extends Levelmaker {
             {2322, 2705, 2402, 2777, 2429, 2860, 2578, 2904, 2603, 2898, 2500, 2741, 2505, 2693, 2326, 2704,},
             {1972, 1362, 1993, 1410, 2042, 1359, 2087, 1434, 2128, 1352, 2148, 1396, 2183, 1360, 2223, 1412, 2267, 1358, 2284, 1382, 2313, 1358, 2355, 1412, 2371, 1378, 2386, 1395, 2399, 1379, 2435, 1434, 2487, 1359, 2508, 1390, 2534, 1364, 2537, 1403, 2585, 1373, 2631, 1367, 2637, 1359, 1973, 1362,},
             {1782, 1571, 1793, 1554, 2330, 1561, 2330, 1576,},
+            {2630, 2793, 2760, 3025, 3693, 3027, 3792, 2796, 2625, 2793, },
+            {2630, 2793, 2760, 3025, 3693, 3027, 3792, 2796, 2625, 2793, },
+
             {1878, 1552, 1892, 1532, 1905, 1556, 1876, 1553, 1885, 1544,},
             {2152, 2038, 2131, 2062, 2100, 2128, 2098, 2143, 2090, 2144, 2073, 2177, 2051, 2132, 2040, 2127, 2039, 2112, 2015, 2042,},
             {1308, 2328, 1444, 2330, 1424, 2319, 1314, 2319, 1310, 2328,},
@@ -271,6 +280,10 @@ public class LevelTwo extends Levelmaker {
         TwoLivesBlue = new Buttons(-490, 350, "images/ui/TwoLivesPurple.png");
         OneLifeBlue = new Buttons(-490, 350, "images/ui/OneLivePurple.png");
         SuperJump = new Buttons(340,100,"images/ui/SuperJump.png");
+        laser = new Laser( 1478, 1614, true);
+        laser1 = new Laser(6843, 3219, false);
+        laser2 = new Laser(7168, 2839, false);
+        laser3 = new Laser(5840, 2210,  true);
 
 
         randomSource = new Random();
@@ -451,6 +464,20 @@ public class LevelTwo extends Levelmaker {
                 blackplayer.jumpvelocity = 650;
                 pad.play();
             }
+            if (laser.collide(blackplayer)){
+                blackplayer.LaserDie(laser);
+            }
+
+            if (laser1.collide(blackplayer)){
+                blackplayer.LaserDie(laser1);
+            }
+            if (laser2.collide(blackplayer)){
+                blackplayer.LaserDie(laser1);
+            }
+            if (laser3.collide(blackplayer)){
+                blackplayer.LaserDie(laser1);
+            }
+
 
 
             platformcheck = false;
@@ -502,6 +529,8 @@ public class LevelTwo extends Levelmaker {
             camera.update();
             myBatch.setProjectionMatrix(camera.combined);
             myBatch.begin();
+            Portal.draw(myBatch);
+
 
             // Pad.draw(myBatch);
             System.out.println("Game mode " + GameMode);
@@ -532,10 +561,14 @@ public class LevelTwo extends Levelmaker {
             Spider4.draw(myBatch);
             Spider5.draw(myBatch);
 
+            laser.draw(myBatch);
+            laser1.draw(myBatch);
+            laser2.draw(myBatch);
+            laser3.draw(myBatch);
 
 
 
-            Portal.draw(myBatch);
+
 
             myBatch.end();
 
@@ -664,7 +697,11 @@ public class LevelTwo extends Levelmaker {
         }
     }
 
-
+//1478, 1614, 33, 34},
+//{6843, 3219, 34, 37},
+//{7168, 2839, 35, 42},
+//{4835, 1132, 41, 28},
+//{5903, 2210, 46, 36},
 
 
 
