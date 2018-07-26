@@ -471,7 +471,7 @@ public class FinalLevel extends Levelmaker {
                 if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&&blackplayer.jumpvelocity==0) {
                     if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
                         pad.play();
-                        blackplayer.jumpvelocity = 720;
+                        blackplayer.jumpvelocity = 2020;
                     }
                 }
                 if (touchPos.x > LeftButton.getX() && touchPos.x < LeftButton.getX() + LeftButton.getWidth()) {
@@ -480,12 +480,7 @@ public class FinalLevel extends Levelmaker {
                     }
 
                 }
-                if (touchPos.x > SuperJump.getX() && touchPos.x < SuperJump.getX() + SuperJump.getWidth()&& blackplayer.jumpvelocity==0) {
-                    if (touchPos.y > SuperJump.getY() && touchPos.y < SuperJump.getY() + SuperJump.getHeight() && blackplayer.touchplatform) {
-                        blackplayer.jumpvelocity = 710;
 
-                    }
-                }
                 if (touchPos.x > RightButton.getX() && touchPos.x < RightButton.getX() + RightButton.getWidth()) {
                     if (touchPos.y > RightButton.getY() && touchPos.y < RightButton.getY() + RightButton.getHeight()) {
                         blackplayer.Moveright();
