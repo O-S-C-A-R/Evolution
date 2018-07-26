@@ -73,6 +73,12 @@ public class LevelTwo extends Levelmaker {
 
 
     private Enemies Spider;
+    private Enemies Spider2;
+    private Enemies Spider3;
+    private Enemies Spider4;
+    private Enemies Spider5;
+
+
     private SpriteBatch myBatch;
     //private Vector2 velocity;
     private float Speed;
@@ -94,6 +100,8 @@ public class LevelTwo extends Levelmaker {
 
 
     private static final int[][] PLAT_LOCS = new int[][]{
+            {2250, 2458, 3532, 229},
+            {6284, 1580, 399, 475},
             {741, 725, 161, 113},
             {780, 792, 182, 87},
             {820, 848, 117, 66},
@@ -297,6 +305,10 @@ public class LevelTwo extends Levelmaker {
 
 
         // velocity = new Vector2(0, 0);
+        Spider5 = new Enemies(5134, 1475, 5134, 5957);
+        Spider4 = new Enemies(6285, 2063, 6285, 2063);
+        Spider3 = new Enemies(3921, 3206, 3921, 4547);
+        Spider2 = new Enemies(1774, 1587, 1774, 2324);
         Spider = new Enemies(2770, 3360, 2770, 3100);
     }
 
@@ -457,7 +469,24 @@ public class LevelTwo extends Levelmaker {
                 }
             }
 
+
             if (Spider.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider4.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider2.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider3.spidercollide(blackplayer)) {
+                blackplayer.SpiderDie(Spider);
+
+            }
+            if (Spider5.spidercollide(blackplayer)) {
                 blackplayer.SpiderDie(Spider);
 
             }
@@ -498,7 +527,15 @@ public class LevelTwo extends Levelmaker {
 
             blackplayer.draw(myBatch);
             Spider.draw(myBatch);
-             Portal.draw(myBatch);
+            Spider2.draw(myBatch);
+            Spider3.draw(myBatch);
+            Spider4.draw(myBatch);
+            Spider5.draw(myBatch);
+
+
+
+
+            Portal.draw(myBatch);
 
             myBatch.end();
 
@@ -516,6 +553,10 @@ public class LevelTwo extends Levelmaker {
                  Portal.drawDebug(debugRenderer);
 
                 Spider.drawDebug(debugRenderer);
+                Spider2.drawDebug(debugRenderer);
+                Spider3.drawDebug(debugRenderer);
+
+
                 debugRenderer.rect(blackplayer.getBounding().getX(), blackplayer.getBounding().getY(), blackplayer.getBounding().getWidth(), blackplayer.getBounding().getHeight());
                 debugRenderer.end();
             }
