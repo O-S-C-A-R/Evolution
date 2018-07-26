@@ -586,6 +586,10 @@ public class LevelOne extends Levelmaker {
             }
         }
 
+        if(blackplayer.getBounding().getX()<-400){
+            blackplayer.getBounding().setX(600);
+            blackplayer.getBounding().setY(740);
+        }
         if (Spider.spidercollide(blackplayer)) {
             blackplayer.SpiderDie(Spider);
 
